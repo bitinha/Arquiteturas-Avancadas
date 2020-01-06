@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-
 //https://en.wikipedia.org/wiki/In-place_matrix_transposition#Square_matrices
 void transpose(float **M, int N){
 
@@ -21,14 +20,19 @@ void transpose(float **M, int N){
 
 void matMult(int N, float **A, float **B, float **C) {
 
-
+    transpose(A,N);
     transpose(B,N);
+    // C também é transposta
 
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            C[i][j] = 0;
-            for (int k = 0; k < N; k++) {
-                C[i][j] += A[i][k] * B[j][k];
+    for (int j = 0; j < N; j++) {
+
+        for (int i = 0; i < N; i++) {   //1ª iteração é necessário definir ter a matriz resultado a 0
+            C[j][i] = A[0][i] * B[j][0];
+        }
+
+        for (int k = 1; k < N; k++) {
+            for (int i = 0; i < N; i++) {
+                C[j][i] += A[k][i] * B[j][k];
             }
         }
     }
