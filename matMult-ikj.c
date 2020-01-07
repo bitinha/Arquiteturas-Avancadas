@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-void matMult(int N, float **A, float **B, float **C) {
+void matMult(int N, float A[][N], float B[][N], float C[][N]) {
 
     for (int i = 0; i < N; i++) {
 
@@ -21,10 +21,9 @@ void matMult(int N, float **A, float **B, float **C) {
 int main() {
     int N = 3;
 
-    float** A = (float **) malloc(N*N*sizeof(float));
-    float** B = (float **) malloc(N*N*sizeof(float));
-    float** C = (float **) malloc(N*N*sizeof(float));
-
+    float A[N][N];
+    float B[N][N];
+    float C[N][N]; 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
             A[i][j] = ((float)rand()) / ((float)RAND_MAX);

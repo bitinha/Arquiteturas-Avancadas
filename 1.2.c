@@ -3,7 +3,7 @@
 
 
 //https://en.wikipedia.org/wiki/In-place_matrix_transposition#Square_matrices
-void transpose(float **M, int N){
+void transpose(int N, float M[][N]){
 
     float temp;
 
@@ -19,10 +19,10 @@ void transpose(float **M, int N){
 
 }
 
-void matMult(int N, float **A, float **B, float **C) {
+void matMult(int N, float A[][N], float B[][N], float C[][N]) {
 
 
-    transpose(B,N);
+    transpose(N,B);
 
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
@@ -37,9 +37,9 @@ void matMult(int N, float **A, float **B, float **C) {
 int main() {
     int N = 3;
 
-    float** A = (float **) malloc(N*N*sizeof(float));
-    float** B = (float **) malloc(N*N*sizeof(float));
-    float** C = (float **) malloc(N*N*sizeof(float));
+    float A[N][N];
+    float B[N][N];
+    float C[N][N]; 
 
     for (int i = 0; i < N; ++i) {
         for (int j = 0; j < N; ++j) {
