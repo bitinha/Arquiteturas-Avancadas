@@ -18,8 +18,14 @@ void matMult(int N, float A[][N], float B[][N], float C[][N]) {
     }
 }
 
-int main() {
-    int N = 3;
+int main(int argc, char const *argv[]) {
+
+    if (argv == 1){
+        printf("Insira o tamanho da matriz\n");
+        exit(1);
+    }
+
+    int N = atoi(argv[1]);
 
     float A[N][N];
     float B[N][N];
