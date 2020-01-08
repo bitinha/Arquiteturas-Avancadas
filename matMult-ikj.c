@@ -20,7 +20,7 @@ void matMult(int N, float A[][N], float B[][N], float C[][N]) {
 
 int main(int argc, char const *argv[]) {
 
-    if (argv == 1){
+    if (argc == 1){
         printf("Insira o tamanho da matriz\n");
         exit(1);
     }

@@ -34,8 +34,8 @@ void matMult(int N, float A[][N], float B[][N], float C[][N]) {
     }
 }
 
-int main() {
-    if (argv == 1){
+int main(int argc, char const *argv[]) {
+    if (argc == 1){
         printf("Insira o tamanho da matriz\n");
         exit(1);
     }
