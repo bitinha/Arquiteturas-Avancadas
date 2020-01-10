@@ -2,6 +2,7 @@
 #include <sys/time.h>
 #include <stdlib.h>
 #include <string.h>
+#include "papi.h"
 
 #define BLOCK_SIZE 16
 #define TIME_RESOLUTION 1000000 // time measuring resolution (us)
@@ -52,7 +53,24 @@ void printResults (void) {
     long long unsigned media = (best3[0]+best3[1]+best3[2])/3;
     float tolerancia = ((float)best3[maior])/best3[menor] - 1.0;
 
-    printf("Média dos 3 melhores tempos = %llu\nTolerância = %f%%", media, tolerancia*100);
+    printf("Média dos 3 melhores tempos = %llu\nTolerância = %f%%\n", media, tolerancia*100);
+}
+
+void printPAPI(long long *values, int num_events, const char *tipo, int i){
+
+    printf("Medições da iteração %d:\n\n",i);
+
+    if (strcmp(tipo,"pm1")==0){
+
+        printf("Miss L1=%lld\nLoad Instrucions=%lld\nStore Instrucions=%lld\n", values[0], values[1], values[2]);
+        printf("Miss Rate L1 = %f\n", (double)values[0]/(values[1]+values[2]));
+    }
+    else if (strcmp(tipo,"pm23")==0){
+        printf("Miss L1=%lld\nMiss L2=%lld\nMiss L3=%lld\n", values[0], values[1], values[2]);
+        printf("Miss Rate L2 = %f\nMiss Rate L3 = %f\n", (double)values[1]/values[0], (double)values[2]/values[1]);
+    }
+
+    printf("\n\n\n");
 }
 
 void start (void) {
@@ -269,12 +287,22 @@ int main(int argc, char const *argv[]) {
 
     void (*funcao)(float *, float *, float *, int );
 
+
     if (strcmp(argv[1],"ijk")==0) funcao = matMult_ijk;
     else if (strcmp(argv[1],"ikj")==0) funcao = matMult_ikj;
     else if (strcmp(argv[1],"jki")==0) funcao = matMult_jki;
     else if (strcmp(argv[1],"ijk_trans")==0) funcao = matMult_ijk_trans;
     else if (strcmp(argv[1],"jki_trans")==0) funcao = matMult_jki_trans;
     else if (strcmp(argv[1],"block")==0) funcao = matMultBlock;
+    else {
+        printf("Insira a implementação desejada:\n");
+
+        char *implementacoes[6] = {"ijk","ikj","jki","ijk_trans","jki_trans","block"};
+        for(int i = 0; i<6;i++){
+            printf(" - %s\n", implementacoes[i]);
+        }
+        exit(1);
+    }
 
     int N = atoi(argv[2]);
 
@@ -285,30 +313,60 @@ int main(int argc, char const *argv[]) {
 
 
     fillMatrices(A,B,N);
+    // printMatrix(N,'A',A);
+    // printMatrix(N,'B',B);
 
+    char papi = 0;
+    int num_events = 3;
+    long long values[num_events];
+    int events[num_events];
 
-// printMatrix(N,'A',A);
-// printMatrix(N,'B',B);
+    if (argc > 3){
+        if (strcmp(argv[3],"pm1")==0){
+            papi = 1;
+            events[0] = PAPI_L1_DCM;
+            events[1] = PAPI_LD_INS;
+            events[2] = PAPI_SR_INS;
+        }
+        else if (strcmp(argv[3],"pm23")==0){
+            papi = 1;
+            events[0] = PAPI_L1_DCM;
+            events[1] = PAPI_L2_DCM;
+            events[2] = PAPI_L3_TCM;
+        }
+    }
 
-    // *** Maybe some PAPI code here?
+    if (papi == 0){
+        for (unsigned i = 0; i < repetitions; ++i) {
+            clearCache();
 
-    // run your code (one of the 4 functions directly above this one)
-    for (unsigned i = 0; i < repetitions; ++i) {
-        clearCache();
+            start();    // start time measurement
 
-        start();    // start time measurement
+            (*funcao)(A, B, C, N);
+            
+            stop(i);   // stop time measurement
 
-        // *** Maybe some PAPI code here?
-    
-        (*funcao)(A, B, C, N);
-        
+            // printMatrix(N,'C',C);
 
-        // *** Maybe some PAPI code here?
-        
-        stop(i);   // stop time measurement
+        }
+    }else{
 
-// printMatrix(N,'C',C);
+        for (unsigned i = 0; i < repetitions; ++i) {
+            clearCache();
 
+            start();    // start time measurement
+
+            PAPI_start_counters(events,num_events);
+
+            (*funcao)(A, B, C, N);
+            
+            PAPI_stop_counters(values,num_events);
+            
+            stop(i);   // stop time measurement
+
+            printPAPI(values,num_events,argv[3],i);
+
+        }
     }
 
     free(A);
