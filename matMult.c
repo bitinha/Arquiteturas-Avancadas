@@ -13,7 +13,18 @@ struct timeval t;
 int repetitions;
 long long unsigned *tempos;
 
-
+int validar(float *C, int N){
+    for(int i=0; i<N; i++){
+        for (int j = 0; j < N; ++j)
+        {
+            if(C[i*N] != C[i*N+j]){
+                printf("%f != %f\n", C[i*N],C[i*N+j]);
+                return 1;
+            }
+        }    
+    }
+    return 0;
+}
 
 void clearCache (void) {
     for (unsigned i = 0; i < 30000000; ++i)
@@ -105,9 +116,9 @@ void transpose(float *M, int N){
 
     float temp;
 
-    for (int i = 0; i < N-2; ++i)
+    for (int i = 0; i < N-1; ++i)
     {
-        for (int j = i+1; j < N-1; ++j)
+        for (int j = i+1; j < N; ++j)
         {
             temp = M[i*N+j];
             M[i*N+j] = M[j*N+i];
@@ -198,6 +209,8 @@ void matMult_ijk_trans(float *A, float *B, float *C, int N) {
             }
         }
     }
+    transpose(B,N);
+
 }
 
 
@@ -222,6 +235,10 @@ void matMult_jki_trans(float *A, float *B, float *C, int N) {
             }
         }
     }
+
+    transpose(A,N);
+    transpose(B,N);
+    transpose(C,N);
 }
 
 
@@ -233,11 +250,8 @@ void blockClear(int N, int i, int j, float *M) {
     }
 }
 
-void blockMult(int N, int i, int j, int k, float *A, float *B, float *C) {
+void blockMultijk(int N, int i, int j, int k, float *A, float *B, float *C) {
 
-    // Pode-se utilizar isto para saber controlar os ciclos, mas fica muito extenso
-    // int resto = N%BLOCK_SIZE;
-    // int limite = N - N%BLOCK_SIZE;
 
 
     for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
@@ -247,15 +261,28 @@ void blockMult(int N, int i, int j, int k, float *A, float *B, float *C) {
             }
         }
     }
+
+    // // Pode-se utilizar isto para saber controlar os ciclos, mas fica muito extenso
+    // int resto = N%BLOCK_SIZE;
+    // int limite = N - N%BLOCK_SIZE;
+
+
+    // for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
+    //     for (int jj = j; jj < (((j + BLOCK_SIZE) < N) ? j + BLOCK_SIZE : N); jj++) {
+    //         for (int kk = k; kk < limite; kk++) {
+    //             C[ii*N+jj] += A[ii*N+kk] * B[jj*N+kk];
+    //         }
+    //     }
+    // }
 }
-void matMultBlock(float *A, float *B, float *C, int N) {
+void matMultBlockijk(float *A, float *B, float *C, int N) {
     transpose(B,N);
 
     for (int i = 0; i < N; i+=BLOCK_SIZE) {
         for (int j = 0; j < N; j+=BLOCK_SIZE) {
             blockClear(N, i, j, C);
             for (int k = 0; k < N; k+=BLOCK_SIZE) {
-                blockMult(N, i, j, k, A, B, C);
+                blockMultijk(N, i, j, k, A, B, C);
             }
             // for (int k = limite; k < N; k++) {
 
@@ -272,6 +299,79 @@ void matMultBlock(float *A, float *B, float *C, int N) {
             // }
         }
     }
+    transpose(B,N);
+
+}
+
+void blockMultikj(int N, int i, int j, int k, float *A, float *B, float *C) {
+
+
+
+    for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
+        for (int kk = k; kk < (((k + BLOCK_SIZE) < N) ? k + BLOCK_SIZE : N); kk++) {
+            for (int jj = j; jj < (((j + BLOCK_SIZE) < N) ? j + BLOCK_SIZE : N); jj++) {
+                C[ii*N+jj] += A[ii*N+kk] * B[kk*N+jj];
+            }
+        }
+    }
+
+}
+void matMultBlockikj(float *A, float *B, float *C, int N) {
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            C[i*N+j]=0;
+        }
+    }
+
+    for (int i = 0; i < N; i+=BLOCK_SIZE) {
+        for (int k = 0; k < N; k+=BLOCK_SIZE) {
+            for (int j = 0; j < N; j+=BLOCK_SIZE) {
+                blockMultikj(N, i, j, k, A, B, C);
+            }
+        }
+    }
+}
+
+void blockMultjki(int N, int i, int j, int k, float *A, float *B, float *C) {
+
+
+
+    for (int jj = j; jj < (((j + BLOCK_SIZE) < N) ? j + BLOCK_SIZE : N); jj++) {
+        for (int kk = k; kk < (((k + BLOCK_SIZE) < N) ? k + BLOCK_SIZE : N); kk++) {
+            for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
+                C[jj*N+ii] += A[kk*N+ii] * B[jj*N+kk];
+            }
+        }
+    }
+
+}
+void matMultBlockjki(float *A, float *B, float *C, int N) {
+
+    transpose(A,N);
+    transpose(B,N);
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            C[i*N+j]=0;
+        }
+    }
+
+    for (int j = 0; j < N; j+=BLOCK_SIZE) {
+        for (int k = 0; k < N; k+=BLOCK_SIZE) {
+            for (int i = 0; i < N; i+=BLOCK_SIZE) {
+                blockMultjki(N, i, j, k, A, B, C);
+            }
+        }
+    }
+
+    transpose(A,N);
+    transpose(B,N);
+    transpose(C,N);
 }
 
 
@@ -293,12 +393,14 @@ int main(int argc, char const *argv[]) {
     else if (strcmp(argv[1],"jki")==0) funcao = matMult_jki;
     else if (strcmp(argv[1],"ijk_trans")==0) funcao = matMult_ijk_trans;
     else if (strcmp(argv[1],"jki_trans")==0) funcao = matMult_jki_trans;
-    else if (strcmp(argv[1],"block")==0) funcao = matMultBlock;
+    else if (strcmp(argv[1],"ijk_block")==0) funcao = matMultBlockijk;
+    else if (strcmp(argv[1],"ikj_block")==0) funcao = matMultBlockikj;
+    else if (strcmp(argv[1],"jki_block")==0) funcao = matMultBlockjki;
     else {
         printf("Insira a implementação desejada:\n");
 
-        char *implementacoes[6] = {"ijk","ikj","jki","ijk_trans","jki_trans","block"};
-        for(int i = 0; i<6;i++){
+        char *implementacoes[8] = {"ijk","ikj","jki","ijk_trans","jki_trans","ijk_block","ikj_block","jki_block"};
+        for(int i = 0; i<8;i++){
             printf(" - %s\n", implementacoes[i]);
         }
         exit(1);
@@ -307,9 +409,17 @@ int main(int argc, char const *argv[]) {
     int N = atoi(argv[2]);
 
 
-    float *A = malloc(sizeof(float) * N * N);
-    float *B = malloc(sizeof(float) * N * N);
-    float *C = malloc(sizeof(float) * N * N);
+    // float *A = malloc(sizeof(float) * N * N);
+    // float *B = malloc(sizeof(float) * N * N);
+    // float *C = malloc(sizeof(float) * N * N);
+
+    float *A;
+    float *B;
+    float *C;
+
+    posix_memalign((void **)&A, 128, sizeof(float) * N * N);
+    posix_memalign((void **)&B, 128, sizeof(float) * N * N);
+    posix_memalign((void **)&C, 128, sizeof(float) * N * N);
 
 
     fillMatrices(A,B,N);
@@ -367,6 +477,12 @@ int main(int argc, char const *argv[]) {
             printPAPI(values,num_events,argv[3],i);
 
         }
+    }
+
+    if(validar(C,N) == 1){
+        printf("Erro na validação\n");
+    }else{
+        printf("Validação correta\n");
     }
 
     free(A);
