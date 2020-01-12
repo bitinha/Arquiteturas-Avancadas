@@ -8,7 +8,7 @@
 #define TIME_RESOLUTION 1000000 // time measuring resolution (us)
 
 long long unsigned initial_time;
-double clearcache [30000000];
+double clearcache [100000000];
 struct timeval t;
 int repetitions;
 long long unsigned *tempos;
@@ -250,34 +250,80 @@ void blockClear(int N, int i, int j, float *M) {
     }
 }
 
-void blockMultijk(int N, int i, int j, int k, float *A, float *B, float *C) {
+void blockMultijk(int N, int i, int j, int k, float * __restrict__ A, float * __restrict__ B, float * __restrict__ C) {
 
 
+    // Pode-se utilizar isto para saber controlar os ciclos, mas fica muito extenso
+    int resto = N%BLOCK_SIZE;
+    int limite = N - N%BLOCK_SIZE;
 
+    if ( k + BLOCK_SIZE < N) {
+        for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
+            for (int jj = j; jj < (((j + BLOCK_SIZE) < N) ? j + BLOCK_SIZE : N); jj++) {
+                //unroll do loop para que possa ser vetorizado o anterior
+                C[ii*N+jj] += A[ii*N] * B[jj*N];
+                C[ii*N+jj] += A[ii*N+1] * B[jj*N+1];
+                C[ii*N+jj] += A[ii*N+2] * B[jj*N+2];
+                C[ii*N+jj] += A[ii*N+3] * B[jj*N+3];
+                C[ii*N+jj] += A[ii*N+4] * B[jj*N+4];
+                C[ii*N+jj] += A[ii*N+5] * B[jj*N+5];
+                C[ii*N+jj] += A[ii*N+6] * B[jj*N+6];
+                C[ii*N+jj] += A[ii*N+7] * B[jj*N+7];
+                C[ii*N+jj] += A[ii*N+8] * B[jj*N+8];
+                C[ii*N+jj] += A[ii*N+9] * B[jj*N+9];
+                C[ii*N+jj] += A[ii*N+10] * B[jj*N+10];
+                C[ii*N+jj] += A[ii*N+11] * B[jj*N+11];
+                C[ii*N+jj] += A[ii*N+12] * B[jj*N+12];
+                C[ii*N+jj] += A[ii*N+13] * B[jj*N+13];
+                C[ii*N+jj] += A[ii*N+14] * B[jj*N+14];
+                C[ii*N+jj] += A[ii*N+15] * B[jj*N+15];
+            }
+        }
+    }
+    else{
     for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
         for (int jj = j; jj < (((j + BLOCK_SIZE) < N) ? j + BLOCK_SIZE : N); jj++) {
-            for (int kk = k; kk < (((k + BLOCK_SIZE) < N) ? k + BLOCK_SIZE : N); kk++) {
-                C[ii*N+jj] += A[ii*N+kk] * B[jj*N+kk];
+                for (int kk = k; kk <  N; kk++) {
+                    C[ii*N+jj] += A[ii*N+kk] * B[jj*N+kk];
+                }
             }
         }
     }
 
-    // // Pode-se utilizar isto para saber controlar os ciclos, mas fica muito extenso
-    // int resto = N%BLOCK_SIZE;
-    // int limite = N - N%BLOCK_SIZE;
-
-
-    // for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
-    //     for (int jj = j; jj < (((j + BLOCK_SIZE) < N) ? j + BLOCK_SIZE : N); jj++) {
-    //         for (int kk = k; kk < limite; kk++) {
-    //             C[ii*N+jj] += A[ii*N+kk] * B[jj*N+kk];
-    //         }
-    //     }
-    // }
 }
+
 void matMultBlockijk(float *A, float *B, float *C, int N) {
     transpose(B,N);
 
+    for (int i = 0; i < N; i+=BLOCK_SIZE) {
+        for (int j = 0; j < N; j+=BLOCK_SIZE) {
+            blockClear(N, i, j, C);
+            for (int k = 0; k < N; k+=BLOCK_SIZE) {
+                blockMultijk(N, i, j, k, A, B, C);
+            }
+            // for (int k = limite; k < N; k++) {
+
+
+            //     for (int ii = i; ii < i + resto; ii++) {
+            //         for (int jj = j; jj < j + resto; jj++) {
+            //             for (int kk = k; kk < k + resto; kk++) {
+            //                 C[ii*N+jj] += A[ii*N+kk] * B[jj*N+kk];
+            //             }
+            //         }
+            //     }
+            
+
+            // }
+        }
+    }
+    transpose(B,N);
+
+}
+
+void matMultBlockijkomp(float *A, float *B, float *C, int N) {
+    transpose(B,N);
+
+    #pragma omp parallel for
     for (int i = 0; i < N; i+=BLOCK_SIZE) {
         for (int j = 0; j < N; j+=BLOCK_SIZE) {
             blockClear(N, i, j, C);
@@ -396,11 +442,14 @@ int main(int argc, char const *argv[]) {
     else if (strcmp(argv[1],"ijk_block")==0) funcao = matMultBlockijk;
     else if (strcmp(argv[1],"ikj_block")==0) funcao = matMultBlockikj;
     else if (strcmp(argv[1],"jki_block")==0) funcao = matMultBlockjki;
+    else if (strcmp(argv[1],"ijk_omp")==0) funcao = matMultBlockijkomp;
+    else if (strcmp(argv[1],"ikj_omp")==0) funcao = matMultBlockijkomp;
+    else if (strcmp(argv[1],"jki_omp")==0) funcao = matMultBlockijkomp;
     else {
         printf("Insira a implementação desejada:\n");
 
-        char *implementacoes[8] = {"ijk","ikj","jki","ijk_trans","jki_trans","ijk_block","ikj_block","jki_block"};
-        for(int i = 0; i<8;i++){
+        char *implementacoes[11] = {"ijk","ikj","jki","ijk_trans","jki_trans","ijk_block","ikj_block","jki_block","ijk_omp","ikj_omp","jki_omp"};
+        for(int i = 0; i<11;i++){
             printf(" - %s\n", implementacoes[i]);
         }
         exit(1);
@@ -417,9 +466,9 @@ int main(int argc, char const *argv[]) {
     float *B;
     float *C;
 
-    posix_memalign((void **)&A, 128, sizeof(float) * N * N);
-    posix_memalign((void **)&B, 128, sizeof(float) * N * N);
-    posix_memalign((void **)&C, 128, sizeof(float) * N * N);
+    posix_memalign((void **)&A, 256, sizeof(float) * N * N);
+    posix_memalign((void **)&B, 256, sizeof(float) * N * N);
+    posix_memalign((void **)&C, 256, sizeof(float) * N * N);
 
 
     fillMatrices(A,B,N);
