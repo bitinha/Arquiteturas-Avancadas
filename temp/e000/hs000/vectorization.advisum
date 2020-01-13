@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!-- <!DOCTYPE IntelParallelAdvisorSummaryCollection SYSTEM  "IntelParallelAdvisorSummaryCollection.dtd"> -->
+
+<IntelParallelAdvisorSummary version="" 
+                             kind="DATAKIND_SURVEY_EX" >
+  <hotspot filename="/home/a76387/temp/src/matMult.c"
+           line_no="155"
+           routine="matMult_ijk"
+           is_vectorized="0"
+           self_time="6.039962E+00"
+           total_time="6.039962E+00"
+           trip_counts=""
+           func_instance="8"
+           priority="0"/>
+  <hotspot filename="/home/a76387/temp/src/matMult.c"
+           line_no="194"
+           routine="matMult_jki"
+           is_vectorized="0"
+           self_time="6.079777E+00"
+           total_time="6.079777E+00"
+           trip_counts=""
+           func_instance="20"
+           priority="0"/>
+  <hotspot filename="/home/a76387/temp/src/matMult.c"
+           line_no="237"
+           routine="matMult_jki_trans"
+           is_vectorized="0"
+           self_time="5.819987E+00"
+           total_time="5.819987E+00"
+           trip_counts=""
+           func_instance="44"
+           priority="0"/>
+  <hotspot filename="/home/a76387/temp/src/matMult.c"
+           line_no="176"
+           routine="matMult_ikj"
+           is_vectorized="0"
+           self_time="5.930044E+00"
+           total_time="5.930044E+00"
+           trip_counts=""
+           func_instance="15"
+           priority="0"/>
+  <hotspot filename="/home/a76387/temp/src/matMult.c"
+           line_no="211"
+           routine="matMult_ijk_trans"
+           is_vectorized="0"
+           self_time="5.630029E+00"
+           total_time="5.630029E+00"
+           trip_counts=""
+           func_instance="29"
+           priority="0"/>
+</IntelParallelAdvisorSummary >

@@ -1,0 +1,265 @@
+# callstacks file version: 5
+#    rowid	    parent	       rva	 loop	 system	                                function	binary	instance_start_rva	instance_size	instance_end_rva	finst_rowid	roi	is_inlined
+         1	        -1	      4864	    0	      0	                                  _start	/home/a76387/temp/bin/matMult	4864	44	0	1	0	0
+         2	        -1	      4904	    0	      0	                                  _start	/home/a76387/temp/bin/matMult	4864	44	0	1	0	0
+         3	       261	    126172	    1	      1	[Loop@0x32a301ec29 in __libc_start_main]	/lib64/libc.so.6	125993	382	0	6	0	0
+         4	        85	      5406	    1	      0	      [Loop at line 108 in fillMatrices]	/home/a76387/temp/bin/matMult	5402	54	5456	2	0	0
+         5	         4	    224352	    0	      1	                                    rand	/lib64/libc.so.6	224352	14	0	12	0	0
+         6	         4	    224360	    0	      1	                                    rand	/lib64/libc.so.6	224352	14	0	12	0	0
+         7	         6	    222705	    0	      1	                                  random	/lib64/libc.so.6	222640	112	0	13	0	0
+         8	         7	    223633	    0	      1	                                random_r	/lib64/libc.so.6	223616	156	0	14	0	0
+         9	         7	    223696	    0	      1	                                random_r	/lib64/libc.so.6	223616	156	0	14	0	0
+        10	        85	      5423	    1	      0	      [Loop at line 108 in fillMatrices]	/home/a76387/temp/bin/matMult	5402	54	5456	2	0	0
+        11	        93	      5593	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        12	        93	      5586	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        13	        93	      5569	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        14	        93	      5606	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        15	        93	      5599	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        16	        93	      5572	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        17	        93	      5612	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        18	        93	      5575	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        19	        93	      5619	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        20	        93	      5580	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        21	        93	      5578	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        22	        93	      5565	    1	      0	       [Loop at line 155 in matMult_ijk]	/home/a76387/temp/bin/matMult	5565	62	5627	8	0	0
+        23	        92	      5637	    1	      0	       [Loop at line 157 in matMult_ijk]	/home/a76387/temp/bin/matMult	5556	126	5682	10	0	0
+        24	       123	      5865	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        25	       123	      5885	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        26	       123	      5850	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        27	       123	      5841	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        28	       123	      5872	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        29	       123	      5828	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        30	       123	      5878	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        31	       123	      5859	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        32	       123	      5838	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        33	       123	      5831	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        34	       123	      5835	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        35	       123	      5824	    1	      0	       [Loop at line 176 in matMult_ikj]	/home/a76387/temp/bin/matMult	5824	70	5894	15	0	0
+        36	       122	      5924	    1	      0	       [Loop at line 175 in matMult_ikj]	/home/a76387/temp/bin/matMult	5813	144	5957	17	0	0
+        37	       122	      5903	    1	      0	       [Loop at line 175 in matMult_ikj]	/home/a76387/temp/bin/matMult	5813	144	5957	17	0	0
+        38	       122	      5818	    1	      0	       [Loop at line 175 in matMult_ikj]	/home/a76387/temp/bin/matMult	5813	144	5957	17	0	0
+        39	       154	      5772	    1	      0	       [Loop at line 171 in matMult_ikj]	/home/a76387/temp/bin/matMult	5743	45	5788	19	0	0
+        40	       160	      6175	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        41	       160	      6179	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        42	       160	      6152	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        43	       160	      6145	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        44	       160	      6169	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        45	       160	      6138	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        46	       159	      6112	    1	      0	       [Loop at line 195 in matMult_jki]	/home/a76387/temp/bin/matMult	6106	105	6211	22	0	0
+        47	       160	      6162	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        48	       177	      6051	    1	      0	       [Loop at line 190 in matMult_jki]	/home/a76387/temp/bin/matMult	6032	51	6083	24	0	0
+        49	       160	      6134	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        50	       160	      6148	    1	      0	       [Loop at line 194 in matMult_jki]	/home/a76387/temp/bin/matMult	6124	64	6188	20	0	0
+        51	       177	      6038	    1	      0	       [Loop at line 190 in matMult_jki]	/home/a76387/temp/bin/matMult	6032	51	6083	24	0	0
+        52	       159	      6190	    1	      0	       [Loop at line 195 in matMult_jki]	/home/a76387/temp/bin/matMult	6106	105	6211	22	0	0
+        53	       191	      6346	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	6288	81	6369	25	0	0
+        54	       196	      6579	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        55	       196	      6549	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        56	       196	      6555	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        57	       196	      6561	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        58	       196	      6575	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        59	       194	      6488	    1	      0	 [Loop at line 208 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6463	174	6637	31	0	0
+        60	       209	     37751	    1	      0	       [Loop@0x409360 in __intel_memset]	/home/a76387/temp/bin/matMult	37728	59	0	32	0	0
+        61	       196	      6568	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        62	       196	      6545	    1	      0	 [Loop at line 211 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6535	51	6586	29	0	0
+        63	       217	      6746	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	6688	81	6769	34	0	0
+        64	         3	      6871	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        65	       222	      7546	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	7488	81	7569	37	0	0
+        66	       227	      7738	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	7696	81	7777	41	0	0
+        67	       232	      7968	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        68	       232	      7983	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        69	       232	      7972	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        70	       232	      8014	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        71	       232	      8008	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        72	       232	      7978	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        73	       232	      8019	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        74	       232	      7993	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        75	       232	      8025	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        76	       232	      8003	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        77	       232	      7975	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        78	       232	      7981	    1	      0	 [Loop at line 237 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7968	65	8033	44	0	0
+        79	       231	      7966	    1	      0	 [Loop at line 236 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7960	128	8088	45	0	0
+        80	       248	      8234	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	8176	81	8257	47	0	0
+        81	       253	      8426	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	8384	81	8465	50	0	0
+        82	       258	      8628	    1	      0	         [Loop at line 125 in transpose]	/home/a76387/temp/bin/matMult	8592	77	8669	53	0	0
+        83	         3	      5356	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        84	        83	      5381	    0	      0	                            fillMatrices	/home/a76387/temp/bin/matMult	5356	117	0	3	0	1
+        85	        84	      5402	    1	      0	      [Loop at line 107 in fillMatrices]	/home/a76387/temp/bin/matMult	5381	102	5483	5	0	0
+        86	        83	      5406	    0	      0	                            fillMatrices	/home/a76387/temp/bin/matMult	5356	117	0	3	0	1
+        87	         3	      5406	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        88	        83	      5423	    0	      0	                            fillMatrices	/home/a76387/temp/bin/matMult	5356	117	0	3	0	1
+        89	         3	      5423	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        90	         3	      5483	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        91	        90	      5506	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+        92	        91	      5556	    1	      0	       [Loop at line 154 in matMult_ijk]	/home/a76387/temp/bin/matMult	5506	198	5704	11	0	0
+        93	        92	      5565	    1	      0	       [Loop at line 157 in matMult_ijk]	/home/a76387/temp/bin/matMult	5556	126	5682	10	0	0
+        94	        90	      5593	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+        95	         3	      5593	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        96	        90	      5586	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+        97	         3	      5586	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+        98	        90	      5569	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+        99	         3	      5569	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       100	        90	      5606	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       101	         3	      5606	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       102	        90	      5599	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       103	         3	      5599	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       104	        90	      5572	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       105	         3	      5572	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       106	        90	      5612	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       107	         3	      5612	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       108	        90	      5575	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       109	         3	      5575	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       110	        90	      5619	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       111	         3	      5619	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       112	        90	      5580	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       113	         3	      5580	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       114	        90	      5578	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       115	         3	      5578	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       116	        90	      5565	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       117	         3	      5565	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       118	        90	      5637	    0	      0	                             matMult_ijk	/home/a76387/temp/bin/matMult	5483	221	0	9	0	1
+       119	         3	      5637	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       120	         3	      5709	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       121	       120	      5736	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       122	       121	      5813	    1	      0	       [Loop at line 169 in matMult_ikj]	/home/a76387/temp/bin/matMult	5736	264	6000	18	0	0
+       123	       122	      5824	    1	      0	       [Loop at line 175 in matMult_ikj]	/home/a76387/temp/bin/matMult	5813	144	5957	17	0	0
+       124	       120	      5865	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       125	         3	      5865	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       126	       120	      5885	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       127	         3	      5885	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       128	       120	      5850	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       129	         3	      5850	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       130	       120	      5841	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       131	         3	      5841	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       132	       120	      5872	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       133	         3	      5872	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       134	       120	      5828	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       135	         3	      5828	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       136	       120	      5878	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       137	         3	      5878	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       138	       120	      5859	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       139	         3	      5859	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       140	       120	      5838	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       141	         3	      5838	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       142	       120	      5831	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       143	         3	      5831	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       144	       120	      5835	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       145	         3	      5835	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       146	       120	      5824	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       147	         3	      5824	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       148	       120	      5924	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       149	         3	      5924	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       150	       120	      5903	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       151	         3	      5903	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       152	       120	      5818	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       153	         3	      5818	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       154	       121	      5743	    1	      0	       [Loop at line 169 in matMult_ikj]	/home/a76387/temp/bin/matMult	5736	264	6000	18	0	0
+       155	       120	      5772	    0	      0	                             matMult_ikj	/home/a76387/temp/bin/matMult	5709	296	0	16	0	1
+       156	         3	      5772	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       157	         3	      6005	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       158	       157	      6018	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       159	       158	      6106	    1	      0	       [Loop at line 188 in matMult_jki]	/home/a76387/temp/bin/matMult	6018	213	6231	23	0	0
+       160	       159	      6124	    1	      0	       [Loop at line 195 in matMult_jki]	/home/a76387/temp/bin/matMult	6106	105	6211	22	0	0
+       161	       157	      6175	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       162	         3	      6175	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       163	       157	      6179	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       164	         3	      6179	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       165	       157	      6152	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       166	         3	      6152	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       167	       157	      6145	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       168	         3	      6145	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       169	       157	      6169	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       170	         3	      6169	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       171	       157	      6138	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       172	         3	      6138	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       173	       157	      6112	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       174	         3	      6112	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       175	       157	      6162	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       176	         3	      6162	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       177	       158	      6032	    1	      0	       [Loop at line 188 in matMult_jki]	/home/a76387/temp/bin/matMult	6018	213	6231	23	0	0
+       178	       157	      6051	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       179	         3	      6051	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       180	       157	      6134	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       181	         3	      6134	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       182	       157	      6148	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       183	         3	      6148	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       184	       157	      6038	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       185	         3	      6038	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       186	       157	      6190	    0	      0	                             matMult_jki	/home/a76387/temp/bin/matMult	6005	226	0	21	0	1
+       187	         3	      6190	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       188	         3	      6231	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       189	       188	      6231	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       190	       189	      6243	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	6231	217	0	26	0	1
+       191	       190	      6288	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	6243	205	6448	27	0	0
+       192	       189	      6346	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	6231	217	0	26	0	1
+       193	         3	      6346	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       194	       188	      6463	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       195	       194	      6519	    1	      0	 [Loop at line 208 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6463	174	6637	31	0	0
+       196	       195	      6535	    1	      0	 [Loop at line 209 in matMult_ijk_trans]	/home/a76387/temp/bin/matMult	6519	102	6621	30	0	0
+       197	       188	      6579	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       198	         3	      6579	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       199	       188	      6549	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       200	         3	      6549	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       201	       188	      6555	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       202	         3	      6555	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       203	       188	      6561	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       204	         3	      6561	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       205	       188	      6575	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       206	         3	      6575	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       207	       188	      6488	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       208	         3	      6488	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       209	        59	     37728	    0	      0	                          __intel_memset	/home/a76387/temp/bin/matMult	35072	4576	0	33	0	0
+       210	        59	     37751	    0	      0	                          __intel_memset	/home/a76387/temp/bin/matMult	35072	4576	0	33	0	0
+       211	       188	      6568	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       212	         3	      6568	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       213	       188	      6545	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       214	         3	      6545	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       215	       188	      6637	    0	      0	                       matMult_ijk_trans	/home/a76387/temp/bin/matMult	6231	622	0	28	0	1
+       216	       215	      6654	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	6637	216	0	35	0	1
+       217	       216	      6688	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	6654	194	6848	36	0	0
+       218	       215	      6746	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	6637	216	0	35	0	1
+       219	         3	      6746	    0	      0	                                    main	/home/a76387/temp/bin/matMult	5232	2208	0	4	0	0
+       220	        64	      7450	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       221	       220	      7457	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	7450	197	0	38	0	1
+       222	       221	      7488	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	7457	190	7647	40	0	0
+       223	       220	      7546	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	7450	197	0	38	0	1
+       224	        64	      7546	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       225	        64	      7647	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       226	       225	      7654	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	7647	208	0	42	0	1
+       227	       226	      7696	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	7654	201	7855	43	0	0
+       228	       225	      7738	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	7647	208	0	42	0	1
+       229	        64	      7738	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       230	        64	      7888	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       231	       230	      7960	    1	      0	 [Loop at line 230 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7888	242	8130	46	0	0
+       232	       231	      7968	    1	      0	 [Loop at line 236 in matMult_jki_trans]	/home/a76387/temp/bin/matMult	7960	128	8088	45	0	0
+       233	        64	      7968	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       234	        64	      7983	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       235	        64	      7972	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       236	        64	      8014	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       237	        64	      8008	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       238	        64	      7978	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       239	        64	      8019	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       240	        64	      7993	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       241	        64	      8025	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       242	        64	      8003	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       243	        64	      7975	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       244	        64	      7981	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       245	        64	      7966	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       246	        64	      8130	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       247	       246	      8142	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	8130	205	0	48	0	1
+       248	       247	      8176	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	8142	193	8335	49	0	0
+       249	       246	      8234	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	8130	205	0	48	0	1
+       250	        64	      8234	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       251	        64	      8335	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       252	       251	      8341	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	8335	206	0	51	0	1
+       253	       252	      8384	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	8341	200	8541	52	0	0
+       254	       251	      8426	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	8335	206	0	51	0	1
+       255	        64	      8426	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       256	        64	      8541	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       257	       256	      8547	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	8541	204	0	54	0	1
+       258	       257	      8592	    1	      0	         [Loop at line 123 in transpose]	/home/a76387/temp/bin/matMult	8547	198	8745	55	0	0
+       259	       256	      8628	    0	      0	                               transpose	/home/a76387/temp/bin/matMult	8541	204	0	54	0	1
+       260	        64	      8628	    0	      0	                       matMult_jki_trans	/home/a76387/temp/bin/matMult	7440	1328	0	39	0	0
+       261	         2	    125993	    0	      1	                       __libc_start_main	/lib64/libc.so.6	125920	455	0	7	0	0
+       262	         2	    126172	    0	      1	                       __libc_start_main	/lib64/libc.so.6	125920	455	0	7	0	0
+       263	        -1	         0	    0	      0	                [Unknown stack frame(s)]	n/a	0	1	0	58	0	0

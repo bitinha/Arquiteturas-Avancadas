@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<log version="1.0" tool="runtool">
+
+<msg id="1" tool="runtool">
+  <type>log-start</type>
+  <arg>2020/01/13 15:09:12</arg>
+</msg>
+<msg id="2" tool="runtool">
+  <type>bandwidth-measurement-starts</type>
+</msg>
+<msg id="3" tool="runtool">
+  <type>bandwidth-measurement-done</type>
+</msg>
+<msg id="4" tool="runtool">
+  <type>collector-starts</type>
+</msg>
+<msg id="5" tool="runtool">
+  <type>marker-file</type>
+  <arg>/home/a76387/temp/e000/trc000/trc000.advixe</arg>
+</msg>
+<msg id="6" tool="trc">
+  <type>PROCESS_START</type>
+  <arg>/home/a76387/temp/bin/matMult</arg>
+  <arg>1722</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:27 2020</timestamp>
+</msg>
+<msg id="7" tool="trc">
+  <type>PROCESS_ANALYSIS_MODE</type>
+  <arg>full</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:27 2020</timestamp>
+</msg>
+<msg id="8" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/home/a76387/temp/bin/matMult</arg>
+  <arg>0x400000</arg>
+  <arg>0x300ffa9f</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:27 2020</timestamp>
+</msg>
+<msg id="9" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/ld-linux-x86-64.so.2</arg>
+  <arg>0x32a2c00000</arg>
+  <arg>0x32a2e21187</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:27 2020</timestamp>
+</msg>
+<msg id="10" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>[vdso]</arg>
+  <arg>0x7fffce9be000</arg>
+  <arg>0x7fffce9bea9f</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:27 2020</timestamp>
+</msg>
+<msg id="11" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/share/apps/papi/5.4.1/lib/libpapi.so.5.4.1.0</arg>
+  <arg>0x2b916e69a000</arg>
+  <arg>0x2b916e8f2bcf</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="12" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/share/apps/gcc/4.9.0/lib64/libstdc++.so.6</arg>
+  <arg>0x2b916e954000</arg>
+  <arg>0x2b916ec6485f</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="13" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libm.so.6</arg>
+  <arg>0x32a3c00000</arg>
+  <arg>0x32a3e830d7</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="14" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/share/apps/intel/compilers_and_libraries_2019.5.281/linux/compiler/lib/intel64_lin/libiomp5.so</arg>
+  <arg>0x2b916ed04000</arg>
+  <arg>0x2b916f0f833f</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="15" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/share/apps/gcc/4.9.0/lib64/libgcc_s.so.1</arg>
+  <arg>0x2b916f0f9000</arg>
+  <arg>0x2b916f30ea1f</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="16" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libpthread.so.0</arg>
+  <arg>0x32a3800000</arg>
+  <arg>0x32a3a1c39f</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="17" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libc.so.6</arg>
+  <arg>0x32a3000000</arg>
+  <arg>0x32a33928a7</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="18" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/lib64/libdl.so.2</arg>
+  <arg>0x32a3400000</arg>
+  <arg>0x32a36030ff</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="19" tool="trc">
+  <type>LOAD_MODULE</type>
+  <arg>/share/apps/papi/5.4.1/lib/libpfm.so.4</arg>
+  <arg>0x2b916f348000</arg>
+  <arg>0x2b916f6c4abf</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:09:28 2020</timestamp>
+</msg>
+<msg id="20" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/home/a76387/temp/bin/matMult</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="21" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/ld-linux-x86-64.so.2</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="22" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>[vdso]</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="23" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/share/apps/papi/5.4.1/lib/libpapi.so.5.4.1.0</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="24" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/share/apps/gcc/4.9.0/lib64/libstdc++.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="25" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libm.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="26" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/share/apps/intel/compilers_and_libraries_2019.5.281/linux/compiler/lib/intel64_lin/libiomp5.so</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="27" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/share/apps/gcc/4.9.0/lib64/libgcc_s.so.1</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="28" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libpthread.so.0</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="29" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libc.so.6</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="30" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/lib64/libdl.so.2</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="31" tool="trc">
+  <type>UNLOAD_MODULE</type>
+  <arg>/share/apps/papi/5.4.1/lib/libpfm.so.4</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="32" tool="trc">
+  <type>PROCESS_FINISH</type>
+  <arg>/home/a76387/temp/bin/matMult</arg>
+  <arg>1722</arg>
+  <arg>0x0</arg>
+  <severity>INFO</severity>
+  <timestamp>Mon Jan 13 15:13:14 2020</timestamp>
+</msg>
+<msg id="33" tool="runtool">
+  <type>app-exit-code</type>
+  <arg>139</arg>
+</msg>
+<msg id="34" tool="runtool">
+  <type>marker-file</type>
+  <arg>/home/a76387/temp/e000/trc000/trc000.advixe</arg>
+</msg>
+<msg id="35" tool="runtool">
+  <type>collector-done</type>
+</msg>
+<msg id="36" tool="runtool">
+  <type>log-end</type>
+  <arg>2020/01/13 15:13:18</arg>
+</msg>
+
+</log>
+

@@ -1,0 +1,2362 @@
+Intel(R) Advisor can now assist with vectorization and show optimization
+  report messages with your source code.
+See "https://software.intel.com/en-us/intel-advisor-xe" for details.
+
+Intel(R) C++ Intel(R) 64 Compiler for applications running on Intel(R) 64, Version 19.0.5.281 Build 20190815
+
+Compiler options: -I/share/apps/papi/5.4.1/include -O2 -no-vec -std=c++11 -mavx -g -qopenmp -qopt-report5 -L/share/apps/papi/5.4.1/lib -lpapi -o bin/matMult
+
+    Report from: Interprocedural optimizations [ipo]
+
+  WHOLE PROGRAM (SAFE) [EITHER METHOD]: false
+  WHOLE PROGRAM (SEEN) [TABLE METHOD]: true
+  WHOLE PROGRAM (READ) [OBJECT READER METHOD]: false
+
+INLINING OPTION VALUES:
+  -inline-factor: 100
+  -inline-min-size: 30
+  -inline-max-size: 230
+  -inline-max-total-size: 2000
+  -inline-max-per-routine: 10000
+  -inline-max-per-compile: 500000
+
+In the inlining report below:
+   "sz" refers to the "size" of the routine. The smaller a routine's size,
+      the more likely it is to be inlined.
+   "isz" refers to the "inlined size" of the routine. This is the amount
+      the calling routine will grow if the called routine is inlined into it.
+      The compiler generally limits the amount a routine can grow by having
+      routines inlined into it.
+
+Begin optimization report for: main(int, const char **)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (main(int, const char **)) [1/27=3.7%] src/matMult.c(496,40)
+  -> EXTERN: (503,5) posix_memalign(void **, size_t, size_t)
+  -> EXTERN: (504,5) posix_memalign(void **, size_t, size_t)
+  -> EXTERN: (505,5) posix_memalign(void **, size_t, size_t)
+  -> INLINE: (508,5) fillMatrices(float *, float *, int) (isz = 38) (sz = 47)
+    -> EXTERN: (109,32) rand()
+  -> INLINE: (512,5) matMult_ijk(float *, float *, float *, int) (isz = 63) (sz = 74)
+  -> INLINE: (513,5) matMult_ikj(float *, float *, float *, int) (isz = 84) (sz = 95)
+  -> INLINE: (514,5) matMult_jki(float *, float *, float *, int) (isz = 84) (sz = 95)
+  -> INLINE: (515,5) matMult_ijk_trans(float *, float *, float *, int) (isz = 167) (sz = 178)
+    -> INLINE: (206,5) transpose(float *, int) (isz = 49) (sz = 56)
+    -> INLINE: (216,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> (516,5) matMult_jki_trans(float *, float *, float *, int) (isz = 344) (sz = 355)
+     [[ Inlining would exceed -inline-max-size value (355>230) <1>]]
+  -> EXTERN: (518,5) free(void *)
+  -> EXTERN: (519,5) free(void *)
+  -> EXTERN: (520,5) free(void *)
+  -> INLINE: (522,5) printResults() (isz = 122) (sz = 125)
+    -> EXTERN: (38,9) printf(const char *, ...)
+    -> EXTERN: (67,5) printf(const char *, ...)
+  -> EXTERN: (524,5) free(void *)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(107,5) inlined into src/matMult.c(508,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(108,9) inlined into src/matMult.c(508,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(154,5) inlined into src/matMult.c(512,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(155,9) inlined into src/matMult.c(512,5)
+   <Distributed chunk1>
+      remark #25426: Loop Distributed (2 way) 
+      remark #25408: memset generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(157,13) inlined into src/matMult.c(512,5)
+   <Distributed chunk2>
+      remark #25444: Loopnest Interchanged: ( 1 2 ) --> ( 2 1 )
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ src/matMult.c(157,13) ]
+
+      LOOP BEGIN at src/matMult.c(155,9) inlined into src/matMult.c(512,5)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(155,9) inlined into src/matMult.c(512,5)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(169,5) inlined into src/matMult.c(513,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(171,9) inlined into src/matMult.c(513,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(171,9) inlined into src/matMult.c(513,5)
+   <Remainder>
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(175,9) inlined into src/matMult.c(513,5)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(176,13) inlined into src/matMult.c(513,5)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(176,13) inlined into src/matMult.c(513,5)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(188,5) inlined into src/matMult.c(514,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(190,9) inlined into src/matMult.c(514,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(190,9) inlined into src/matMult.c(514,5)
+   <Remainder>
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(195,13) inlined into src/matMult.c(514,5)
+      remark #25444: Loopnest Interchanged: ( 1 2 ) --> ( 2 1 )
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ src/matMult.c(195,13) ]
+
+      LOOP BEGIN at src/matMult.c(194,9) inlined into src/matMult.c(514,5)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(515,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(515,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(515,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(208,5) inlined into src/matMult.c(515,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(209,9) inlined into src/matMult.c(515,5)
+   <Distributed chunk1>
+      remark #25426: Loop Distributed (2 way) 
+      remark #25408: memset generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(209,9) inlined into src/matMult.c(515,5)
+   <Distributed chunk2>
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(211,13) inlined into src/matMult.c(515,5)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(211,13) inlined into src/matMult.c(515,5)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(515,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(515,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(515,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(36,5) inlined into src/matMult.c(522,5)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/matMult.c(38,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at src/matMult.c(49,5) inlined into src/matMult.c(522,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between best3[maior] (52:13) and best3[maior] (55:13)
+   remark #15346: vector dependence: assumed ANTI dependence between best3[maior] (55:13) and best3[maior] (52:13)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at src/matMult.c(49,5) inlined into src/matMult.c(522,5)
+<Remainder>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(155,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(155,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(209,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(209,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(496,40):remark #34051: REGISTER ALLOCATION : [main] src/matMult.c:496
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :     282
+            Global    :     117
+            Local     :     165
+        Regenerable   :      41
+        Spilled       :       8
+        
+    Routine stack
+        Variables     :      52 bytes*
+            Reads     :      20 [1.56e+01 ~ 0.0%]
+            Writes    :       5 [3.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :      10 [1.84e+01 ~ 0.0%]
+            Writes    :       8 [1.12e+01 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMult_jki_trans(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMult_jki_trans(float *, float *, float *, int)) [2/27=7.4%] src/matMult.c(224,61)
+  -> INLINE: (226,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (227,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (243,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (244,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (245,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(226,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(226,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(226,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(227,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(227,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(227,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(230,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(232,9)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(232,9)
+   <Remainder>
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(236,9)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(237,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(237,13)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(243,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(243,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(243,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(244,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(244,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(244,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(245,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(245,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(245,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(224,61):remark #34051: REGISTER ALLOCATION : [_Z17matMult_jki_transPfS_S_i] src/matMult.c:224
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :     182
+            Global    :      72
+            Local     :     110
+        Regenerable   :       3
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       8 bytes*
+            Reads     :       1 [9.00e-01 ~ 0.0%]
+            Writes    :       1 [4.00e-01 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: validar(float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (validar(float *, int)) [3/27=11.1%] src/matMult.c(16,29)
+  -> EXTERN: (21,17) printf(const char *, ...)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(18,9)
+   remark #15520: loop was not vectorized: loop with multiple exits cannot be vectorized unless it meets search loop idiom criteria   [ src/matMult.c(22,24) ]
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/matMult.c(17,5)
+   remark #15532: loop was not vectorized: compile time constraints prevent loop optimization. Consider using -O3.
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(16,29):remark #34051: REGISTER ALLOCATION : [_Z7validarPfi] src/matMult.c:16
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    9[ rax rdx rcx rsi rdi r8-r9 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      26
+            Global    :      15
+            Local     :      11
+        Regenerable   :       6
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: clearCache()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (clearCache()) [4/27=14.8%] src/matMult.c(29,24)
+
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(29,24):remark #34051: REGISTER ALLOCATION : [_Z10clearCachev] src/matMult.c:29
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    0[ reg_null]
+        
+    Routine temporaries
+        Total         :       6
+            Global    :       0
+            Local     :       6
+        Regenerable   :       0
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ -nan%]
+            Writes    :       0 [0.00e+00 ~ -nan%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ -nan%]
+            Writes    :       0 [0.00e+00 ~ -nan%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: printResults()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (printResults()) [5/27=18.5%] src/matMult.c(34,26)
+  -> EXTERN: (38,9) printf(const char *, ...)
+  -> EXTERN: (67,5) printf(const char *, ...)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(36,5)
+   remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/matMult.c(38,9) ]
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+LOOP END
+
+LOOP BEGIN at src/matMult.c(49,5)
+   remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   remark #15346: vector dependence: assumed FLOW dependence between best3[maior] (52:13) and best3[maior] (55:13)
+   remark #15346: vector dependence: assumed ANTI dependence between best3[maior] (55:13) and best3[maior] (52:13)
+   remark #25439: unrolled with remainder by 2  
+LOOP END
+
+LOOP BEGIN at src/matMult.c(49,5)
+<Remainder>
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(34,26):remark #34051: REGISTER ALLOCATION : [_Z12printResultsv] src/matMult.c:34
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r12 r15 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      74
+            Global    :      35
+            Local     :      39
+        Regenerable   :       9
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :      24 bytes*
+            Reads     :      15 [1.48e+01 ~ 7.2%]
+            Writes    :       3 [3.00e+00 ~ 1.4%]
+        Spills        :       8 bytes*
+            Reads     :       1 [9.00e-01 ~ 0.4%]
+            Writes    :       1 [9.00e-01 ~ 0.4%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: printPAPI(long long *, int, const char *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (printPAPI(long long *, int, const char *, int)) [6/27=22.2%] src/matMult.c(70,75)
+  -> EXTERN: (72,5) printf(const char *, ...)
+  -> EXTERN: (74,9) strcmp(const char *, const char *)
+  -> EXTERN: (76,9) printf(const char *, ...)
+  -> EXTERN: (77,9) printf(const char *, ...)
+  -> EXTERN: (79,14) strcmp(const char *, const char *)
+  -> EXTERN: (80,9) printf(const char *, ...)
+  -> EXTERN: (81,9) printf(const char *, ...)
+  -> EXTERN: (83,14) strcmp(const char *, const char *)
+  -> EXTERN: (84,9) printf(const char *, ...)
+  -> EXTERN: (85,9) printf(const char *, ...)
+  -> EXTERN: (88,5) printf(const char *, ...)
+
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(70,75):remark #34051: REGISTER ALLOCATION : [_Z9printPAPIPxiPKci] src/matMult.c:70
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   11[ rax rdx rcx rsi rdi r13-r14 zmm0-zmm3]
+        
+    Routine temporaries
+        Total         :      90
+            Global    :      11
+            Local     :      79
+        Regenerable   :      29
+        Spilled       :       2
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: start()
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (start()) [7/27=25.9%] src/matMult.c(91,19)
+  -> EXTERN: (92,5) gettimeofday(timeval *, timezone *)
+
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(91,19):remark #34051: REGISTER ALLOCATION : [_Z5startv] src/matMult.c:91
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    3[ rax rsi rdi]
+        
+    Routine temporaries
+        Total         :      11
+            Global    :       6
+            Local     :       5
+        Regenerable   :       3
+        Spilled       :       0
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: fillMatrices(float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (fillMatrices(float *, float *, int)) [8/27=29.6%] src/matMult.c(105,47)
+  -> EXTERN: (109,32) rand()
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(107,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(108,9)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(105,47):remark #34051: REGISTER ALLOCATION : [_Z12fillMatricesPfS_i] src/matMult.c:105
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r12-r15 zmm0-zmm1]
+        
+    Routine temporaries
+        Total         :      23
+            Global    :      18
+            Local     :       5
+        Regenerable   :       3
+        Spilled       :       8
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      16 bytes*
+            Reads     :       2 [1.00e+01 ~ 2.9%]
+            Writes    :       2 [9.00e+00 ~ 2.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: transpose(float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (transpose(float *, int)) [9/27=33.3%] src/matMult.c(119,32)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(119,32):remark #34051: REGISTER ALLOCATION : [_Z9transposePfi] src/matMult.c:119
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   13[ rax rdx rcx rbx rbp rsi rdi r8-r11 r14-r15]
+        
+    Routine temporaries
+        Total         :      38
+            Global    :      18
+            Local     :      20
+        Regenerable   :       2
+        Spilled       :       4
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: printMatrix(int, char, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (printMatrix(int, char, float *)) [10/27=37.0%] src/matMult.c(135,43)
+  -> EXTERN: (136,5) printf(const char *, ...)
+  -> EXTERN: (138,9) printf(const char *, ...)
+  -> EXTERN: (140,13) printf(const char *, ...)
+  -> EXTERN: (143,5) printf(const char *, ...)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(137,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(139,9)
+      remark #15382: vectorization support: call to function printf(const char *, ...) cannot be vectorized   [ src/matMult.c(140,13) ]
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(135,43):remark #34051: REGISTER ALLOCATION : [_Z11printMatrixicPf] src/matMult.c:135
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   12[ rax rdx rcx rbx rbp rsi rdi r12-r15 zmm0]
+        
+    Routine temporaries
+        Total         :      33
+            Global    :      15
+            Local     :      18
+        Regenerable   :      10
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      40 bytes*
+            Reads     :       5 [8.60e+00 ~ 2.4%]
+            Writes    :       5 [8.10e+00 ~ 2.3%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMult_ijk(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMult_ijk(float *, float *, float *, int)) [11/27=40.7%] src/matMult.c(152,55)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(154,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(155,9)
+   <Distributed chunk1>
+      remark #25426: Loop Distributed (2 way) 
+      remark #25408: memset generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(157,13)
+   <Distributed chunk2>
+      remark #25444: Loopnest Interchanged: ( 1 2 ) --> ( 2 1 )
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ src/matMult.c(157,13) ]
+
+      LOOP BEGIN at src/matMult.c(155,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(155,9)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(155,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(155,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(152,55):remark #34051: REGISTER ALLOCATION : [_Z11matMult_ijkPfS_S_i] src/matMult.c:152
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   20[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm4]
+        
+    Routine temporaries
+        Total         :      40
+            Global    :      22
+            Local     :      18
+        Regenerable   :       4
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       8 bytes*
+            Reads     :       1 [1.86e+00 ~ 0.0%]
+            Writes    :       1 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMult_ikj(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMult_ikj(float *, float *, float *, int)) [12/27=44.4%] src/matMult.c(167,55)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(169,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(171,9)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(171,9)
+   <Remainder>
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(175,9)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(176,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(176,13)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(167,55):remark #34051: REGISTER ALLOCATION : [_Z11matMult_ikjPfS_S_i] src/matMult.c:167
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :      45
+            Global    :      25
+            Local     :      20
+        Regenerable   :       2
+        Spilled       :       6
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMult_jki(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMult_jki(float *, float *, float *, int)) [13/27=48.1%] src/matMult.c(185,55)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(188,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(190,9)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(190,9)
+   <Remainder>
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(195,13)
+      remark #25444: Loopnest Interchanged: ( 1 2 ) --> ( 2 1 )
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive   [ src/matMult.c(195,13) ]
+
+      LOOP BEGIN at src/matMult.c(194,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25438: unrolled without remainder by 2  
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(185,55):remark #34051: REGISTER ALLOCATION : [_Z11matMult_jkiPfS_S_i] src/matMult.c:185
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r11 r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :      38
+            Global    :      24
+            Local     :      14
+        Regenerable   :       2
+        Spilled       :       3
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMult_ijk_trans(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMult_ijk_trans(float *, float *, float *, int)) [14/27=51.9%] src/matMult.c(203,61)
+  -> INLINE: (206,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (216,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(206,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(206,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(206,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(208,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(209,9)
+   <Distributed chunk1>
+      remark #25426: Loop Distributed (2 way) 
+      remark #25408: memset generated
+      remark #15398: loop was not vectorized: loop was transformed to memset or memcpy
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(209,9)
+   <Distributed chunk2>
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(211,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(211,13)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(216,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(216,5)
+      remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+      remark #25439: unrolled with remainder by 2  
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(216,5)
+   <Remainder>
+      remark #25015: Estimate of max trip count of loop=1618
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(209,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(209,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(203,61):remark #34051: REGISTER ALLOCATION : [_Z17matMult_ijk_transPfS_S_i] src/matMult.c:203
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   21[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm5]
+        
+    Routine temporaries
+        Total         :      97
+            Global    :      41
+            Local     :      56
+        Regenerable   :       6
+        Spilled       :       7
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      24 bytes*
+            Reads     :       4 [4.70e+00 ~ 0.2%]
+            Writes    :       3 [1.80e+00 ~ 0.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: blockClear(int, int, int, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (blockClear(int, int, int, float *)) [15/27=55.6%] src/matMult.c(249,48)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(250,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(251,9)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(251,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(251,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(251,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(249,48):remark #34051: REGISTER ALLOCATION : [_Z10blockCleariiiPf] src/matMult.c:249
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :      42
+            Global    :      21
+            Local     :      21
+        Regenerable   :       2
+        Spilled       :       9
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      64 bytes*
+            Reads     :       8 [1.85e+01 ~ 6.8%]
+            Writes    :       8 [7.20e+00 ~ 2.7%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockijk(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockijk(float *, float *, float *, int)) [16/27=59.3%] src/matMult.c(299,59)
+  -> INLINE: (300,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (304,13) blockClear(int, int, int, float *) (isz = 39) (sz = 50)
+  -> (306,17) blockMultijk(int, int, int, int, float *, float *, float *) (isz = 473) (sz = 490)
+     [[ Inlining would exceed -inline-max-size value (490>230) <1>]]
+  -> INLINE: (323,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(300,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(300,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(250,5) inlined into src/matMult.c(304,13)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(304,13)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(304,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(323,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(323,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/matMult.c(302,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at src/matMult.c(303,9)
+      remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+      LOOP BEGIN at src/matMult.c(305,13)
+         remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(251,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(251,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(299,59):remark #34051: REGISTER ALLOCATION : [_Z15matMultBlockijkPfS_S_i] src/matMult.c:299
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :      86
+            Global    :      52
+            Local     :      34
+        Regenerable   :       3
+        Spilled       :      22
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     128 bytes*
+            Reads     :      24 [8.14e+02 ~ 9.1%]
+            Writes    :      22 [3.32e+02 ~ 3.7%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: blockMultijk(int, int, int, int, float *, float *, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (blockMultijk(int, int, int, int, float *, float *, float *)) [17/27=63.0%] src/matMult.c(257,119)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(265,9)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(266,13)
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25451: Advice: Loop Interchange, if possible, might help loopnest. Suggested Permutation : ( 1 2 ) --> ( 2 1 ) 
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+      remark #25456: Number of Array Refs Scalar Replaced In Loop: 30
+
+      LOOP BEGIN at src/matMult.c(268,17)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25436: completely unrolled by 16  
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(288,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(289,9)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(290,17)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(290,17)
+      <Remainder>
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(257,119):remark #34051: REGISTER ALLOCATION : [_Z12blockMultijkiiiiPfS_S_] src/matMult.c:257
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   31[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm15]
+        
+    Routine temporaries
+        Total         :     157
+            Global    :      65
+            Local     :      92
+        Regenerable   :       3
+        Spilled       :      23
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     152 bytes*
+            Reads     :      23 [7.40e+01 ~ 4.7%]
+            Writes    :      22 [3.15e+01 ~ 2.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockijkomp(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockijkomp(float *, float *, float *, int)) [18/27=66.7%] src/matMult.c(327,62)
+  -> INLINE: (328,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (333,13) blockClear(int, int, int, float *) (isz = 39) (sz = 50)
+  -> (335,17) blockMultijk(int, int, int, int, float *, float *, float *) (isz = 473) (sz = 490)
+     [[ Inlining would exceed -inline-max-size value (490>230) <1>]]
+  -> INLINE: (339,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at src/matMult.c(330,5)
+remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(328,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(328,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(339,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(339,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(250,5) inlined into src/matMult.c(333,13)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(333,13)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(333,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/matMult.c(331,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at src/matMult.c(332,9)
+      remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+      LOOP BEGIN at src/matMult.c(334,13)
+         remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(251,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(251,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(327,62):remark #34051: REGISTER ALLOCATION : [_Z18matMultBlockijkompPfS_S_i] src/matMult.c:327
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     184
+            Global    :      64
+            Local     :     120
+        Regenerable   :      52
+        Spilled       :      18
+        
+    Routine stack
+        Variables     :      48 bytes*
+            Reads     :       7 [2.00e+00 ~ 0.0%]
+            Writes    :       9 [2.50e+01 ~ 0.3%]
+        Spills        :     192 bytes*
+            Reads     :      34 [8.22e+02 ~ 9.0%]
+            Writes    :      34 [3.48e+02 ~ 3.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultKNL(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultKNL(float *, float *, float *, int)) [19/27=70.4%] src/matMult.c(343,54)
+  -> INLINE: (344,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (349,13) blockClear(int, int, int, float *) (isz = 39) (sz = 50)
+  -> (351,17) blockMultijk(int, int, int, int, float *, float *, float *) (isz = 473) (sz = 490)
+     [[ Inlining would exceed -inline-max-size value (490>230) <1>]]
+  -> INLINE: (355,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at src/matMult.c(346,5)
+remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(344,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(344,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(355,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(355,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(250,5) inlined into src/matMult.c(349,13)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(349,13)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(349,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/matMult.c(347,5)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at src/matMult.c(348,9)
+      remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+      LOOP BEGIN at src/matMult.c(350,13)
+         remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(251,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(251,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(343,54):remark #34051: REGISTER ALLOCATION : [_Z10matMultKNLPfS_S_i] src/matMult.c:343
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     184
+            Global    :      64
+            Local     :     120
+        Regenerable   :      52
+        Spilled       :      18
+        
+    Routine stack
+        Variables     :      48 bytes*
+            Reads     :       7 [2.00e+00 ~ 0.0%]
+            Writes    :       9 [2.50e+01 ~ 0.3%]
+        Spills        :     192 bytes*
+            Reads     :      34 [8.22e+02 ~ 9.0%]
+            Writes    :      34 [3.48e+02 ~ 3.8%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockijkompn(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockijkompn(float *, float *, float *, int)) [20/27=74.1%] src/matMult.c(359,63)
+  -> INLINE: (360,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (366,13) blockClear(int, int, int, float *) (isz = 39) (sz = 50)
+  -> (368,17) blockMultijk(int, int, int, int, float *, float *, float *) (isz = 473) (sz = 490)
+     [[ Inlining would exceed -inline-max-size value (490>230) <1>]]
+  -> INLINE: (372,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at src/matMult.c(364,9)
+remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+OpenMP Construct at src/matMult.c(362,5)
+remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(360,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(360,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(372,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(372,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(250,5) inlined into src/matMult.c(366,13)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(366,13)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(251,9) inlined into src/matMult.c(366,13)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+
+Non-optimizable loops:
+
+
+LOOP BEGIN at src/matMult.c(363,5)
+   remark #15521: loop was not vectorized: loop control variable was not identified. Explicitly compute the iteration count before executing the loop or try using canonical loop form from OpenMP specification
+LOOP END
+
+LOOP BEGIN at src/matMult.c(365,9)
+   remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+
+   LOOP BEGIN at src/matMult.c(367,13)
+      remark #15543: loop was not vectorized: loop with function call not considered an optimization candidate.
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(251,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(251,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(359,63):remark #34051: REGISTER ALLOCATION : [_Z19matMultBlockijkompnPfS_S_i] src/matMult.c:359
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   15[ rax rdx rcx rbx rbp rsi rdi r8-r15]
+        
+    Routine temporaries
+        Total         :     260
+            Global    :      78
+            Local     :     182
+        Regenerable   :      85
+        Spilled       :      17
+        
+    Routine stack
+        Variables     :      68 bytes*
+            Reads     :      10 [7.00e+00 ~ 0.1%]
+            Writes    :      16 [1.35e+02 ~ 1.4%]
+        Spills        :     184 bytes*
+            Reads     :      41 [8.58e+02 ~ 8.7%]
+            Writes    :      40 [4.08e+02 ~ 4.1%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: blockMultikj(int, int, int, int, float *, float *, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (blockMultikj(int, int, int, int, float *, float *, float *)) [21/27=77.8%] src/matMult.c(376,77)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(380,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(381,9)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(382,13)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between C[ii*N+jj] (383:17) and A[ii*N+kk] (383:17)
+         remark #15346: vector dependence: assumed ANTI dependence between A[ii*N+kk] (383:17) and C[ii*N+jj] (383:17)
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(376,77):remark #34051: REGISTER ALLOCATION : [_Z12blockMultikjiiiiPfS_S_] src/matMult.c:376
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :      42
+            Global    :      28
+            Local     :      14
+        Regenerable   :       1
+        Spilled       :      12
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      72 bytes*
+            Reads     :       9 [2.97e+01 ~ 2.1%]
+            Writes    :       9 [2.25e+01 ~ 1.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockikj(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockikj(float *, float *, float *, int)) [22/27=81.5%] src/matMult.c(389,59)
+  -> INLINE: (402,17) blockMultikj(int, int, int, int, float *, float *, float *) (isz = 72) (sz = 89)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(391,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(393,9)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(393,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(393,9)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(399,5)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(400,9)
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25452: Original Order found to be proper, but by a close margin
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(401,13)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/matMult.c(380,5) inlined into src/matMult.c(402,17)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/matMult.c(381,9) inlined into src/matMult.c(402,17)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/matMult.c(382,13) inlined into src/matMult.c(402,17)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed FLOW dependence between C[ii*N+jj] (383:17) and A[ii*N+kk] (383:17)
+                  remark #15346: vector dependence: assumed ANTI dependence between A[ii*N+kk] (383:17) and C[ii*N+jj] (383:17)
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(393,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(393,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(389,59):remark #34051: REGISTER ALLOCATION : [_Z15matMultBlockikjPfS_S_i] src/matMult.c:389
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :      61
+            Global    :      44
+            Local     :      17
+        Regenerable   :       2
+        Spilled       :      26
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     200 bytes*
+            Reads     :      32 [5.59e+03 ~ 3.2%]
+            Writes    :      27 [3.42e+03 ~ 1.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockikjomp(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockikjomp(float *, float *, float *, int)) [23/27=85.2%] src/matMult.c(408,62)
+  -> INLINE: (422,17) blockMultikj(int, int, int, int, float *, float *, float *) (isz = 72) (sz = 89)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at src/matMult.c(418,5)
+remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(410,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(412,9)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(412,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(412,9)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(419,5)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(420,9)
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25452: Original Order found to be proper, but by a close margin
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(421,13)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/matMult.c(380,5) inlined into src/matMult.c(422,17)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/matMult.c(381,9) inlined into src/matMult.c(422,17)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/matMult.c(382,13) inlined into src/matMult.c(422,17)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed FLOW dependence between C[ii*N+jj] (383:17) and A[ii*N+kk] (383:17)
+                  remark #15346: vector dependence: assumed ANTI dependence between A[ii*N+kk] (383:17) and C[ii*N+jj] (383:17)
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(412,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(412,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(408,62):remark #34051: REGISTER ALLOCATION : [_Z18matMultBlockikjompPfS_S_i] src/matMult.c:408
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :     156
+            Global    :      52
+            Local     :     104
+        Regenerable   :      51
+        Spilled       :      20
+        
+    Routine stack
+        Variables     :      48 bytes*
+            Reads     :       6 [0.00e+00 ~ 0.0%]
+            Writes    :       9 [2.50e+01 ~ 0.0%]
+        Spills        :     208 bytes*
+            Reads     :      36 [5.60e+03 ~ 3.2%]
+            Writes    :      32 [2.87e+03 ~ 1.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: blockMultjki(int, int, int, int, float *, float *, float *)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (blockMultjki(int, int, int, int, float *, float *, float *)) [24/27=88.9%] src/matMult.c(428,77)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(432,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(433,9)
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(434,13)
+         remark #15344: loop was not vectorized: vector dependence prevents vectorization
+         remark #15346: vector dependence: assumed FLOW dependence between C[jj*N+ii] (435:17) and B[jj*N+kk] (435:17)
+         remark #15346: vector dependence: assumed ANTI dependence between B[jj*N+kk] (435:17) and C[jj*N+ii] (435:17)
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(428,77):remark #34051: REGISTER ALLOCATION : [_Z12blockMultjkiiiiiPfS_S_] src/matMult.c:428
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :      42
+            Global    :      28
+            Local     :      14
+        Regenerable   :       1
+        Spilled       :      12
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :      72 bytes*
+            Reads     :       9 [2.97e+01 ~ 2.1%]
+            Writes    :       9 [2.25e+01 ~ 1.6%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockjki(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockjki(float *, float *, float *, int)) [25/27=92.6%] src/matMult.c(441,59)
+  -> INLINE: (443,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (444,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (457,17) blockMultjki(int, int, int, int, float *, float *, float *) (isz = 72) (sz = 89)
+  -> INLINE: (462,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (463,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (464,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(443,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(443,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between A[i*N+j] (127:13) and A[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between A[j*N+i] (129:13) and A[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(444,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(444,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(446,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(448,9)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(448,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(448,9)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(454,5)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(455,9)
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25452: Original Order found to be proper, but by a close margin
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(456,13)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/matMult.c(432,5) inlined into src/matMult.c(457,17)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/matMult.c(433,9) inlined into src/matMult.c(457,17)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/matMult.c(434,13) inlined into src/matMult.c(457,17)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed FLOW dependence between C[jj*N+ii] (435:17) and B[jj*N+kk] (435:17)
+                  remark #15346: vector dependence: assumed ANTI dependence between B[jj*N+kk] (435:17) and C[jj*N+ii] (435:17)
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(462,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(462,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between A[i*N+j] (127:13) and A[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between A[j*N+i] (129:13) and A[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(463,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(463,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(464,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(464,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between C[i*N+j] (127:13) and C[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between C[j*N+i] (129:13) and C[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(448,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(448,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(441,59):remark #34051: REGISTER ALLOCATION : [_Z15matMultBlockjkiPfS_S_i] src/matMult.c:441
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :     147
+            Global    :      94
+            Local     :      53
+        Regenerable   :       3
+        Spilled       :      22
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :     128 bytes*
+            Reads     :      23 [5.57e+03 ~ 3.1%]
+            Writes    :      22 [3.43e+03 ~ 1.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: matMultBlockjkiomp(float *, float *, float *, int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (matMultBlockjkiomp(float *, float *, float *, int)) [26/27=96.3%] src/matMult.c(467,62)
+  -> INLINE: (469,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (470,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (484,17) blockMultjki(int, int, int, int, float *, float *, float *) (isz = 72) (sz = 89)
+  -> INLINE: (489,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (490,5) transpose(float *, int) (isz = 49) (sz = 56)
+  -> INLINE: (491,5) transpose(float *, int) (isz = 49) (sz = 56)
+
+
+    Report from: OpenMP optimizations [openmp]
+
+OpenMP Construct at src/matMult.c(480,5)
+remark #16200: OpenMP DEFINED LOOP WAS PARALLELIZED
+
+    Report from: Loop nest, Vector & Auto-parallelization optimizations [loop, vec, par]
+
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(469,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(469,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between A[i*N+j] (127:13) and A[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between A[j*N+i] (129:13) and A[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(470,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(470,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(472,5)
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(474,9)
+      remark #25408: memset generated
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(474,9)
+         remark #15540: loop was not vectorized: auto-vectorization is disabled with -no-vec flag
+         remark #25439: unrolled with remainder by 2  
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+
+      LOOP BEGIN at src/matMult.c(474,9)
+      <Remainder>
+         remark #25015: Estimate of max trip count of loop=24
+      LOOP END
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(489,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(489,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between A[i*N+j] (127:13) and A[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between A[j*N+i] (129:13) and A[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(490,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(490,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between B[i*N+j] (127:13) and B[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between B[j*N+i] (129:13) and B[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(123,5) inlined into src/matMult.c(491,5)
+   remark #25261: Invariant Condition eliminated(Proven True) at line 125
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(125,9) inlined into src/matMult.c(491,5)
+      remark #15344: loop was not vectorized: vector dependence prevents vectorization
+      remark #15346: vector dependence: assumed ANTI dependence between C[i*N+j] (127:13) and C[j*N+i] (129:13)
+      remark #15346: vector dependence: assumed FLOW dependence between C[j*N+i] (129:13) and C[i*N+j] (127:13)
+   LOOP END
+LOOP END
+
+LOOP BEGIN at src/matMult.c(481,5)
+   remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+   remark #25452: Original Order found to be proper, but by a close margin
+   remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+   LOOP BEGIN at src/matMult.c(482,9)
+      remark #25096: Loop Interchange not done due to: Imperfect Loop Nest (Either at Source or due to other Compiler Transformations)
+      remark #25452: Original Order found to be proper, but by a close margin
+      remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+      LOOP BEGIN at src/matMult.c(483,13)
+         remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+         LOOP BEGIN at src/matMult.c(432,5) inlined into src/matMult.c(484,17)
+            remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+            LOOP BEGIN at src/matMult.c(433,9) inlined into src/matMult.c(484,17)
+               remark #15541: outer loop was not auto-vectorized: consider using SIMD directive
+
+               LOOP BEGIN at src/matMult.c(434,13) inlined into src/matMult.c(484,17)
+                  remark #15344: loop was not vectorized: vector dependence prevents vectorization
+                  remark #15346: vector dependence: assumed FLOW dependence between C[jj*N+ii] (435:17) and B[jj*N+kk] (435:17)
+                  remark #15346: vector dependence: assumed ANTI dependence between B[jj*N+kk] (435:17) and C[jj*N+ii] (435:17)
+               LOOP END
+            LOOP END
+         LOOP END
+      LOOP END
+   LOOP END
+LOOP END
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(474,9):remark #34014: optimization advice for memset: increase the destination's alignment to 16 (and use __assume_aligned) to speed up library implementation
+src/matMult.c(474,9):remark #34026: call to memset implemented as a call to optimized library version
+src/matMult.c(467,62):remark #34051: REGISTER ALLOCATION : [_Z18matMultBlockjkiompPfS_S_i] src/matMult.c:467
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :   18[ rax rdx rcx rbx rbp rsi rdi r8-r15 zmm0-zmm2]
+        
+    Routine temporaries
+        Total         :     236
+            Global    :     100
+            Local     :     136
+        Regenerable   :      52
+        Spilled       :      20
+        
+    Routine stack
+        Variables     :      48 bytes*
+            Reads     :      11 [8.30e+00 ~ 0.0%]
+            Writes    :       9 [2.50e+01 ~ 0.0%]
+        Spills        :     208 bytes*
+            Reads     :      35 [5.60e+03 ~ 3.1%]
+            Writes    :      32 [3.44e+03 ~ 1.9%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+Begin optimization report for: stop(int)
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINE REPORT: (stop(int)) [27/27=100.0%] src/matMult.c(96,33)
+  -> EXTERN: (97,5) gettimeofday(timeval *, timezone *)
+
+
+    Report from: Code generation optimizations [cg]
+
+src/matMult.c(96,33):remark #34051: REGISTER ALLOCATION : [_Z4stopi] src/matMult.c:96
+
+    Hardware registers
+        Reserved     :    2[ rsp rip]
+        Available    :   39[ rax rdx rcx rbx rbp rsi rdi r8-r15 mm0-mm7 zmm0-zmm15]
+        Callee-save  :    6[ rbx rbp r12-r15]
+        Assigned     :    6[ rax rdx rcx rsi rdi r15]
+        
+    Routine temporaries
+        Total         :      20
+            Global    :       7
+            Local     :      13
+        Regenerable   :       3
+        Spilled       :       1
+        
+    Routine stack
+        Variables     :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+        Spills        :       0 bytes*
+            Reads     :       0 [0.00e+00 ~ 0.0%]
+            Writes    :       0 [0.00e+00 ~ 0.0%]
+    
+    Notes
+    
+        *Non-overlapping variables and spills may share stack space,
+         so the total stack size might be less than this.
+    
+
+===========================================================================
+
+    Report from: Interprocedural optimizations [ipo]
+
+INLINING FOOTNOTES:
+
+<1> The function is larger than the inliner would normally inline.  Use the
+    option -inline-max-size to increase the size of any function that would
+    normally be inlined, add "inline __attribute__((always_inline))" to the
+    declaration of the called function, or add "#pragma forceinline" before
+    the call site.
+

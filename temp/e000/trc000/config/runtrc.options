@@ -1,0 +1,11 @@
+-r
+/home/a76387/temp/e000/trc000
+-quiet
+-cs-file
+/home/a76387/temp/e000/callstacks.def
+--cs-mode=no-count-loops,count-flops,stack-stitching
+--target-loops=n
+--count-flops
+--benchmarks=dram,mcdram,cpu_cache,flop_peak,int
+--
+bin/matMult
