@@ -2,13 +2,13 @@ SRC_DIR = src
 BIN_DIR = bin
 BUILD_DIR = build
 
-CFLAGS = -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi
+CFLAGS = -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp
 
 CC_GPU = nvcc
 CC_FLAGS = -O3
 
 CC_intel = icpc
-CFLAGS_intel = -qopenmp -O3 -std=c++11 -qop-report-phase=vec -qopt-report=2 -march=native
+CFLAGS_intel = -qopenmp -O3 -std=c++11 -qopt-report-phase=vec -qopt-report=2 -march=native -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -lpapi
 
 all: directories cuda matMult
 
@@ -20,6 +20,9 @@ $(BUILD_DIR)/matMultGPU.o: $(SRC_DIR)/matMultGPU.cu
 
 matMult: directories $(SRC_DIR)/matMult.c
 	$(CC) $(CFLAGS) -o $(BIN_DIR)/matMult $(SRC_DIR)/matMult.c
+
+matMultVec: directories $(SRC_DIR)/matMult.c
+	$(CC) $(CFLAGS) -o $(BIN_DIR)/matMultVec $(SRC_DIR)/matMult.c -ftree-vectorize -fopt-info-vec-optimized
 
 manyCore: directories $(SRC_DIR)/matMult.c
 	$(CC_intel) $(CFLAGS_intel) -o $(BIN_DIR)/matMult_xeon $(SRC_DIR)/matMult.c

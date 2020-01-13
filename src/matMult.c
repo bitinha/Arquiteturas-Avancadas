@@ -80,6 +80,10 @@ void printPAPI(long long *values, int num_events, const char *tipo, int i){
         printf("Miss L1=%lld\nMiss L2=%lld\nMiss L3=%lld\n", values[0], values[1], values[2]);
         printf("Miss Rate L2 = %f\nMiss Rate L3 = %f\n", (double)values[1]/values[0], (double)values[2]/values[1]);
     }
+    else if (strcmp(tipo,"pram")==0){
+        printf("Acessos à RAM=%lld\nTotal de instruções=%lld\nTotal de instruções FP=%lld\n", values[0], values[1], values[2]);
+        printf("Acessos por instrução = %f\nAcessos por instrução FP = %f\n", (double)values[0]/values[1], (double)values[0]/values[2]);
+    }
 
     printf("\n\n\n");
 }
@@ -254,8 +258,8 @@ void blockMultijk(int N, int i, int j, int k, float * __restrict__ A, float * __
 
 
     // Pode-se utilizar isto para saber controlar os ciclos, mas fica muito extenso
-    int resto = N%BLOCK_SIZE;
-    int limite = N - N%BLOCK_SIZE;
+    // int resto = N%BLOCK_SIZE;
+    // int limite = N - N%BLOCK_SIZE;
 
     if ( k + BLOCK_SIZE < N) {
         for (int ii = i; ii < (((i + BLOCK_SIZE) < N) ? i + BLOCK_SIZE : N); ii++) {
@@ -323,26 +327,46 @@ void matMultBlockijk(float *A, float *B, float *C, int N) {
 void matMultBlockijkomp(float *A, float *B, float *C, int N) {
     transpose(B,N);
 
-    #pragma omp parallel for
+    #pragma omp parallel for num_threads(24)
     for (int i = 0; i < N; i+=BLOCK_SIZE) {
         for (int j = 0; j < N; j+=BLOCK_SIZE) {
             blockClear(N, i, j, C);
             for (int k = 0; k < N; k+=BLOCK_SIZE) {
                 blockMultijk(N, i, j, k, A, B, C);
             }
-            // for (int k = limite; k < N; k++) {
+        }
+    }
+    transpose(B,N);
 
+}
 
-            //     for (int ii = i; ii < i + resto; ii++) {
-            //         for (int jj = j; jj < j + resto; jj++) {
-            //             for (int kk = k; kk < k + resto; kk++) {
-            //                 C[ii*N+jj] += A[ii*N+kk] * B[jj*N+kk];
-            //             }
-            //         }
-            //     }
-            
+void matMultKNL(float *A, float *B, float *C, int N) {
+    transpose(B,N);
 
-            // }
+    #pragma omp parallel for num_threads(64)
+    for (int i = 0; i < N; i+=BLOCK_SIZE) {
+        for (int j = 0; j < N; j+=BLOCK_SIZE) {
+            blockClear(N, i, j, C);
+            for (int k = 0; k < N; k+=BLOCK_SIZE) {
+                blockMultijk(N, i, j, k, A, B, C);
+            }
+        }
+    }
+    transpose(B,N);
+
+}
+
+void matMultBlockijkompn(float *A, float *B, float *C, int N) {
+    transpose(B,N);
+
+    #pragma omp parallel for num_threads(6)
+    for (int i = 0; i < N; i+=BLOCK_SIZE) {
+        #pragma omp parallel for num_threads(4)
+        for (int j = 0; j < N; j+=BLOCK_SIZE) {
+            blockClear(N, i, j, C);
+            for (int k = 0; k < N; k+=BLOCK_SIZE) {
+                blockMultijk(N, i, j, k, A, B, C);
+            }
         }
     }
     transpose(B,N);
@@ -372,6 +396,26 @@ void matMultBlockikj(float *A, float *B, float *C, int N) {
         }
     }
 
+    for (int i = 0; i < N; i+=BLOCK_SIZE) {
+        for (int k = 0; k < N; k+=BLOCK_SIZE) {
+            for (int j = 0; j < N; j+=BLOCK_SIZE) {
+                blockMultikj(N, i, j, k, A, B, C);
+            }
+        }
+    }
+}
+
+void matMultBlockikjomp(float *A, float *B, float *C, int N) {
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            C[i*N+j]=0;
+        }
+    }
+
+    #pragma omp parallel for num_threads(24)
     for (int i = 0; i < N; i+=BLOCK_SIZE) {
         for (int k = 0; k < N; k+=BLOCK_SIZE) {
             for (int j = 0; j < N; j+=BLOCK_SIZE) {
@@ -420,6 +464,33 @@ void matMultBlockjki(float *A, float *B, float *C, int N) {
     transpose(C,N);
 }
 
+void matMultBlockjkiomp(float *A, float *B, float *C, int N) {
+
+    transpose(A,N);
+    transpose(B,N);
+
+    for (int i = 0; i < N; ++i)
+    {
+        for (int j = 0; j < N; ++j)
+        {
+            C[i*N+j]=0;
+        }
+    }
+
+    #pragma omp parallel for num_threads(24)
+    for (int j = 0; j < N; j+=BLOCK_SIZE) {
+        for (int k = 0; k < N; k+=BLOCK_SIZE) {
+            for (int i = 0; i < N; i+=BLOCK_SIZE) {
+                blockMultjki(N, i, j, k, A, B, C);
+            }
+        }
+    }
+
+    transpose(A,N);
+    transpose(B,N);
+    transpose(C,N);
+}
+
 
 
 int main(int argc, char const *argv[]) {
@@ -429,7 +500,7 @@ int main(int argc, char const *argv[]) {
     }
 
     repetitions = 8;
-    tempos = malloc(sizeof(unsigned long long)*repetitions);
+    tempos = (unsigned long long*) malloc(sizeof(unsigned long long)*repetitions);
 
     void (*funcao)(float *, float *, float *, int );
 
@@ -443,13 +514,15 @@ int main(int argc, char const *argv[]) {
     else if (strcmp(argv[1],"ikj_block")==0) funcao = matMultBlockikj;
     else if (strcmp(argv[1],"jki_block")==0) funcao = matMultBlockjki;
     else if (strcmp(argv[1],"ijk_omp")==0) funcao = matMultBlockijkomp;
-    else if (strcmp(argv[1],"ikj_omp")==0) funcao = matMultBlockijkomp;
-    else if (strcmp(argv[1],"jki_omp")==0) funcao = matMultBlockijkomp;
+    // else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+    else if (strcmp(argv[1],"ikj_omp")==0) {funcao = matMultBlockikjomp;}
+    else if (strcmp(argv[1],"jki_omp")==0) funcao = matMultBlockjkiomp;
+    else if (strcmp(argv[1],"knl")==0) funcao = matMultKNL;
     else {
         printf("Insira a implementação desejada:\n");
 
-        char *implementacoes[11] = {"ijk","ikj","jki","ijk_trans","jki_trans","ijk_block","ikj_block","jki_block","ijk_omp","ikj_omp","jki_omp"};
-        for(int i = 0; i<11;i++){
+        char *implementacoes[12] = {"ijk","ikj","jki","ijk_trans","jki_trans","ijk_block","ikj_block","jki_block","ijk_omp","ikj_omp","jki_omp","knl"};
+        for(int i = 0; i<12;i++){
             printf(" - %s\n", implementacoes[i]);
         }
         exit(1);
@@ -492,6 +565,12 @@ int main(int argc, char const *argv[]) {
             events[0] = PAPI_L1_DCM;
             events[1] = PAPI_L2_DCM;
             events[2] = PAPI_L3_TCM;
+        }
+        else if (strcmp(argv[3],"pram")==0){
+            papi = 1;
+            events[0] = PAPI_L3_TCM;
+            events[1] = PAPI_TOT_INS;
+            events[2] = PAPI_FP_INS;
         }
     }
 
@@ -541,8 +620,5 @@ int main(int argc, char const *argv[]) {
     printResults(); // writes time measurements into a file - your function and some baseline functions
 
     free(tempos);
-
-    // *** Maybe some PAPI code here? And some print of the results?
-
 
 }

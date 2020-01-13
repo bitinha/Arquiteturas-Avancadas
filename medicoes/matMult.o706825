@@ -1,0 +1,490 @@
+compute-662-6.local
+rm -f build/* bin/*
+gcc -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp -o bin/matMult src/matMult.c
+src/matMult.c: In function 'main':
+src/matMult.c:501:75: warning: implicit declaration of function 'omp_set_nested' [-Wimplicit-function-declaration]
+     else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+                                                                           ^
+src/matMult.c:593:8: warning: 'C' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if(validar(C,N) == 1){
+        ^
+src/matMult.c:600:5: warning: 'B' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(B);
+     ^
+src/matMult.c:599:5: warning: 'A' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(A);
+     ^
++ ./bin/matMult ijk 3238 pm23
+Medições da iteração 0:
+
+Miss L1=36118594967
+Miss L2=2338063393
+Miss L3=1918190025
+Miss Rate L2 = 0.064733
+Miss Rate L3 = 0.820418
+
+
+
+Medições da iteração 1:
+
+Miss L1=36122292815
+Miss L2=2342361465
+Miss L3=1918274298
+Miss Rate L2 = 0.064845
+Miss Rate L3 = 0.818949
+
+
+
+Medições da iteração 2:
+
+Miss L1=36118841816
+Miss L2=2338726611
+Miss L3=1918057439
+Miss Rate L2 = 0.064751
+Miss Rate L3 = 0.820129
+
+
+
+Medições da iteração 3:
+
+Miss L1=36123495134
+Miss L2=2363370263
+Miss L3=1948357755
+Miss Rate L2 = 0.065425
+Miss Rate L3 = 0.824398
+
+
+
+Medições da iteração 4:
+
+Miss L1=36119056169
+Miss L2=2337877821
+Miss L3=1921517672
+Miss Rate L2 = 0.064727
+Miss Rate L3 = 0.821907
+
+
+
+Medições da iteração 5:
+
+Miss L1=36118896973
+Miss L2=2338052610
+Miss L3=1921925197
+Miss Rate L2 = 0.064732
+Miss Rate L3 = 0.822020
+
+
+
+Medições da iteração 6:
+
+Miss L1=36118896362
+Miss L2=2339217897
+Miss L3=1922167846
+Miss Rate L2 = 0.064764
+Miss Rate L3 = 0.821714
+
+
+
+Medições da iteração 7:
+
+Miss L1=36118936095
+Miss L2=2338337169
+Miss L3=1922533242
+Miss Rate L2 = 0.064740
+Miss Rate L3 = 0.822180
+
+
+
+Validação correta
+T0 = 87073927
+T1 = 86974750
+T2 = 86816891
+T3 = 90887859
+T4 = 90837782
+T5 = 90901694
+T6 = 91017231
+T7 = 91110990
+Média dos 3 melhores tempos = 86955189
+Tolerância = 0.296068%
++ ./bin/matMult ijk 3238 pmram
+Validação correta
+T0 = 91305610
+T1 = 90976035
+T2 = 90861396
+T3 = 91050600
+T4 = 90144148
+T5 = 87419918
+T6 = 87322643
+T7 = 87476691
+Média dos 3 melhores tempos = 87406417
+Tolerância = 0.176418%
++ ./bin/matMult jki 3238
+Validação correta
+T0 = 224001126
+T1 = 221833309
+T2 = 221896500
+T3 = 226805754
+T4 = 226801201
+T5 = 226759863
+T6 = 226704860
+T7 = 226739745
+Média dos 3 melhores tempos = 222576978
+Tolerância = 0.977218%
++ ./bin/matMult jki 3238
+Validação correta
+T0 = 172083633
+T1 = 174692377
+T2 = 181223138
+T3 = 175450671
+T4 = 175664341
+T5 = 180744261
+T6 = 181581647
+T7 = 179002661
+Média dos 3 melhores tempos = 174075560
+Tolerância = 1.956630%
++ ./bin/matMult jki 3238 pm1
+Medições da iteração 0:
+
+Miss L1=68066963531
+Load Instrucions=101803445737
+Store Instrucions=33949277632
+Miss Rate L1 = 0.501404
+
+
+
+Medições da iteração 1:
+
+Miss L1=68066228100
+Load Instrucions=101774186380
+Store Instrucions=33949277327
+Miss Rate L1 = 0.501507
+
+
+
+Medições da iteração 2:
+
+Miss L1=68065987394
+Load Instrucions=101802340798
+Store Instrucions=33949277327
+Miss Rate L1 = 0.501401
+
+
+
+Medições da iteração 3:
+
+Miss L1=68068615261
+Load Instrucions=101800159460
+Store Instrucions=33949277327
+Miss Rate L1 = 0.501428
+
+
+
+Medições da iteração 4:
+
+Miss L1=68066940490
+Load Instrucions=101789179251
+Store Instrucions=33949277327
+Miss Rate L1 = 0.501457
+
+
+
+Medições da iteração 5:
+
+Miss L1=68066297618
+Load Instrucions=101825894877
+Store Instrucions=33949277327
+Miss Rate L1 = 0.501316
+
+
+
+Medições da iteração 6:
+
+Miss L1=68066542662
+Load Instrucions=101742594063
+Store Instrucions=33949277327
+Miss Rate L1 = 0.501626
+
+
+
+Medições da iteração 7:
+
+Miss L1=68066374132
+Load Instrucions=101610407148
+Store Instrucions=33949277327
+Miss Rate L1 = 0.502114
+
+
+
+Validação correta
+T0 = 221269454
+T1 = 218949149
+T2 = 224289073
+T3 = 179052777
+T4 = 228081127
+T5 = 221314243
+T6 = 224572052
+T7 = 217757291
+Média dos 3 melhores tempos = 205253072
+Tolerância = 22.281910%
++ ./bin/matMult jki 3238 pm23
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 166: ./bin/matMult: No such file or directory
++ ./bin/matMult jki 3238 pmram
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 167: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_trans 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 170: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_trans 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 171: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_trans 3238 pm1
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 172: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_trans 3238 pm23
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 173: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_trans 3238 pmram
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 174: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_trans 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 176: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_trans 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 177: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_trans 3238 pm1
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 178: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_trans 3238 pm23
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 179: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_trans 3238 pram
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 180: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_block 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 183: ./bin/matMult: No such file or directory
++ ./bin/matMult ijk_block 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 184: ./bin/matMult: No such file or directory
++ ./bin/matMult ikj_block 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 186: ./bin/matMult: No such file or directory
++ ./bin/matMult ikj_block 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 187: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_block 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 189: ./bin/matMult: No such file or directory
++ ./bin/matMult jki_block 3238
+/var/spool/torque/mom_priv/jobs/706825.search6.di.uminho.pt.SC: line 190: ./bin/matMult: No such file or directory
++ make clean
+rm -f build/* bin/*
++ make matMultVec
+gcc -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp -o bin/matMultVec src/matMult.c -ftree-vectorize -fopt-info-vec-optimized
+src/matMult.c: In function 'main':
+src/matMult.c:501:75: warning: implicit declaration of function 'omp_set_nested' [-Wimplicit-function-declaration]
+     else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+                                                                           ^
+src/matMult.c:176:13: note: loop vectorized
+src/matMult.c:176:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:171:9: note: loop vectorized
+src/matMult.c:171:9: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:396:9: note: loop vectorized
+src/matMult.c:348:17: note: basic block vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:237:13: note: loop vectorized
+src/matMult.c:237:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:232:9: note: loop vectorized
+src/matMult.c:232:9: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:458:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:266:13: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:366:13: note: loop vectorized
+src/matMult.c:366:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:377:9: note: loop vectorized
+src/matMult.c:418:13: note: loop vectorized
+src/matMult.c:418:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:432:9: note: loop vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:593:8: warning: 'C' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if(validar(C,N) == 1){
+        ^
+src/matMult.c:600:5: warning: 'B' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(B);
+     ^
+src/matMult.c:599:5: warning: 'A' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(A);
+     ^
++ ./bin/matMultVec ijk_block 52
+Validação correta
+T0 = 109
+T1 = 94
+T2 = 94
+T3 = 93
+T4 = 95
+T5 = 94
+T6 = 93
+T7 = 95
+Média dos 3 melhores tempos = 93
+Tolerância = 1.075268%
++ ./bin/matMultVec ijk_block 52
+Validação correta
+T0 = 103
+T1 = 93
+T2 = 94
+T3 = 93
+T4 = 93
+T5 = 93
+T6 = 93
+T7 = 94
+Média dos 3 melhores tempos = 93
+Tolerância = 0.000000%
++ ./bin/matMultVec ikj_block 52
+Validação correta
+T0 = 103
+T1 = 92
+T2 = 93
+T3 = 93
+T4 = 93
+T5 = 93
+T6 = 96
+T7 = 93
+Média dos 3 melhores tempos = 92
+Tolerância = 1.086962%
++ ./bin/matMultVec ikj_block 52
+Validação correta
+T0 = 103
+T1 = 92
+T2 = 93
+T3 = 93
+T4 = 93
+T5 = 92
+T6 = 93
+T7 = 93
+Média dos 3 melhores tempos = 92
+Tolerância = 1.086962%
++ ./bin/matMultVec jki_block 52
+Validação correta
+T0 = 115
+T1 = 105
+T2 = 104
+T3 = 104
+T4 = 104
+T5 = 104
+T6 = 104
+T7 = 103
+Média dos 3 melhores tempos = 103
+Tolerância = 0.970876%
++ ./bin/matMultVec jki_block 52
+Validação correta
+T0 = 118
+T1 = 104
+T2 = 104
+T3 = 105
+T4 = 105
+T5 = 105
+T6 = 105
+T7 = 105
+Média dos 3 melhores tempos = 104
+Tolerância = 0.961542%
++ ./bin/matMultVec ijk_block 147
+Validação correta
+T0 = 1867
+T1 = 1794
+T2 = 1794
+T3 = 1797
+T4 = 1794
+T5 = 1795
+T6 = 1797
+T7 = 1799
+Média dos 3 melhores tempos = 1794
+Tolerância = 0.000000%
++ ./bin/matMultVec ijk_block 147
+Validação correta
+T0 = 1858
+T1 = 1795
+T2 = 1796
+T3 = 1796
+T4 = 1795
+T5 = 1800
+T6 = 1797
+T7 = 1798
+Média dos 3 melhores tempos = 1795
+Tolerância = 0.055707%
++ ./bin/matMultVec ikj_block 147
+Validação correta
+T0 = 1931
+T1 = 1881
+T2 = 1883
+T3 = 1882
+T4 = 1880
+T5 = 1883
+T6 = 1885
+T7 = 1890
+Média dos 3 melhores tempos = 1881
+Tolerância = 0.106382%
++ ./bin/matMultVec ikj_block 147
+Validação correta
+T0 = 1936
+T1 = 1888
+T2 = 1886
+T3 = 1919
+T4 = 1928
+T5 = 1887
+T6 = 1897
+T7 = 1904
+Média dos 3 melhores tempos = 1887
+Tolerância = 0.106049%
++ ./bin/matMultVec jki_block 147
+Validação correta
+T0 = 2118
+T1 = 1965
+T2 = 1966
+T3 = 1977
+T4 = 1967
+T5 = 1966
+T6 = 1970
+T7 = 1971
+Média dos 3 melhores tempos = 1965
+Tolerância = 0.050890%
++ ./bin/matMultVec jki_block 147
+Validação correta
+T0 = 2065
+T1 = 1965
+T2 = 1963
+T3 = 1968
+T4 = 1964
+T5 = 1967
+T6 = 1965
+T7 = 1975
+Média dos 3 melhores tempos = 1964
+Tolerância = 0.101888%
++ ./bin/matMultVec ijk_block 3238
+Validação correta
+T0 = 17264331
+T1 = 13437312
+T2 = 13475412
+T3 = 13432380
+T4 = 13430676
+T5 = 13442201
+T6 = 13433394
+T7 = 13434106
+Média dos 3 melhores tempos = 13432150
+Tolerância = 0.020242%
++ ./bin/matMultVec ijk_block 3238
+Validação correta
+T0 = 13644736
+T1 = 13433953
+T2 = 13440203
+T3 = 13401814
+T4 = 13488445
+T5 = 13462488
+T6 = 13441073
+T7 = 13425795
+Média dos 3 melhores tempos = 13420520
+Tolerância = 0.239813%
++ echo Com 2 processadores tamanho L3 duplica
+Com 2 processadores tamanho L3 duplica
++ ./bin/matMultVec ijk_block 4579
+Validação correta
+T0 = 42245138
+T1 = 37827028
+T2 = 37995422
+T3 = 39077539
+T4 = 39109776
+T5 = 39176337
+T6 = 39842682
+T7 = 50532407
+Média dos 3 melhores tempos = 38299996
+Tolerância = 3.305864%
++ ./bin/matMultVec ijk_block 4579
+=>> PBS: job killed: walltime 7203 exceeded limit 7200

@@ -1,0 +1,150 @@
+compute-662-3.local
++ make clean
+rm -f build/* bin/*
++ make matMultVec
+gcc -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp -o bin/matMultVec src/matMult.c -ftree-vectorize -fopt-info-vec-optimized
+src/matMult.c: In function 'main':
+src/matMult.c:501:75: warning: implicit declaration of function 'omp_set_nested' [-Wimplicit-function-declaration]
+     else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+                                                                           ^
+src/matMult.c:176:13: note: loop vectorized
+src/matMult.c:176:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:171:9: note: loop vectorized
+src/matMult.c:171:9: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:396:9: note: loop vectorized
+src/matMult.c:348:17: note: basic block vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:237:13: note: loop vectorized
+src/matMult.c:237:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:232:9: note: loop vectorized
+src/matMult.c:232:9: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:458:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:266:13: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:366:13: note: loop vectorized
+src/matMult.c:366:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:377:9: note: loop vectorized
+src/matMult.c:418:13: note: loop vectorized
+src/matMult.c:418:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:432:9: note: loop vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:593:8: warning: 'C' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if(validar(C,N) == 1){
+        ^
+src/matMult.c:600:5: warning: 'B' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(B);
+     ^
+src/matMult.c:599:5: warning: 'A' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(A);
+     ^
++ ./bin/matMultVec ijk_omp 3238
+Validação correta
+T0 = 1005571
+T1 = 1045181
+T2 = 1213391
+T3 = 1042688
+T4 = 1005902
+T5 = 1005514
+T6 = 1151999
+T7 = 1151216
+Média dos 3 melhores tempos = 1005662
+Tolerância = 0.038588%
++ ./bin/matMultVec ijk_omp 3238
+Validação correta
+T0 = 994274
+T1 = 1114998
+T2 = 947683
+T3 = 1005241
+T4 = 887725
+T5 = 913805
+T6 = 916933
+T7 = 1097650
+Média dos 3 melhores tempos = 906154
+Tolerância = 3.290212%
++ echo Com 2 processadores tamanho L3 duplica
+Com 2 processadores tamanho L3 duplica
++ ./bin/matMultVec ijk_omp 4579
+Validação correta
+T0 = 2750202
+T1 = 3148733
+T2 = 3199922
+T3 = 2821359
+T4 = 3121732
+T5 = 2942645
+T6 = 3459040
+T7 = 2626923
+Média dos 3 melhores tempos = 2732828
+Tolerância = 7.401669%
++ ./bin/matMultVec ijk_omp 4579
+Validação correta
+T0 = 2005669
+T1 = 2199536
+T2 = 2599333
+T3 = 2778477
+T4 = 2101611
+T5 = 2032327
+T6 = 2438564
+T7 = 2562704
+Média dos 3 melhores tempos = 2046535
+Tolerância = 4.783547%
+
+
+------------------
+-------knl--------
+------------------
+
+[a75362@compute-002-1 AATP]$ bin/matMult_xeon knl 3238
+knlValidação correta
+T0 = 2611923
+T1 = 2224658
+T2 = 2141803
+T3 = 2129613
+T4 = 2133561
+T5 = 2115674
+T6 = 2108457
+T7 = 2180222
+Média dos 3 melhores tempos = 2117914
+Tolerância = 1.003385%
+[a75362@compute-002-1 AATP]$ bin/matMult_xeon knl 3238
+Validação correta
+T0 = 2253619
+T1 = 2235725
+T2 = 2047382
+T3 = 2070675
+T4 = 2192485
+T5 = 2064628
+T6 = 2064928
+T7 = 2066412
+Média dos 3 melhores tempos = 2058979
+Tolerância = 0.856996%
+
+
+
+[a75362@compute-002-1 AATP]$ bin/matMult_xeon knl 3344
+Validação correta
+T0 = 2442812
+T1 = 2326705
+T2 = 2059170
+T3 = 2198067
+T4 = 2104713
+T5 = 2003878
+T6 = 1977613
+T7 = 2094615
+Média dos 3 melhores tempos = 2013553
+Tolerância = 4.124010%
+[a75362@compute-002-1 AATP]$ bin/matMult_xeon knl 3344
+Validação correta
+T0 = 2519314
+T1 = 2110504
+T2 = 2142381
+T3 = 2118429
+T4 = 2185401
+T5 = 2029319
+T6 = 2142005
+T7 = 2125150
+Média dos 3 melhores tempos = 2086084
+Tolerância = 4.391134%

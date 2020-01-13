@@ -69,28 +69,18 @@ __global__ void matMultKernel_ikj(int N, float *A, float *B, float *C) {
 
     if (i < N && k < N/*  && k >= 1 */) {
         for (int j = 0; j < N; j++) {
-            C[i * N + j] += A[i * N + k] * B[k * N + j];
+            atomicAdd(&C[i*N+j],A[i * N + k] * B[k * N + j]);
+            // C[i * N + j] += A[i * N + k] * B[k * N + j];
         }
     }
-
-    // void matMult_ikj(float *A, float *B, float *C, int N) {
-    //     for (int i = 0; i < N; i++) {
-    //         for (int j = 0; j < N; j++) {   //1ª iteração é necessário definir ter a matriz resultado a 0
-    //             C[i*N+j] = A[i*N+0] * B[0*N+j];
-    //         }
-    //         for (int k = 1; k < N; k++) {
-    //             for (int j = 0; j < N; j++) {
-    //                 C[i*N+j] += A[i*N+k] * B[k*N+j];
-    //             }
-    //         }
-    //     }
-    // }
 }
 
 void matMultGPU(int N, float *A, float *B, float *C) {
-    dim3 threadsPerBlock(8, 8);
-    dim3 blocksPerGrid(2, 2);
+    int tam = 16;
 
+    dim3 blocksPerGrid(tam, tam);   //Garantir que serão utilizados todos SMX
+    dim3 threadsPerBlock((N+tam*tam-1)/(tam*tam), (N+tam*tam-1)/(tam*tam));
+    
     // declare variable with size of the array in bytes
     int bytes = N * N * sizeof(float);
 
@@ -114,10 +104,13 @@ void matMultGPU(int N, float *A, float *B, float *C) {
 
 	checkCUDAError("memcpy h->d");
     // launch the kernel
-	matMultKernel_ikj <<< threadsPerBlock, blocksPerGrid >>> (N, dA, dB, dC);
+    matMultKernel_ikj <<< threadsPerBlock, blocksPerGrid >>> (N, dA, dB, dC);
+    // matMultKernel_ijk <<< threadsPerBlock, blocksPerGrid >>> (N, dA, dB, dC);
 
 	checkCUDAError("kernel invocation");
 	// copy the output to the host
+    cudaThreadSynchronize();
+
 	cudaMemcpy(C, dC, bytes, cudaMemcpyDeviceToHost);
 	checkCUDAError("memcpy d->h");
     
@@ -142,14 +135,14 @@ int main(int argc, char const *argv[]) {
 
     fillMatrices(A, B, N);
 
-    /** Temporário **/
+
     for (int i = 0; i < N * N; i++) {
         C[i] = 0;
     }
 
     matMultGPU(N, A, B, C);
 
-    printMatrix(N, 'A', A);
-    printMatrix(N, 'B', B);
-    printMatrix(N, 'C', C);
+    // printMatrix(N, 'A', A);
+    // printMatrix(N, 'B', B);
+    // printMatrix(N, 'C', C);
 }

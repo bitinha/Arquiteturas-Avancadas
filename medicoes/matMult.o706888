@@ -1,0 +1,932 @@
+compute-662-3.local
+rm -f build/* bin/*
+gcc -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp -o bin/matMult src/matMult.c
+src/matMult.c: In function 'main':
+src/matMult.c:501:75: warning: implicit declaration of function 'omp_set_nested' [-Wimplicit-function-declaration]
+     else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+                                                                           ^
+src/matMult.c:593:8: warning: 'C' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if(validar(C,N) == 1){
+        ^
+src/matMult.c:600:5: warning: 'B' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(B);
+     ^
+src/matMult.c:599:5: warning: 'A' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(A);
+     ^
++ ./bin/matMult jki 3238 pm23
+Medições da iteração 0:
+
+Miss L1=68039533627
+Miss L2=66820087418
+Miss L3=1988798940
+Miss Rate L2 = 0.982077
+Miss Rate L3 = 0.029763
+
+
+
+Medições da iteração 1:
+
+Miss L1=68039847948
+Miss L2=66789493301
+Miss L3=1988325359
+Miss Rate L2 = 0.981623
+Miss Rate L3 = 0.029770
+
+
+
+Medições da iteração 2:
+
+Miss L1=68039705133
+Miss L2=66802793310
+Miss L3=1987827720
+Miss Rate L2 = 0.981821
+Miss Rate L3 = 0.029757
+
+
+
+Medições da iteração 3:
+
+Miss L1=68044859635
+Miss L2=66892050028
+Miss L3=1992640042
+Miss Rate L2 = 0.983058
+Miss Rate L3 = 0.029789
+
+
+
+Medições da iteração 4:
+
+Miss L1=68046116583
+Miss L2=66936179319
+Miss L3=1993817030
+Miss Rate L2 = 0.983688
+Miss Rate L3 = 0.029787
+
+
+
+Medições da iteração 5:
+
+Miss L1=68046046540
+Miss L2=66957769450
+Miss L3=1993991893
+Miss Rate L2 = 0.984007
+Miss Rate L3 = 0.029780
+
+
+
+Medições da iteração 6:
+
+Miss L1=68045895924
+Miss L2=66957431152
+Miss L3=1995151122
+Miss Rate L2 = 0.984004
+Miss Rate L3 = 0.029797
+
+
+
+Medições da iteração 7:
+
+Miss L1=68046064490
+Miss L2=66956616410
+Miss L3=1997342736
+Miss Rate L2 = 0.983990
+Miss Rate L3 = 0.029830
+
+
+
+Validação correta
+T0 = 174894478
+T1 = 175591649
+T2 = 173782079
+T3 = 173079707
+T4 = 173371032
+T5 = 174730927
+T6 = 177135256
+T7 = 179634728
+Média dos 3 melhores tempos = 173410939
+Tolerância = 0.405800%
++ ./bin/matMult jki 3238 pmram
+Validação correta
+T0 = 178102550
+T1 = 178058864
+T2 = 178071592
+T3 = 178112582
+T4 = 178091959
+T5 = 178244638
+T6 = 178083824
+T7 = 175735441
+Média dos 3 melhores tempos = 177288632
+Tolerância = 1.329350%
++ ./bin/matMult ijk_trans 3238
+Validação correta
+T0 = 34251038
+T1 = 32938513
+T2 = 33027547
+T3 = 33032450
+T4 = 33020959
+T5 = 33000507
+T6 = 33017581
+T7 = 33003413
+Média dos 3 melhores tempos = 32980811
+Tolerância = 0.197029%
++ ./bin/matMult ijk_trans 3238
+Validação correta
+T0 = 33033524
+T1 = 32984493
+T2 = 32981381
+T3 = 32936662
+T4 = 32907340
+T5 = 32889798
+T6 = 32935313
+T7 = 32893092
+Média dos 3 melhores tempos = 32896743
+Tolerância = 0.053334%
++ ./bin/matMult ijk_trans 3238 pm1
+Medições da iteração 0:
+
+Miss L1=2147866041
+Load Instrucions=67922802353
+Store Instrucions=33980725097
+Miss Rate L1 = 0.021077
+
+
+
+Medições da iteração 1:
+
+Miss L1=2148737743
+Load Instrucions=67922859141
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021086
+
+
+
+Medições da iteração 2:
+
+Miss L1=2147821328
+Load Instrucions=67923219589
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021077
+
+
+
+Medições da iteração 3:
+
+Miss L1=2147825041
+Load Instrucions=67923230646
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021077
+
+
+
+Medições da iteração 4:
+
+Miss L1=2147878480
+Load Instrucions=67923230388
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021077
+
+
+
+Medições da iteração 5:
+
+Miss L1=2147961711
+Load Instrucions=67923225086
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021078
+
+
+
+Medições da iteração 6:
+
+Miss L1=2147837387
+Load Instrucions=67923215721
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021077
+
+
+
+Medições da iteração 7:
+
+Miss L1=2148094995
+Load Instrucions=67923206159
+Store Instrucions=33980724792
+Miss Rate L1 = 0.021080
+
+
+
+Validação correta
+T0 = 32935940
+T1 = 33150224
+T2 = 34290860
+T3 = 34336294
+T4 = 34325449
+T5 = 34326305
+T6 = 34357111
+T7 = 34352521
+Média dos 3 melhores tempos = 33459008
+Tolerância = 4.113805%
++ ./bin/matMult ijk_trans 3238 pm23
+Medições da iteração 0:
+
+Miss L1=2149237309
+Miss L2=96078627
+Miss L3=76905426
+Miss Rate L2 = 0.044704
+Miss Rate L3 = 0.800443
+
+
+
+Medições da iteração 1:
+
+Miss L1=2148275257
+Miss L2=96172374
+Miss L3=76913425
+Miss Rate L2 = 0.044767
+Miss Rate L3 = 0.799746
+
+
+
+Medições da iteração 2:
+
+Miss L1=2148240610
+Miss L2=96035655
+Miss L3=77261889
+Miss Rate L2 = 0.044704
+Miss Rate L3 = 0.804513
+
+
+
+Medições da iteração 3:
+
+Miss L1=2148053103
+Miss L2=96142691
+Miss L3=77767892
+Miss Rate L2 = 0.044758
+Miss Rate L3 = 0.808880
+
+
+
+Medições da iteração 4:
+
+Miss L1=2148329698
+Miss L2=96264519
+Miss L3=77766769
+Miss Rate L2 = 0.044809
+Miss Rate L3 = 0.807845
+
+
+
+Medições da iteração 5:
+
+Miss L1=2148213735
+Miss L2=95744433
+Miss L3=77842582
+Miss Rate L2 = 0.044569
+Miss Rate L3 = 0.813025
+
+
+
+Medições da iteração 6:
+
+Miss L1=2148024211
+Miss L2=96064307
+Miss L3=77861490
+Miss Rate L2 = 0.044722
+Miss Rate L3 = 0.810514
+
+
+
+Medições da iteração 7:
+
+Miss L1=2148071141
+Miss L2=95906277
+Miss L3=77415867
+Miss Rate L2 = 0.044648
+Miss Rate L3 = 0.807203
+
+
+
+Validação correta
+T0 = 34345083
+T1 = 34328683
+T2 = 34301811
+T3 = 34316750
+T4 = 34348703
+T5 = 34246708
+T6 = 34285122
+T7 = 34352781
+Média dos 3 melhores tempos = 34277880
+Tolerância = 0.160909%
++ ./bin/matMult ijk_trans 3238 pmram
+Validação correta
+T0 = 33008382
+T1 = 32959722
+T2 = 33873330
+T3 = 34338628
+T4 = 34414746
+T5 = 34328324
+T6 = 34311577
+T7 = 34316558
+Média dos 3 melhores tempos = 33280478
+Tolerância = 2.771890%
++ ./bin/matMult jki_trans 3238
+Validação correta
+T0 = 34219405
+T1 = 34191779
+T2 = 34210533
+T3 = 34186146
+T4 = 34200951
+T5 = 34194610
+T6 = 34206819
+T7 = 34230169
+Média dos 3 melhores tempos = 34190845
+Tolerância = 0.024760%
++ ./bin/matMult jki_trans 3238
+Validação correta
+T0 = 34194700
+T1 = 34213465
+T2 = 34221657
+T3 = 34286436
+T4 = 34240137
+T5 = 34203490
+T6 = 34207822
+T7 = 34274801
+Média dos 3 melhores tempos = 34202004
+Tolerância = 0.038385%
++ ./bin/matMult jki_trans 3238 pm1
+Medições da iteração 0:
+
+Miss L1=2173423994
+Load Instrucions=101893458790
+Store Instrucions=34001684686
+Miss Rate L1 = 0.015993
+
+
+
+Medições da iteração 1:
+
+Miss L1=2173259858
+Load Instrucions=101893441261
+Store Instrucions=34001684381
+Miss Rate L1 = 0.015992
+
+
+
+Medições da iteração 2:
+
+Miss L1=2173466244
+Load Instrucions=101893423658
+Store Instrucions=34001684381
+Miss Rate L1 = 0.015994
+
+
+
+Medições da iteração 3:
+
+Miss L1=2174306100
+Load Instrucions=101893301135
+Store Instrucions=34001684381
+Miss Rate L1 = 0.016000
+
+
+
+Medições da iteração 4:
+
+Miss L1=2173463744
+Load Instrucions=101893437201
+Store Instrucions=34001684381
+Miss Rate L1 = 0.015994
+
+
+
+Medições da iteração 5:
+
+Miss L1=2173415999
+Load Instrucions=101893445976
+Store Instrucions=34001684381
+Miss Rate L1 = 0.015993
+
+
+
+Medições da iteração 6:
+
+Miss L1=2173440084
+Load Instrucions=101893448550
+Store Instrucions=34001684381
+Miss Rate L1 = 0.015994
+
+
+
+Medições da iteração 7:
+
+Miss L1=2173398847
+Load Instrucions=101893445133
+Store Instrucions=34001684381
+Miss Rate L1 = 0.015993
+
+
+
+Validação correta
+T0 = 34299990
+T1 = 34222501
+T2 = 34222162
+T3 = 33866464
+T4 = 34232049
+T5 = 34229743
+T6 = 34239587
+T7 = 34270003
+Média dos 3 melhores tempos = 34103709
+Tolerância = 1.051295%
++ ./bin/matMult jki_trans 3238 pm23
+Medições da iteração 0:
+
+Miss L1=2173583723
+Miss L2=95664246
+Miss L3=77500359
+Miss Rate L2 = 0.044012
+Miss Rate L3 = 0.810129
+
+
+
+Medições da iteração 1:
+
+Miss L1=2173738031
+Miss L2=95575979
+Miss L3=77613607
+Miss Rate L2 = 0.043968
+Miss Rate L3 = 0.812062
+
+
+
+Medições da iteração 2:
+
+Miss L1=2173459217
+Miss L2=95514938
+Miss L3=76875987
+Miss Rate L2 = 0.043946
+Miss Rate L3 = 0.804858
+
+
+
+Medições da iteração 3:
+
+Miss L1=2173661470
+Miss L2=95244193
+Miss L3=76972558
+Miss Rate L2 = 0.043817
+Miss Rate L3 = 0.808160
+
+
+
+Medições da iteração 4:
+
+Miss L1=2174642496
+Miss L2=95220306
+Miss L3=76921512
+Miss Rate L2 = 0.043787
+Miss Rate L3 = 0.807827
+
+
+
+Medições da iteração 5:
+
+Miss L1=2173645447
+Miss L2=95212438
+Miss L3=76858348
+Miss Rate L2 = 0.043803
+Miss Rate L3 = 0.807230
+
+
+
+Medições da iteração 6:
+
+Miss L1=2173856422
+Miss L2=95658316
+Miss L3=77054440
+Miss Rate L2 = 0.044004
+Miss Rate L3 = 0.805517
+
+
+
+Medições da iteração 7:
+
+Miss L1=2174795127
+Miss L2=95950823
+Miss L3=77724724
+Miss Rate L2 = 0.044119
+Miss Rate L3 = 0.810047
+
+
+
+Validação correta
+T0 = 34293266
+T1 = 34254199
+T2 = 34317373
+T3 = 34246715
+T4 = 34235386
+T5 = 34172940
+T6 = 34194824
+T7 = 34233437
+Média dos 3 melhores tempos = 34200400
+Tolerância = 0.177026%
++ ./bin/matMult jki_trans 3238 pram
+Medições da iteração 0:
+
+Acessos à RAM=79205789
+Total de instruções=237907275982
+Total de instruções FP=68854838479
+Acessos por instrução = 0.000333
+Acessos por instrução FP = 0.001150
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=79175754
+Total de instruções=237907273232
+Total de instruções FP=68854432201
+Acessos por instrução = 0.000333
+Acessos por instrução FP = 0.001150
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=79892398
+Total de instruções=237907273257
+Total de instruções FP=68857054392
+Acessos por instrução = 0.000336
+Acessos por instrução FP = 0.001160
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=79827376
+Total de instruções=237907272652
+Total de instruções FP=68852367430
+Acessos por instrução = 0.000336
+Acessos por instrução FP = 0.001159
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=79848244
+Total de instruções=237907273245
+Total de instruções FP=68857258500
+Acessos por instrução = 0.000336
+Acessos por instrução FP = 0.001160
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=79919270
+Total de instruções=237907272934
+Total de instruções FP=68854463583
+Acessos por instrução = 0.000336
+Acessos por instrução FP = 0.001161
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=79769812
+Total de instruções=237907271914
+Total de instruções FP=68847295913
+Acessos por instrução = 0.000335
+Acessos por instrução FP = 0.001159
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=95150172
+Total de instruções=237907274613
+Total de instruções FP=68909574955
+Acessos por instrução = 0.000400
+Acessos por instrução FP = 0.001381
+
+
+
+Validação correta
+T0 = 34261574
+T1 = 34224748
+T2 = 34249100
+T3 = 33642161
+T4 = 34239312
+T5 = 33935302
+T6 = 32914095
+T7 = 35584333
+Média dos 3 melhores tempos = 33497186
+Tolerância = 3.102648%
++ ./bin/matMult ijk_block 3238
+Validação correta
+T0 = 17449660
+T1 = 17381089
+T2 = 17242293
+T3 = 17547644
+T4 = 17574750
+T5 = 17375153
+T6 = 17399923
+T7 = 17417549
+Média dos 3 melhores tempos = 17332845
+Tolerância = 0.804973%
++ ./bin/matMult ijk_block 3238
+Validação correta
+T0 = 17517678
+T1 = 17364899
+T2 = 17580260
+T3 = 17580849
+T4 = 17579653
+T5 = 17368382
+T6 = 17369829
+T7 = 17363906
+Média dos 3 melhores tempos = 17365729
+Tolerância = 0.025773%
++ ./bin/matMult ikj_block 3238
+Validação correta
+T0 = 33530213
+T1 = 33370449
+T2 = 33128807
+T3 = 33146917
+T4 = 33131356
+T5 = 33149199
+T6 = 33135608
+T7 = 33140419
+Média dos 3 melhores tempos = 33131923
+Tolerância = 0.020528%
++ ./bin/matMult ikj_block 3238
+Validação correta
+T0 = 33158843
+T1 = 33125782
+T2 = 33132793
+T3 = 33115046
+T4 = 33185497
+T5 = 33121846
+T6 = 33135797
+T7 = 33132743
+Média dos 3 melhores tempos = 33120891
+Tolerância = 0.032425%
++ ./bin/matMult jki_block 3238
+Validação correta
+T0 = 33226594
+T1 = 33254565
+T2 = 33209895
+T3 = 33218943
+T4 = 33198859
+T5 = 33309905
+T6 = 33200844
+T7 = 33247445
+Média dos 3 melhores tempos = 33203199
+Tolerância = 0.033247%
++ ./bin/matMult jki_block 3238
+Validação correta
+T0 = 33204118
+T1 = 33203428
+T2 = 33194034
+T3 = 33203682
+T4 = 33215849
+T5 = 33191489
+T6 = 33216267
+T7 = 33204286
+Média dos 3 melhores tempos = 33196317
+Tolerância = 0.035977%
++ make clean
+rm -f build/* bin/*
++ make matMultVec
+gcc -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp -o bin/matMultVec src/matMult.c -ftree-vectorize -fopt-info-vec-optimized
+src/matMult.c: In function 'main':
+src/matMult.c:501:75: warning: implicit declaration of function 'omp_set_nested' [-Wimplicit-function-declaration]
+     else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+                                                                           ^
+src/matMult.c:176:13: note: loop vectorized
+src/matMult.c:176:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:171:9: note: loop vectorized
+src/matMult.c:171:9: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:396:9: note: loop vectorized
+src/matMult.c:348:17: note: basic block vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:237:13: note: loop vectorized
+src/matMult.c:237:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:232:9: note: loop vectorized
+src/matMult.c:232:9: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:458:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:266:13: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:251:9: note: loop vectorized
+src/matMult.c:366:13: note: loop vectorized
+src/matMult.c:366:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:377:9: note: loop vectorized
+src/matMult.c:418:13: note: loop vectorized
+src/matMult.c:418:13: note: loop versioned for vectorization because of possible aliasing
+src/matMult.c:432:9: note: loop vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:30:5: note: loop vectorized
+src/matMult.c:593:8: warning: 'C' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if(validar(C,N) == 1){
+        ^
+src/matMult.c:600:5: warning: 'B' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(B);
+     ^
+src/matMult.c:599:5: warning: 'A' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(A);
+     ^
++ ./bin/matMultVec ijk_block 52
+Validação correta
+T0 = 82
+T1 = 72
+T2 = 74
+T3 = 73
+T4 = 73
+T5 = 73
+T6 = 74
+T7 = 73
+Média dos 3 melhores tempos = 72
+Tolerância = 1.388884%
++ ./bin/matMultVec ijk_block 52
+Validação correta
+T0 = 82
+T1 = 72
+T2 = 72
+T3 = 72
+T4 = 72
+T5 = 72
+T6 = 72
+T7 = 72
+Média dos 3 melhores tempos = 72
+Tolerância = 0.000000%
++ ./bin/matMultVec ikj_block 52
+Validação correta
+T0 = 79
+T1 = 70
+T2 = 70
+T3 = 70
+T4 = 70
+T5 = 71
+T6 = 72
+T7 = 72
+Média dos 3 melhores tempos = 70
+Tolerância = 0.000000%
++ ./bin/matMultVec ikj_block 52
+Validação correta
+T0 = 94
+T1 = 69
+T2 = 71
+T3 = 70
+T4 = 71
+T5 = 70
+T6 = 71
+T7 = 78
+Média dos 3 melhores tempos = 69
+Tolerância = 1.449275%
++ ./bin/matMultVec jki_block 52
+Validação correta
+T0 = 88
+T1 = 84
+T2 = 79
+T3 = 86
+T4 = 81
+T5 = 80
+T6 = 80
+T7 = 81
+Média dos 3 melhores tempos = 79
+Tolerância = 1.265824%
++ ./bin/matMultVec jki_block 52
+Validação correta
+T0 = 89
+T1 = 79
+T2 = 80
+T3 = 79
+T4 = 79
+T5 = 80
+T6 = 80
+T7 = 80
+Média dos 3 melhores tempos = 79
+Tolerância = 0.000000%
++ ./bin/matMultVec ijk_block 147
+Validação correta
+T0 = 1422
+T1 = 1396
+T2 = 1370
+T3 = 1373
+T4 = 1375
+T5 = 1371
+T6 = 1372
+T7 = 1373
+Média dos 3 melhores tempos = 1371
+Tolerância = 0.145984%
++ ./bin/matMultVec ijk_block 147
+Validação correta
+T0 = 1425
+T1 = 1376
+T2 = 1373
+T3 = 1377
+T4 = 1376
+T5 = 1377
+T6 = 1372
+T7 = 1371
+Média dos 3 melhores tempos = 1372
+Tolerância = 0.145876%
++ ./bin/matMultVec ikj_block 147
+Validação correta
+T0 = 1454
+T1 = 1440
+T2 = 1418
+T3 = 1419
+T4 = 1416
+T5 = 1438
+T6 = 1435
+T7 = 1415
+Média dos 3 melhores tempos = 1416
+Tolerância = 0.212014%
++ ./bin/matMultVec ikj_block 147
+Validação correta
+T0 = 1455
+T1 = 1415
+T2 = 1419
+T3 = 1441
+T4 = 1416
+T5 = 1416
+T6 = 1419
+T7 = 1421
+Média dos 3 melhores tempos = 1415
+Tolerância = 0.070667%
++ ./bin/matMultVec jki_block 147
+Validação correta
+T0 = 1532
+T1 = 1487
+T2 = 1490
+T3 = 1493
+T4 = 1488
+T5 = 1506
+T6 = 1486
+T7 = 1482
+Média dos 3 melhores tempos = 1485
+Tolerância = 0.337386%
++ ./bin/matMultVec jki_block 147
+Validação correta
+T0 = 1584
+T1 = 1483
+T2 = 1490
+T3 = 1483
+T4 = 1492
+T5 = 1486
+T6 = 1493
+T7 = 1509
+Média dos 3 melhores tempos = 1484
+Tolerância = 0.202298%
++ ./bin/matMultVec ijk_omp 3238
+Validação correta
+T0 = 1059054
+T1 = 1268303
+T2 = 955163
+T3 = 738763
+T4 = 740265
+T5 = 739829
+T6 = 741932
+T7 = 739045
+Média dos 3 melhores tempos = 739212
+Tolerância = 0.144291%
++ ./bin/matMultVec ijk_omp 3238
+Validação correta
+T0 = 972787
+T1 = 1063551
+T2 = 1256785
+T3 = 783981
+T4 = 740532
+T5 = 739570
+T6 = 742040
+T7 = 756908
+Média dos 3 melhores tempos = 740714
+Tolerância = 0.333977%
++ echo Com 2 processadores tamanho L3 duplica
+Com 2 processadores tamanho L3 duplica
++ ./bin/matMultVec ijk_omp 4579
+Validação correta
+T0 = 1987532
+T1 = 2045865
+T2 = 2033715
+T3 = 2743271
+T4 = 2575555
+T5 = 2680371
+T6 = 2835906
+T7 = 2349933
+Média dos 3 melhores tempos = 2022370
+Tolerância = 2.934945%
++ ./bin/matMultVec ijk_omp 4579
+Validação correta
+T0 = 2842701
+T1 = 2037545
+T2 = 1972421
+T3 = 1970697
+T4 = 1967568
+T5 = 2219570
+T6 = 1968838
+T7 = 1970409
+Média dos 3 melhores tempos = 1968938
+Tolerância = 0.144386%

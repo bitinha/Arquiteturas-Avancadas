@@ -1,0 +1,4296 @@
+compute-662-6.local
+rm -f build/* bin/*
+mkdir -p build
+mkdir -p bin
+gcc -Wall -L/share/apps/papi/5.4.1/lib -I/share/apps/papi/5.4.1/include -O2 -lpapi -fopenmp -o bin/matMult src/matMult.c
+src/matMult.c: In function 'main':
+src/matMult.c:501:75: warning: implicit declaration of function 'omp_set_nested' [-Wimplicit-function-declaration]
+     else if (strcmp(argv[1],"ikj_ompn")==0) {funcao = matMultBlockijkompn;omp_set_nested(1);}
+                                                                           ^
+src/matMult.c:593:8: warning: 'C' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     if(validar(C,N) == 1){
+        ^
+src/matMult.c:600:5: warning: 'B' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(B);
+     ^
+src/matMult.c:599:5: warning: 'A' may be used uninitialized in this function [-Wmaybe-uninitialized]
+     free(A);
+     ^
++ ./bin/matMult ikj 52
+Validação correta
+T0 = 205
+T1 = 197
+T2 = 197
+T3 = 197
+T4 = 205
+T5 = 197
+T6 = 197
+T7 = 197
+Média dos 3 melhores tempos = 197
+Tolerância = 0.000000%
++ ./bin/matMult ikj 52
+Validação correta
+T0 = 206
+T1 = 197
+T2 = 197
+T3 = 202
+T4 = 196
+T5 = 196
+T6 = 196
+T7 = 155
+Média dos 3 melhores tempos = 182
+Tolerância = 26.451611%
++ ./bin/matMult ikj 52 pm1
+Medições da iteração 0:
+
+Miss L1=528
+Load Instrucions=420031
+Store Instrucions=140966
+Miss Rate L1 = 0.000941
+
+
+
+Medições da iteração 1:
+
+Miss L1=552
+Load Instrucions=419258
+Store Instrucions=140661
+Miss Rate L1 = 0.000986
+
+
+
+Medições da iteração 2:
+
+Miss L1=549
+Load Instrucions=419256
+Store Instrucions=140661
+Miss Rate L1 = 0.000981
+
+
+
+Medições da iteração 3:
+
+Miss L1=546
+Load Instrucions=419247
+Store Instrucions=140661
+Miss Rate L1 = 0.000975
+
+
+
+Medições da iteração 4:
+
+Miss L1=545
+Load Instrucions=419252
+Store Instrucions=140661
+Miss Rate L1 = 0.000973
+
+
+
+Medições da iteração 5:
+
+Miss L1=544
+Load Instrucions=419258
+Store Instrucions=140661
+Miss Rate L1 = 0.000972
+
+
+
+Medições da iteração 6:
+
+Miss L1=547
+Load Instrucions=419250
+Store Instrucions=140661
+Miss Rate L1 = 0.000977
+
+
+
+Medições da iteração 7:
+
+Miss L1=547
+Load Instrucions=419248
+Store Instrucions=140661
+Miss Rate L1 = 0.000977
+
+
+
+Validação correta
+T0 = 3134
+T1 = 256
+T2 = 246
+T3 = 241
+T4 = 240
+T5 = 248
+T6 = 242
+T7 = 244
+Média dos 3 melhores tempos = 241
+Tolerância = 0.833333%
++ ./bin/matMult ikj 52 pm23
+Medições da iteração 0:
+
+Miss L1=574
+Miss L2=169
+Miss L3=106
+Miss Rate L2 = 0.294425
+Miss Rate L3 = 0.627219
+
+
+
+Medições da iteração 1:
+
+Miss L1=552
+Miss L2=57
+Miss L3=42
+Miss Rate L2 = 0.103261
+Miss Rate L3 = 0.736842
+
+
+
+Medições da iteração 2:
+
+Miss L1=544
+Miss L2=50
+Miss L3=42
+Miss Rate L2 = 0.091912
+Miss Rate L3 = 0.840000
+
+
+
+Medições da iteração 3:
+
+Miss L1=543
+Miss L2=133
+Miss L3=134
+Miss Rate L2 = 0.244936
+Miss Rate L3 = 1.007519
+
+
+
+Medições da iteração 4:
+
+Miss L1=545
+Miss L2=54
+Miss L3=40
+Miss Rate L2 = 0.099083
+Miss Rate L3 = 0.740741
+
+
+
+Medições da iteração 5:
+
+Miss L1=545
+Miss L2=55
+Miss L3=45
+Miss Rate L2 = 0.100917
+Miss Rate L3 = 0.818182
+
+
+
+Medições da iteração 6:
+
+Miss L1=548
+Miss L2=79
+Miss L3=73
+Miss Rate L2 = 0.144161
+Miss Rate L3 = 0.924051
+
+
+
+Medições da iteração 7:
+
+Miss L1=567
+Miss L2=154
+Miss L3=154
+Miss Rate L2 = 0.271605
+Miss Rate L3 = 1.000000
+
+
+
+Validação correta
+T0 = 3280
+T1 = 261
+T2 = 258
+T3 = 262
+T4 = 254
+T5 = 257
+T6 = 258
+T7 = 264
+Média dos 3 melhores tempos = 256
+Tolerância = 1.574802%
++ ./bin/matMult ikj 52 pram
+Medições da iteração 0:
+
+Acessos à RAM=104
+Total de instruções=1000946
+Total de instruções FP=279698
+Acessos por instrução = 0.000104
+Acessos por instrução FP = 0.000372
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=114
+Total de instruções=998402
+Total de instruções FP=279542
+Acessos por instrução = 0.000114
+Acessos por instrução FP = 0.000408
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=34
+Total de instruções=998401
+Total de instruções FP=279385
+Acessos por instrução = 0.000034
+Acessos por instrução FP = 0.000122
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=41
+Total de instruções=998401
+Total de instruções FP=279418
+Acessos por instrução = 0.000041
+Acessos por instrução FP = 0.000147
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=51
+Total de instruções=998402
+Total de instruções FP=279427
+Acessos por instrução = 0.000051
+Acessos por instrução FP = 0.000183
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=36
+Total de instruções=998401
+Total de instruções FP=279405
+Acessos por instrução = 0.000036
+Acessos por instrução FP = 0.000129
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=37
+Total de instruções=998401
+Total de instruções FP=279388
+Acessos por instrução = 0.000037
+Acessos por instrução FP = 0.000132
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=39
+Total de instruções=998401
+Total de instruções FP=279398
+Acessos por instrução = 0.000039
+Acessos por instrução FP = 0.000140
+
+
+
+Validação correta
+T0 = 3116
+T1 = 273
+T2 = 258
+T3 = 264
+T4 = 267
+T5 = 258
+T6 = 258
+T7 = 257
+Média dos 3 melhores tempos = 257
+Tolerância = 0.389099%
++ ./bin/matMult ijk 52
+Validação correta
+T0 = 148
+T1 = 142
+T2 = 142
+T3 = 142
+T4 = 146
+T5 = 148
+T6 = 142
+T7 = 142
+Média dos 3 melhores tempos = 142
+Tolerância = 0.000000%
++ ./bin/matMult ijk 52
+Validação correta
+T0 = 148
+T1 = 146
+T2 = 142
+T3 = 141
+T4 = 143
+T5 = 142
+T6 = 141
+T7 = 142
+Média dos 3 melhores tempos = 141
+Tolerância = 0.709224%
++ ./bin/matMult ijk 52 pm1
+Medições da iteração 0:
+
+Miss L1=519
+Load Instrucions=282123
+Store Instrucions=143670
+Miss Rate L1 = 0.001219
+
+
+
+Medições da iteração 1:
+
+Miss L1=566
+Load Instrucions=281350
+Store Instrucions=143365
+Miss Rate L1 = 0.001333
+
+
+
+Medições da iteração 2:
+
+Miss L1=625
+Load Instrucions=281483
+Store Instrucions=143365
+Miss Rate L1 = 0.001471
+
+
+
+Medições da iteração 3:
+
+Miss L1=549
+Load Instrucions=281352
+Store Instrucions=143365
+Miss Rate L1 = 0.001293
+
+
+
+Medições da iteração 4:
+
+Miss L1=548
+Load Instrucions=281347
+Store Instrucions=143365
+Miss Rate L1 = 0.001290
+
+
+
+Medições da iteração 5:
+
+Miss L1=549
+Load Instrucions=281352
+Store Instrucions=143365
+Miss Rate L1 = 0.001293
+
+
+
+Medições da iteração 6:
+
+Miss L1=545
+Load Instrucions=281353
+Store Instrucions=143365
+Miss Rate L1 = 0.001283
+
+
+
+Medições da iteração 7:
+
+Miss L1=549
+Load Instrucions=281354
+Store Instrucions=143365
+Miss Rate L1 = 0.001293
+
+
+
+Validação correta
+T0 = 3083
+T1 = 240
+T2 = 264
+T3 = 236
+T4 = 235
+T5 = 241
+T6 = 245
+T7 = 236
+Média dos 3 melhores tempos = 235
+Tolerância = 0.425529%
++ ./bin/matMult ijk 52 pm23
+Medições da iteração 0:
+
+Miss L1=567
+Miss L2=251
+Miss L3=172
+Miss Rate L2 = 0.442681
+Miss Rate L3 = 0.685259
+
+
+
+Medições da iteração 1:
+
+Miss L1=554
+Miss L2=109
+Miss L3=102
+Miss Rate L2 = 0.196751
+Miss Rate L3 = 0.935780
+
+
+
+Medições da iteração 2:
+
+Miss L1=550
+Miss L2=178
+Miss L3=174
+Miss Rate L2 = 0.323636
+Miss Rate L3 = 0.977528
+
+
+
+Medições da iteração 3:
+
+Miss L1=548
+Miss L2=154
+Miss L3=147
+Miss Rate L2 = 0.281022
+Miss Rate L3 = 0.954545
+
+
+
+Medições da iteração 4:
+
+Miss L1=552
+Miss L2=185
+Miss L3=181
+Miss Rate L2 = 0.335145
+Miss Rate L3 = 0.978378
+
+
+
+Medições da iteração 5:
+
+Miss L1=551
+Miss L2=131
+Miss L3=126
+Miss Rate L2 = 0.237750
+Miss Rate L3 = 0.961832
+
+
+
+Medições da iteração 6:
+
+Miss L1=550
+Miss L2=134
+Miss L3=119
+Miss Rate L2 = 0.243636
+Miss Rate L3 = 0.888060
+
+
+
+Medições da iteração 7:
+
+Miss L1=645
+Miss L2=168
+Miss L3=143
+Miss Rate L2 = 0.260465
+Miss Rate L3 = 0.851190
+
+
+
+Validação correta
+T0 = 3110
+T1 = 254
+T2 = 250
+T3 = 251
+T4 = 258
+T5 = 250
+T6 = 249
+T7 = 271
+Média dos 3 melhores tempos = 249
+Tolerância = 0.401604%
++ ./bin/matMult ijk 52 pmram
+Validação correta
+T0 = 148
+T1 = 141
+T2 = 141
+T3 = 147
+T4 = 142
+T5 = 142
+T6 = 143
+T7 = 142
+Média dos 3 melhores tempos = 141
+Tolerância = 0.709224%
++ ./bin/matMult jki 52
+Validação correta
+T0 = 150
+T1 = 142
+T2 = 143
+T3 = 148
+T4 = 144
+T5 = 143
+T6 = 143
+T7 = 167
+Média dos 3 melhores tempos = 142
+Tolerância = 0.704229%
++ ./bin/matMult jki 52
+Validação correta
+T0 = 148
+T1 = 143
+T2 = 147
+T3 = 143
+T4 = 143
+T5 = 143
+T6 = 219
+T7 = 144
+Média dos 3 melhores tempos = 143
+Tolerância = 0.000000%
++ ./bin/matMult jki 52 pm1
+Medições da iteração 0:
+
+Miss L1=621
+Load Instrucions=420032
+Store Instrucions=140968
+Miss Rate L1 = 0.001107
+
+
+
+Medições da iteração 1:
+
+Miss L1=648
+Load Instrucions=419273
+Store Instrucions=140663
+Miss Rate L1 = 0.001157
+
+
+
+Medições da iteração 2:
+
+Miss L1=647
+Load Instrucions=419272
+Store Instrucions=140663
+Miss Rate L1 = 0.001155
+
+
+
+Medições da iteração 3:
+
+Miss L1=628
+Load Instrucions=419267
+Store Instrucions=140663
+Miss Rate L1 = 0.001122
+
+
+
+Medições da iteração 4:
+
+Miss L1=636
+Load Instrucions=419274
+Store Instrucions=140663
+Miss Rate L1 = 0.001136
+
+
+
+Medições da iteração 5:
+
+Miss L1=636
+Load Instrucions=419272
+Store Instrucions=140663
+Miss Rate L1 = 0.001136
+
+
+
+Medições da iteração 6:
+
+Miss L1=647
+Load Instrucions=419345
+Store Instrucions=140663
+Miss Rate L1 = 0.001155
+
+
+
+Medições da iteração 7:
+
+Miss L1=654
+Load Instrucions=419268
+Store Instrucions=140663
+Miss Rate L1 = 0.001168
+
+
+
+Validação correta
+T0 = 3078
+T1 = 245
+T2 = 239
+T3 = 266
+T4 = 245
+T5 = 240
+T6 = 248
+T7 = 240
+Média dos 3 melhores tempos = 239
+Tolerância = 0.418413%
++ ./bin/matMult jki 52 pm23
+Medições da iteração 0:
+
+Miss L1=648
+Miss L2=324
+Miss L3=212
+Miss Rate L2 = 0.500000
+Miss Rate L3 = 0.654321
+
+
+
+Medições da iteração 1:
+
+Miss L1=631
+Miss L2=261
+Miss L3=240
+Miss Rate L2 = 0.413629
+Miss Rate L3 = 0.919540
+
+
+
+Medições da iteração 2:
+
+Miss L1=632
+Miss L2=232
+Miss L3=207
+Miss Rate L2 = 0.367089
+Miss Rate L3 = 0.892241
+
+
+
+Medições da iteração 3:
+
+Miss L1=639
+Miss L2=223
+Miss L3=188
+Miss Rate L2 = 0.348983
+Miss Rate L3 = 0.843049
+
+
+
+Medições da iteração 4:
+
+Miss L1=651
+Miss L2=233
+Miss L3=206
+Miss Rate L2 = 0.357911
+Miss Rate L3 = 0.884120
+
+
+
+Medições da iteração 5:
+
+Miss L1=631
+Miss L2=281
+Miss L3=262
+Miss Rate L2 = 0.445325
+Miss Rate L3 = 0.932384
+
+
+
+Medições da iteração 6:
+
+Miss L1=627
+Miss L2=268
+Miss L3=249
+Miss Rate L2 = 0.427432
+Miss Rate L3 = 0.929104
+
+
+
+Medições da iteração 7:
+
+Miss L1=626
+Miss L2=228
+Miss L3=196
+Miss Rate L2 = 0.364217
+Miss Rate L3 = 0.859649
+
+
+
+Validação correta
+T0 = 3086
+T1 = 263
+T2 = 251
+T3 = 251
+T4 = 251
+T5 = 259
+T6 = 253
+T7 = 249
+Média dos 3 melhores tempos = 250
+Tolerância = 0.803208%
++ ./bin/matMult jki 52 pmram
+Validação correta
+T0 = 149
+T1 = 144
+T2 = 143
+T3 = 143
+T4 = 143
+T5 = 169
+T6 = 143
+T7 = 143
+Média dos 3 melhores tempos = 143
+Tolerância = 0.000000%
++ ./bin/matMult ijk_trans 52
+Validação correta
+T0 = 147
+T1 = 153
+T2 = 138
+T3 = 137
+T4 = 137
+T5 = 142
+T6 = 137
+T7 = 136
+Média dos 3 melhores tempos = 136
+Tolerância = 0.735295%
++ ./bin/matMult ijk_trans 52
+Validação correta
+T0 = 143
+T1 = 143
+T2 = 137
+T3 = 136
+T4 = 137
+T5 = 137
+T6 = 137
+T7 = 136
+Média dos 3 melhores tempos = 136
+Tolerância = 0.735295%
++ ./bin/matMult ijk_trans 52 pm1
+Medições da iteração 0:
+
+Miss L1=546
+Load Instrucions=287450
+Store Instrucions=148985
+Miss Rate L1 = 0.001251
+
+
+
+Medições da iteração 1:
+
+Miss L1=546
+Load Instrucions=286661
+Store Instrucions=148680
+Miss Rate L1 = 0.001254
+
+
+
+Medições da iteração 2:
+
+Miss L1=548
+Load Instrucions=286650
+Store Instrucions=148680
+Miss Rate L1 = 0.001259
+
+
+
+Medições da iteração 3:
+
+Miss L1=544
+Load Instrucions=286660
+Store Instrucions=148680
+Miss Rate L1 = 0.001250
+
+
+
+Medições da iteração 4:
+
+Miss L1=542
+Load Instrucions=286661
+Store Instrucions=148680
+Miss Rate L1 = 0.001245
+
+
+
+Medições da iteração 5:
+
+Miss L1=544
+Load Instrucions=286659
+Store Instrucions=148680
+Miss Rate L1 = 0.001250
+
+
+
+Medições da iteração 6:
+
+Miss L1=564
+Load Instrucions=286749
+Store Instrucions=148680
+Miss Rate L1 = 0.001295
+
+
+
+Medições da iteração 7:
+
+Miss L1=544
+Load Instrucions=286657
+Store Instrucions=148680
+Miss Rate L1 = 0.001250
+
+
+
+Validação correta
+T0 = 3106
+T1 = 235
+T2 = 231
+T3 = 237
+T4 = 239
+T5 = 234
+T6 = 250
+T7 = 239
+Média dos 3 melhores tempos = 233
+Tolerância = 1.731598%
++ ./bin/matMult ijk_trans 52 pm23
+Medições da iteração 0:
+
+Miss L1=534
+Miss L2=172
+Miss L3=136
+Miss Rate L2 = 0.322097
+Miss Rate L3 = 0.790698
+
+
+
+Medições da iteração 1:
+
+Miss L1=543
+Miss L2=121
+Miss L3=114
+Miss Rate L2 = 0.222836
+Miss Rate L3 = 0.942149
+
+
+
+Medições da iteração 2:
+
+Miss L1=545
+Miss L2=166
+Miss L3=171
+Miss Rate L2 = 0.304587
+Miss Rate L3 = 1.030120
+
+
+
+Medições da iteração 3:
+
+Miss L1=546
+Miss L2=122
+Miss L3=127
+Miss Rate L2 = 0.223443
+Miss Rate L3 = 1.040984
+
+
+
+Medições da iteração 4:
+
+Miss L1=548
+Miss L2=170
+Miss L3=174
+Miss Rate L2 = 0.310219
+Miss Rate L3 = 1.023529
+
+
+
+Medições da iteração 5:
+
+Miss L1=543
+Miss L2=128
+Miss L3=127
+Miss Rate L2 = 0.235727
+Miss Rate L3 = 0.992188
+
+
+
+Medições da iteração 6:
+
+Miss L1=544
+Miss L2=118
+Miss L3=116
+Miss Rate L2 = 0.216912
+Miss Rate L3 = 0.983051
+
+
+
+Medições da iteração 7:
+
+Miss L1=547
+Miss L2=122
+Miss L3=112
+Miss Rate L2 = 0.223035
+Miss Rate L3 = 0.918033
+
+
+
+Validação correta
+T0 = 3236
+T1 = 266
+T2 = 253
+T3 = 257
+T4 = 266
+T5 = 275
+T6 = 256
+T7 = 247
+Média dos 3 melhores tempos = 252
+Tolerância = 3.643727%
++ ./bin/matMult ijk_trans 52 pmram
+Validação correta
+T0 = 148
+T1 = 141
+T2 = 140
+T3 = 141
+T4 = 140
+T5 = 141
+T6 = 141
+T7 = 140
+Média dos 3 melhores tempos = 140
+Tolerância = 0.000000%
++ ./bin/matMult jki_trans 52
+Validação correta
+T0 = 169
+T1 = 162
+T2 = 162
+T3 = 163
+T4 = 162
+T5 = 161
+T6 = 163
+T7 = 162
+Média dos 3 melhores tempos = 161
+Tolerância = 0.621116%
++ ./bin/matMult jki_trans 52
+Validação correta
+T0 = 170
+T1 = 163
+T2 = 163
+T3 = 170
+T4 = 162
+T5 = 162
+T6 = 162
+T7 = 162
+Média dos 3 melhores tempos = 162
+Tolerância = 0.000000%
++ ./bin/matMult jki_trans 52 pm1
+Medições da iteração 0:
+
+Miss L1=811
+Load Instrucions=433322
+Store Instrucions=154252
+Miss Rate L1 = 0.001380
+
+
+
+Medições da iteração 1:
+
+Miss L1=750
+Load Instrucions=432547
+Store Instrucions=153947
+Miss Rate L1 = 0.001279
+
+
+
+Medições da iteração 2:
+
+Miss L1=748
+Load Instrucions=432558
+Store Instrucions=153947
+Miss Rate L1 = 0.001275
+
+
+
+Medições da iteração 3:
+
+Miss L1=746
+Load Instrucions=432551
+Store Instrucions=153947
+Miss Rate L1 = 0.001272
+
+
+
+Medições da iteração 4:
+
+Miss L1=831
+Load Instrucions=432652
+Store Instrucions=153947
+Miss Rate L1 = 0.001417
+
+
+
+Medições da iteração 5:
+
+Miss L1=748
+Load Instrucions=432553
+Store Instrucions=153947
+Miss Rate L1 = 0.001275
+
+
+
+Medições da iteração 6:
+
+Miss L1=746
+Load Instrucions=432553
+Store Instrucions=153947
+Miss Rate L1 = 0.001272
+
+
+
+Medições da iteração 7:
+
+Miss L1=746
+Load Instrucions=432554
+Store Instrucions=153947
+Miss Rate L1 = 0.001272
+
+
+
+Validação correta
+T0 = 3211
+T1 = 266
+T2 = 261
+T3 = 258
+T4 = 267
+T5 = 259
+T6 = 260
+T7 = 258
+Média dos 3 melhores tempos = 258
+Tolerância = 0.387597%
++ ./bin/matMult jki_trans 52 pm23
+Medições da iteração 0:
+
+Miss L1=814
+Miss L2=269
+Miss L3=200
+Miss Rate L2 = 0.330467
+Miss Rate L3 = 0.743494
+
+
+
+Medições da iteração 1:
+
+Miss L1=751
+Miss L2=195
+Miss L3=184
+Miss Rate L2 = 0.259654
+Miss Rate L3 = 0.943590
+
+
+
+Medições da iteração 2:
+
+Miss L1=736
+Miss L2=204
+Miss L3=195
+Miss Rate L2 = 0.277174
+Miss Rate L3 = 0.955882
+
+
+
+Medições da iteração 3:
+
+Miss L1=748
+Miss L2=201
+Miss L3=196
+Miss Rate L2 = 0.268717
+Miss Rate L3 = 0.975124
+
+
+
+Medições da iteração 4:
+
+Miss L1=746
+Miss L2=214
+Miss L3=206
+Miss Rate L2 = 0.286863
+Miss Rate L3 = 0.962617
+
+
+
+Medições da iteração 5:
+
+Miss L1=743
+Miss L2=189
+Miss L3=191
+Miss Rate L2 = 0.254374
+Miss Rate L3 = 1.010582
+
+
+
+Medições da iteração 6:
+
+Miss L1=743
+Miss L2=203
+Miss L3=192
+Miss Rate L2 = 0.273217
+Miss Rate L3 = 0.945813
+
+
+
+Medições da iteração 7:
+
+Miss L1=857
+Miss L2=199
+Miss L3=193
+Miss Rate L2 = 0.232205
+Miss Rate L3 = 0.969849
+
+
+
+Validação correta
+T0 = 3184
+T1 = 299
+T2 = 271
+T3 = 270
+T4 = 283
+T5 = 275
+T6 = 290
+T7 = 289
+Média dos 3 melhores tempos = 272
+Tolerância = 1.851857%
++ ./bin/matMult jki_trans 52 pram
+Medições da iteração 0:
+
+Acessos à RAM=207
+Total de instruções=1057683
+Total de instruções FP=283017
+Acessos por instrução = 0.000196
+Acessos por instrução FP = 0.000731
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=186
+Total de instruções=1055138
+Total de instruções FP=283139
+Acessos por instrução = 0.000176
+Acessos por instrução FP = 0.000657
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=197
+Total de instruções=1055138
+Total de instruções FP=283145
+Acessos por instrução = 0.000187
+Acessos por instrução FP = 0.000696
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=186
+Total de instruções=1055138
+Total de instruções FP=283153
+Acessos por instrução = 0.000176
+Acessos por instrução FP = 0.000657
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=176
+Total de instruções=1055138
+Total de instruções FP=282804
+Acessos por instrução = 0.000167
+Acessos por instrução FP = 0.000622
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=216
+Total de instruções=1055138
+Total de instruções FP=282932
+Acessos por instrução = 0.000205
+Acessos por instrução FP = 0.000763
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=217
+Total de instruções=1055138
+Total de instruções FP=282828
+Acessos por instrução = 0.000206
+Acessos por instrução FP = 0.000767
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=261
+Total de instruções=1055138
+Total de instruções FP=282810
+Acessos por instrução = 0.000247
+Acessos por instrução FP = 0.000923
+
+
+
+Validação correta
+T0 = 3242
+T1 = 292
+T2 = 290
+T3 = 275
+T4 = 284
+T5 = 281
+T6 = 278
+T7 = 282
+Média dos 3 melhores tempos = 278
+Tolerância = 2.181816%
++ ./bin/matMult ijk_block 52
+Validação correta
+T0 = 92
+T1 = 91
+T2 = 85
+T3 = 89
+T4 = 86
+T5 = 86
+T6 = 85
+T7 = 85
+Média dos 3 melhores tempos = 85
+Tolerância = 0.000000%
++ ./bin/matMult ijk_block 52
+Validação correta
+T0 = 93
+T1 = 91
+T2 = 86
+T3 = 91
+T4 = 86
+T5 = 85
+T6 = 85
+T7 = 85
+Média dos 3 melhores tempos = 85
+Tolerância = 0.000000%
++ ./bin/matMult ikj_block 52
+Validação correta
+T0 = 158
+T1 = 145
+T2 = 146
+T3 = 145
+T4 = 145
+T5 = 145
+T6 = 146
+T7 = 145
+Média dos 3 melhores tempos = 145
+Tolerância = 0.000000%
++ ./bin/matMult ikj_block 52
+Validação correta
+T0 = 153
+T1 = 145
+T2 = 146
+T3 = 146
+T4 = 151
+T5 = 146
+T6 = 145
+T7 = 146
+Média dos 3 melhores tempos = 145
+Tolerância = 0.689650%
++ ./bin/matMult jki_block 52
+Validação correta
+T0 = 162
+T1 = 155
+T2 = 155
+T3 = 155
+T4 = 155
+T5 = 155
+T6 = 160
+T7 = 154
+Média dos 3 melhores tempos = 154
+Tolerância = 0.649345%
++ ./bin/matMult jki_block 52
+Validação correta
+T0 = 161
+T1 = 150
+T2 = 174
+T3 = 150
+T4 = 150
+T5 = 150
+T6 = 150
+T7 = 149
+Média dos 3 melhores tempos = 149
+Tolerância = 0.671136%
++ ./bin/matMult ikj 147
+Validação correta
+T0 = 3173
+T1 = 3144
+T2 = 3118
+T3 = 3155
+T4 = 3121
+T5 = 3156
+T6 = 3122
+T7 = 3136
+Média dos 3 melhores tempos = 3120
+Tolerância = 0.128293%
++ ./bin/matMult ikj 147
+Validação correta
+T0 = 3173
+T1 = 3142
+T2 = 3111
+T3 = 3109
+T4 = 3146
+T5 = 3163
+T6 = 3109
+T7 = 3109
+Média dos 3 melhores tempos = 3109
+Tolerância = 0.000000%
++ ./bin/matMult ikj 147 pm1
+Medições da iteração 0:
+
+Miss L1=197030
+Load Instrucions=9509954
+Store Instrucions=3176881
+Miss Rate L1 = 0.015530
+
+
+
+Medições da iteração 1:
+
+Miss L1=196809
+Load Instrucions=9508459
+Store Instrucions=3176576
+Miss Rate L1 = 0.015515
+
+
+
+Medições da iteração 2:
+
+Miss L1=196792
+Load Instrucions=9508440
+Store Instrucions=3176576
+Miss Rate L1 = 0.015514
+
+
+
+Medições da iteração 3:
+
+Miss L1=196809
+Load Instrucions=9508459
+Store Instrucions=3176576
+Miss Rate L1 = 0.015515
+
+
+
+Medições da iteração 4:
+
+Miss L1=196806
+Load Instrucions=9508393
+Store Instrucions=3176576
+Miss Rate L1 = 0.015515
+
+
+
+Medições da iteração 5:
+
+Miss L1=196790
+Load Instrucions=9508403
+Store Instrucions=3176576
+Miss Rate L1 = 0.015514
+
+
+
+Medições da iteração 6:
+
+Miss L1=196811
+Load Instrucions=9508400
+Store Instrucions=3176576
+Miss Rate L1 = 0.015515
+
+
+
+Medições da iteração 7:
+
+Miss L1=196802
+Load Instrucions=9508401
+Store Instrucions=3176576
+Miss Rate L1 = 0.015515
+
+
+
+Validação correta
+T0 = 6136
+T1 = 3247
+T2 = 3235
+T3 = 3217
+T4 = 3210
+T5 = 3212
+T6 = 3215
+T7 = 3219
+Média dos 3 melhores tempos = 3212
+Tolerância = 0.155759%
++ ./bin/matMult ikj 147 pm23
+Medições da iteração 0:
+
+Miss L1=197015
+Miss L2=1075
+Miss L3=558
+Miss Rate L2 = 0.005456
+Miss Rate L3 = 0.519070
+
+
+
+Medições da iteração 1:
+
+Miss L1=196775
+Miss L2=919
+Miss L3=657
+Miss Rate L2 = 0.004670
+Miss Rate L3 = 0.714908
+
+
+
+Medições da iteração 2:
+
+Miss L1=196799
+Miss L2=1026
+Miss L3=753
+Miss Rate L2 = 0.005213
+Miss Rate L3 = 0.733918
+
+
+
+Medições da iteração 3:
+
+Miss L1=196819
+Miss L2=837
+Miss L3=544
+Miss Rate L2 = 0.004253
+Miss Rate L3 = 0.649940
+
+
+
+Medições da iteração 4:
+
+Miss L1=196790
+Miss L2=892
+Miss L3=604
+Miss Rate L2 = 0.004533
+Miss Rate L3 = 0.677130
+
+
+
+Medições da iteração 5:
+
+Miss L1=196801
+Miss L2=769
+Miss L3=492
+Miss Rate L2 = 0.003908
+Miss Rate L3 = 0.639792
+
+
+
+Medições da iteração 6:
+
+Miss L1=196846
+Miss L2=994
+Miss L3=581
+Miss Rate L2 = 0.005050
+Miss Rate L3 = 0.584507
+
+
+
+Medições da iteração 7:
+
+Miss L1=196819
+Miss L2=1064
+Miss L3=687
+Miss Rate L2 = 0.005406
+Miss Rate L3 = 0.645677
+
+
+
+Validação correta
+T0 = 6135
+T1 = 3232
+T2 = 3232
+T3 = 3222
+T4 = 3244
+T5 = 3312
+T6 = 3260
+T7 = 3248
+Média dos 3 melhores tempos = 3228
+Tolerância = 0.310361%
++ ./bin/matMult ikj 147 pram
+Medições da iteração 0:
+
+Acessos à RAM=562
+Total de instruções=22347467
+Total de instruções FP=6374486
+Acessos por instrução = 0.000025
+Acessos por instrução FP = 0.000088
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=622
+Total de instruções=22344904
+Total de instruções FP=6373321
+Acessos por instrução = 0.000028
+Acessos por instrução FP = 0.000098
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=752
+Total de instruções=22344904
+Total de instruções FP=6374376
+Acessos por instrução = 0.000034
+Acessos por instrução FP = 0.000118
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=752
+Total de instruções=22344904
+Total de instruções FP=6373908
+Acessos por instrução = 0.000034
+Acessos por instrução FP = 0.000118
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=774
+Total de instruções=22344904
+Total de instruções FP=6374040
+Acessos por instrução = 0.000035
+Acessos por instrução FP = 0.000121
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=655
+Total de instruções=22344904
+Total de instruções FP=6373767
+Acessos por instrução = 0.000029
+Acessos por instrução FP = 0.000103
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=807
+Total de instruções=22344904
+Total de instruções FP=6374310
+Acessos por instrução = 0.000036
+Acessos por instrução FP = 0.000127
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=738
+Total de instruções=22344904
+Total de instruções FP=6374412
+Acessos por instrução = 0.000033
+Acessos por instrução FP = 0.000116
+
+
+
+Validação correta
+T0 = 6144
+T1 = 3240
+T2 = 3235
+T3 = 3236
+T4 = 3236
+T5 = 3263
+T6 = 3259
+T7 = 3240
+Média dos 3 melhores tempos = 3235
+Tolerância = 0.030911%
++ ./bin/matMult ijk 147
+Validação correta
+T0 = 3132
+T1 = 3085
+T2 = 3087
+T3 = 3123
+T4 = 3125
+T5 = 3108
+T6 = 3125
+T7 = 3086
+Média dos 3 melhores tempos = 3086
+Tolerância = 0.064826%
++ ./bin/matMult ijk 147
+Validação correta
+T0 = 3133
+T1 = 3083
+T2 = 3084
+T3 = 3146
+T4 = 3111
+T5 = 3105
+T6 = 3148
+T7 = 3083
+Média dos 3 melhores tempos = 3083
+Tolerância = 0.032437%
++ ./bin/matMult ijk 147 pm1
+Medições da iteração 0:
+
+Miss L1=212474
+Load Instrucions=6355086
+Store Instrucions=3198490
+Miss Rate L1 = 0.022240
+
+
+
+Medições da iteração 1:
+
+Miss L1=211632
+Load Instrucions=6353506
+Store Instrucions=3198185
+Miss Rate L1 = 0.022156
+
+
+
+Medições da iteração 2:
+
+Miss L1=212205
+Load Instrucions=6353536
+Store Instrucions=3198185
+Miss Rate L1 = 0.022216
+
+
+
+Medições da iteração 3:
+
+Miss L1=212034
+Load Instrucions=6353578
+Store Instrucions=3198185
+Miss Rate L1 = 0.022198
+
+
+
+Medições da iteração 4:
+
+Miss L1=211831
+Load Instrucions=6353616
+Store Instrucions=3198185
+Miss Rate L1 = 0.022177
+
+
+
+Medições da iteração 5:
+
+Miss L1=211978
+Load Instrucions=6353503
+Store Instrucions=3198185
+Miss Rate L1 = 0.022193
+
+
+
+Medições da iteração 6:
+
+Miss L1=211826
+Load Instrucions=6353498
+Store Instrucions=3198185
+Miss Rate L1 = 0.022177
+
+
+
+Medições da iteração 7:
+
+Miss L1=211737
+Load Instrucions=6353508
+Store Instrucions=3198185
+Miss Rate L1 = 0.022167
+
+
+
+Validação correta
+T0 = 6351
+T1 = 3461
+T2 = 3470
+T3 = 3476
+T4 = 3484
+T5 = 3456
+T6 = 3464
+T7 = 3459
+Média dos 3 melhores tempos = 3458
+Tolerância = 0.144672%
++ ./bin/matMult ijk 147 pm23
+Medições da iteração 0:
+
+Miss L1=216404
+Miss L2=1368
+Miss L3=779
+Miss Rate L2 = 0.006322
+Miss Rate L3 = 0.569444
+
+
+
+Medições da iteração 1:
+
+Miss L1=215378
+Miss L2=1281
+Miss L3=906
+Miss Rate L2 = 0.005948
+Miss Rate L3 = 0.707260
+
+
+
+Medições da iteração 2:
+
+Miss L1=215680
+Miss L2=1061
+Miss L3=856
+Miss Rate L2 = 0.004919
+Miss Rate L3 = 0.806786
+
+
+
+Medições da iteração 3:
+
+Miss L1=215696
+Miss L2=1113
+Miss L3=897
+Miss Rate L2 = 0.005160
+Miss Rate L3 = 0.805930
+
+
+
+Medições da iteração 4:
+
+Miss L1=215607
+Miss L2=1171
+Miss L3=980
+Miss Rate L2 = 0.005431
+Miss Rate L3 = 0.836892
+
+
+
+Medições da iteração 5:
+
+Miss L1=215636
+Miss L2=1332
+Miss L3=1051
+Miss Rate L2 = 0.006177
+Miss Rate L3 = 0.789039
+
+
+
+Medições da iteração 6:
+
+Miss L1=215574
+Miss L2=1378
+Miss L3=1089
+Miss Rate L2 = 0.006392
+Miss Rate L3 = 0.790276
+
+
+
+Medições da iteração 7:
+
+Miss L1=215403
+Miss L2=1228
+Miss L3=1035
+Miss Rate L2 = 0.005701
+Miss Rate L3 = 0.842834
+
+
+
+Validação correta
+T0 = 6112
+T1 = 3230
+T2 = 3198
+T3 = 3316
+T4 = 3320
+T5 = 3323
+T6 = 3320
+T7 = 3298
+Média dos 3 melhores tempos = 3242
+Tolerância = 3.126955%
++ ./bin/matMult ijk 147 pmram
+Validação correta
+T0 = 3255
+T1 = 3225
+T2 = 3209
+T3 = 3204
+T4 = 3187
+T5 = 3194
+T6 = 3191
+T7 = 3190
+Média dos 3 melhores tempos = 3189
+Tolerância = 0.125515%
++ ./bin/matMult jki 147
+Validação correta
+T0 = 2858
+T1 = 2842
+T2 = 2825
+T3 = 2818
+T4 = 2861
+T5 = 2879
+T6 = 2900
+T7 = 2861
+Média dos 3 melhores tempos = 2828
+Tolerância = 0.851667%
++ ./bin/matMult jki 147
+Validação correta
+T0 = 2996
+T1 = 2814
+T2 = 2811
+T3 = 2807
+T4 = 2808
+T5 = 2814
+T6 = 2808
+T7 = 2812
+Média dos 3 melhores tempos = 2807
+Tolerância = 0.035620%
++ ./bin/matMult jki 147 pm1
+Medições da iteração 0:
+
+Miss L1=398465
+Load Instrucions=9509382
+Store Instrucions=3176883
+Miss Rate L1 = 0.031409
+
+
+
+Medições da iteração 1:
+
+Miss L1=397428
+Load Instrucions=9508426
+Store Instrucions=3176578
+Miss Rate L1 = 0.031331
+
+
+
+Medições da iteração 2:
+
+Miss L1=398145
+Load Instrucions=9508395
+Store Instrucions=3176578
+Miss Rate L1 = 0.031387
+
+
+
+Medições da iteração 3:
+
+Miss L1=397624
+Load Instrucions=9508403
+Store Instrucions=3176578
+Miss Rate L1 = 0.031346
+
+
+
+Medições da iteração 4:
+
+Miss L1=397812
+Load Instrucions=9508394
+Store Instrucions=3176578
+Miss Rate L1 = 0.031361
+
+
+
+Medições da iteração 5:
+
+Miss L1=397028
+Load Instrucions=9508395
+Store Instrucions=3176578
+Miss Rate L1 = 0.031299
+
+
+
+Medições da iteração 6:
+
+Miss L1=397914
+Load Instrucions=9508394
+Store Instrucions=3176578
+Miss Rate L1 = 0.031369
+
+
+
+Medições da iteração 7:
+
+Miss L1=397638
+Load Instrucions=9508386
+Store Instrucions=3176578
+Miss Rate L1 = 0.031347
+
+
+
+Validação correta
+T0 = 5817
+T1 = 2968
+T2 = 2940
+T3 = 2938
+T4 = 2937
+T5 = 2939
+T6 = 2936
+T7 = 2934
+Média dos 3 melhores tempos = 2935
+Tolerância = 0.102246%
++ ./bin/matMult jki 147 pm23
+Medições da iteração 0:
+
+Miss L1=383144
+Miss L2=42031
+Miss L3=1185
+Miss Rate L2 = 0.109700
+Miss Rate L3 = 0.028193
+
+
+
+Medições da iteração 1:
+
+Miss L1=383484
+Miss L2=42334
+Miss L3=1451
+Miss Rate L2 = 0.110393
+Miss Rate L3 = 0.034275
+
+
+
+Medições da iteração 2:
+
+Miss L1=382127
+Miss L2=42299
+Miss L3=1470
+Miss Rate L2 = 0.110694
+Miss Rate L3 = 0.034753
+
+
+
+Medições da iteração 3:
+
+Miss L1=382686
+Miss L2=41441
+Miss L3=1414
+Miss Rate L2 = 0.108290
+Miss Rate L3 = 0.034121
+
+
+
+Medições da iteração 4:
+
+Miss L1=382617
+Miss L2=42756
+Miss L3=1404
+Miss Rate L2 = 0.111746
+Miss Rate L3 = 0.032837
+
+
+
+Medições da iteração 5:
+
+Miss L1=383343
+Miss L2=40887
+Miss L3=1386
+Miss Rate L2 = 0.106659
+Miss Rate L3 = 0.033898
+
+
+
+Medições da iteração 6:
+
+Miss L1=380484
+Miss L2=43796
+Miss L3=1435
+Miss Rate L2 = 0.115106
+Miss Rate L3 = 0.032766
+
+
+
+Medições da iteração 7:
+
+Miss L1=382247
+Miss L2=41393
+Miss L3=1383
+Miss Rate L2 = 0.108289
+Miss Rate L3 = 0.033411
+
+
+
+Validação correta
+T0 = 5960
+T1 = 3099
+T2 = 3145
+T3 = 3048
+T4 = 3053
+T5 = 3045
+T6 = 3053
+T7 = 3069
+Média dos 3 melhores tempos = 3048
+Tolerância = 0.262725%
++ ./bin/matMult jki 147 pmram
+Validação correta
+T0 = 2845
+T1 = 2819
+T2 = 2808
+T3 = 2795
+T4 = 2800
+T5 = 2801
+T6 = 2798
+T7 = 2800
+Média dos 3 melhores tempos = 2797
+Tolerância = 0.178885%
++ ./bin/matMult ijk_trans 147
+Validação correta
+T0 = 3048
+T1 = 3005
+T2 = 3004
+T3 = 3020
+T4 = 3022
+T5 = 3022
+T6 = 3003
+T7 = 3004
+Média dos 3 melhores tempos = 3003
+Tolerância = 0.033295%
++ ./bin/matMult ijk_trans 147
+Validação correta
+T0 = 3055
+T1 = 3005
+T2 = 3004
+T3 = 3004
+T4 = 3004
+T5 = 3021
+T6 = 3011
+T7 = 3019
+Média dos 3 melhores tempos = 3004
+Tolerância = 0.000000%
++ ./bin/matMult ijk_trans 147 pm1
+Medições da iteração 0:
+
+Miss L1=200010
+Load Instrucions=6397998
+Store Instrucions=3241425
+Miss Rate L1 = 0.020749
+
+
+
+Medições da iteração 1:
+
+Miss L1=199511
+Load Instrucions=6396420
+Store Instrucions=3241120
+Miss Rate L1 = 0.020701
+
+
+
+Medições da iteração 2:
+
+Miss L1=199490
+Load Instrucions=6396413
+Store Instrucions=3241120
+Miss Rate L1 = 0.020699
+
+
+
+Medições da iteração 3:
+
+Miss L1=199501
+Load Instrucions=6396414
+Store Instrucions=3241120
+Miss Rate L1 = 0.020700
+
+
+
+Medições da iteração 4:
+
+Miss L1=199538
+Load Instrucions=6396462
+Store Instrucions=3241120
+Miss Rate L1 = 0.020704
+
+
+
+Medições da iteração 5:
+
+Miss L1=199568
+Load Instrucions=6396453
+Store Instrucions=3241120
+Miss Rate L1 = 0.020707
+
+
+
+Medições da iteração 6:
+
+Miss L1=199530
+Load Instrucions=6396424
+Store Instrucions=3241120
+Miss Rate L1 = 0.020703
+
+
+
+Medições da iteração 7:
+
+Miss L1=199531
+Load Instrucions=6396420
+Store Instrucions=3241120
+Miss Rate L1 = 0.020704
+
+
+
+Validação correta
+T0 = 5971
+T1 = 3110
+T2 = 3105
+T3 = 3107
+T4 = 3132
+T5 = 3121
+T6 = 3106
+T7 = 3104
+Média dos 3 melhores tempos = 3105
+Tolerância = 0.064433%
++ ./bin/matMult ijk_trans 147 pm23
+Medições da iteração 0:
+
+Miss L1=200026
+Miss L2=1172
+Miss L3=839
+Miss Rate L2 = 0.005859
+Miss Rate L3 = 0.715870
+
+
+
+Medições da iteração 1:
+
+Miss L1=199498
+Miss L2=1059
+Miss L3=953
+Miss Rate L2 = 0.005308
+Miss Rate L3 = 0.899906
+
+
+
+Medições da iteração 2:
+
+Miss L1=199561
+Miss L2=1186
+Miss L3=1006
+Miss Rate L2 = 0.005943
+Miss Rate L3 = 0.848229
+
+
+
+Medições da iteração 3:
+
+Miss L1=199494
+Miss L2=1321
+Miss L3=1145
+Miss Rate L2 = 0.006622
+Miss Rate L3 = 0.866768
+
+
+
+Medições da iteração 4:
+
+Miss L1=199473
+Miss L2=1194
+Miss L3=1034
+Miss Rate L2 = 0.005986
+Miss Rate L3 = 0.865997
+
+
+
+Medições da iteração 5:
+
+Miss L1=199509
+Miss L2=1146
+Miss L3=1026
+Miss Rate L2 = 0.005744
+Miss Rate L3 = 0.895288
+
+
+
+Medições da iteração 6:
+
+Miss L1=199483
+Miss L2=1062
+Miss L3=924
+Miss Rate L2 = 0.005324
+Miss Rate L3 = 0.870056
+
+
+
+Medições da iteração 7:
+
+Miss L1=199512
+Miss L2=1119
+Miss L3=957
+Miss Rate L2 = 0.005609
+Miss Rate L3 = 0.855228
+
+
+
+Validação correta
+T0 = 5995
+T1 = 3127
+T2 = 3139
+T3 = 3138
+T4 = 3141
+T5 = 3122
+T6 = 3115
+T7 = 3117
+Média dos 3 melhores tempos = 3118
+Tolerância = 0.224721%
++ ./bin/matMult ijk_trans 147 pmram
+Validação correta
+T0 = 3048
+T1 = 3002
+T2 = 3002
+T3 = 3021
+T4 = 3021
+T5 = 3021
+T6 = 3045
+T7 = 3115
+Média dos 3 melhores tempos = 3008
+Tolerância = 0.632906%
++ ./bin/matMult jki_trans 147
+Validação correta
+T0 = 3235
+T1 = 3189
+T2 = 3197
+T3 = 3213
+T4 = 3209
+T5 = 3188
+T6 = 3191
+T7 = 3192
+Média dos 3 melhores tempos = 3189
+Tolerância = 0.094104%
++ ./bin/matMult jki_trans 147
+Validação correta
+T0 = 3237
+T1 = 3202
+T2 = 3190
+T3 = 3210
+T4 = 3214
+T5 = 3212
+T6 = 3196
+T7 = 3190
+Média dos 3 melhores tempos = 3192
+Tolerância = 0.188088%
++ ./bin/matMult jki_trans 147 pm1
+Medições da iteração 0:
+
+Miss L1=204954
+Load Instrucions=9617337
+Store Instrucions=3284217
+Miss Rate L1 = 0.015886
+
+
+
+Medições da iteração 1:
+
+Miss L1=204663
+Load Instrucions=9615740
+Store Instrucions=3283912
+Miss Rate L1 = 0.015866
+
+
+
+Medições da iteração 2:
+
+Miss L1=204673
+Load Instrucions=9615723
+Store Instrucions=3283912
+Miss Rate L1 = 0.015867
+
+
+
+Medições da iteração 3:
+
+Miss L1=204642
+Load Instrucions=9615765
+Store Instrucions=3283912
+Miss Rate L1 = 0.015864
+
+
+
+Medições da iteração 4:
+
+Miss L1=204712
+Load Instrucions=9615871
+Store Instrucions=3283912
+Miss Rate L1 = 0.015869
+
+
+
+Medições da iteração 5:
+
+Miss L1=204668
+Load Instrucions=9615791
+Store Instrucions=3283912
+Miss Rate L1 = 0.015866
+
+
+
+Medições da iteração 6:
+
+Miss L1=204707
+Load Instrucions=9615737
+Store Instrucions=3283912
+Miss Rate L1 = 0.015869
+
+
+
+Medições da iteração 7:
+
+Miss L1=204692
+Load Instrucions=9615836
+Store Instrucions=3283912
+Miss Rate L1 = 0.015868
+
+
+
+Validação correta
+T0 = 6206
+T1 = 3300
+T2 = 3289
+T3 = 3300
+T4 = 3320
+T5 = 3312
+T6 = 3290
+T7 = 3298
+Média dos 3 melhores tempos = 3292
+Tolerância = 0.273645%
++ ./bin/matMult jki_trans 147 pm23
+Medições da iteração 0:
+
+Miss L1=204920
+Miss L2=2333
+Miss L3=1140
+Miss Rate L2 = 0.011385
+Miss Rate L3 = 0.488641
+
+
+
+Medições da iteração 1:
+
+Miss L1=204703
+Miss L2=2408
+Miss L3=1341
+Miss Rate L2 = 0.011763
+Miss Rate L3 = 0.556894
+
+
+
+Medições da iteração 2:
+
+Miss L1=204668
+Miss L2=2346
+Miss L3=1307
+Miss Rate L2 = 0.011462
+Miss Rate L3 = 0.557118
+
+
+
+Medições da iteração 3:
+
+Miss L1=204668
+Miss L2=2141
+Miss L3=1343
+Miss Rate L2 = 0.010461
+Miss Rate L3 = 0.627277
+
+
+
+Medições da iteração 4:
+
+Miss L1=204693
+Miss L2=2051
+Miss L3=1307
+Miss Rate L2 = 0.010020
+Miss Rate L3 = 0.637250
+
+
+
+Medições da iteração 5:
+
+Miss L1=204646
+Miss L2=2166
+Miss L3=1303
+Miss Rate L2 = 0.010584
+Miss Rate L3 = 0.601570
+
+
+
+Medições da iteração 6:
+
+Miss L1=204634
+Miss L2=2059
+Miss L3=1326
+Miss Rate L2 = 0.010062
+Miss Rate L3 = 0.644002
+
+
+
+Medições da iteração 7:
+
+Miss L1=204655
+Miss L2=2127
+Miss L3=1312
+Miss Rate L2 = 0.010393
+Miss Rate L3 = 0.616831
+
+
+
+Validação correta
+T0 = 6204
+T1 = 3340
+T2 = 3317
+T3 = 3313
+T4 = 3308
+T5 = 3303
+T6 = 3307
+T7 = 3310
+Média dos 3 melhores tempos = 3306
+Tolerância = 0.151372%
++ ./bin/matMult jki_trans 147 pram
+Medições da iteração 0:
+
+Acessos à RAM=1161
+Total de instruções=22787055
+Total de instruções FP=6438273
+Acessos por instrução = 0.000051
+Acessos por instrução FP = 0.000180
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=1315
+Total de instruções=22784491
+Total de instruções FP=6435175
+Acessos por instrução = 0.000058
+Acessos por instrução FP = 0.000204
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=1488
+Total de instruções=22784492
+Total de instruções FP=6434876
+Acessos por instrução = 0.000065
+Acessos por instrução FP = 0.000231
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=1342
+Total de instruções=22784491
+Total de instruções FP=6435227
+Acessos por instrução = 0.000059
+Acessos por instrução FP = 0.000209
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=1267
+Total de instruções=22784491
+Total de instruções FP=6435566
+Acessos por instrução = 0.000056
+Acessos por instrução FP = 0.000197
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=1301
+Total de instruções=22784491
+Total de instruções FP=6435552
+Acessos por instrução = 0.000057
+Acessos por instrução FP = 0.000202
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=1288
+Total de instruções=22784491
+Total de instruções FP=6434610
+Acessos por instrução = 0.000057
+Acessos por instrução FP = 0.000200
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=1359
+Total de instruções=22784491
+Total de instruções FP=6436771
+Acessos por instrução = 0.000060
+Acessos por instrução FP = 0.000211
+
+
+
+Validação correta
+T0 = 6259
+T1 = 3330
+T2 = 3315
+T3 = 3348
+T4 = 3312
+T5 = 3336
+T6 = 3331
+T7 = 3331
+Média dos 3 melhores tempos = 3319
+Tolerância = 0.543475%
++ ./bin/matMult ijk_block 147
+Validação correta
+T0 = 1723
+T1 = 1663
+T2 = 1659
+T3 = 1682
+T4 = 1682
+T5 = 1690
+T6 = 1681
+T7 = 1658
+Média dos 3 melhores tempos = 1660
+Tolerância = 0.301564%
++ ./bin/matMult ijk_block 147
+Validação correta
+T0 = 1727
+T1 = 1681
+T2 = 1676
+T3 = 1718
+T4 = 1683
+T5 = 1682
+T6 = 1705
+T7 = 1675
+Média dos 3 melhores tempos = 1677
+Tolerância = 0.358212%
++ ./bin/matMult ikj_block 147
+Validação correta
+T0 = 3178
+T1 = 3137
+T2 = 3155
+T3 = 3156
+T4 = 3132
+T5 = 3132
+T6 = 3139
+T7 = 3137
+Média dos 3 melhores tempos = 3133
+Tolerância = 0.159645%
++ ./bin/matMult ikj_block 147
+Validação correta
+T0 = 3174
+T1 = 3133
+T2 = 3134
+T3 = 3160
+T4 = 3159
+T5 = 3134
+T6 = 3133
+T7 = 3135
+Média dos 3 melhores tempos = 3133
+Tolerância = 0.031924%
++ ./bin/matMult jki_block 147
+Validação correta
+T0 = 3241
+T1 = 3194
+T2 = 3207
+T3 = 3221
+T4 = 3214
+T5 = 3217
+T6 = 3195
+T7 = 3195
+Média dos 3 melhores tempos = 3194
+Tolerância = 0.031304%
++ ./bin/matMult jki_block 147
+Validação correta
+T0 = 3357
+T1 = 3193
+T2 = 3197
+T3 = 3192
+T4 = 3197
+T5 = 3219
+T6 = 3217
+T7 = 3197
+Média dos 3 melhores tempos = 3194
+Tolerância = 0.156641%
++ ./bin/matMult ikj 1619
+Validação correta
+T0 = 4018589
+T1 = 4017768
+T2 = 4022901
+T3 = 4042977
+T4 = 4084298
+T5 = 4093669
+T6 = 4078972
+T7 = 4018171
+Média dos 3 melhores tempos = 4018176
+Tolerância = 0.020432%
++ ./bin/matMult ikj 1619
+Validação correta
+T0 = 4070704
+T1 = 4048608
+T2 = 4017123
+T3 = 4049136
+T4 = 4025988
+T5 = 4015991
+T6 = 4015961
+T7 = 4046532
+Média dos 3 melhores tempos = 4016358
+Tolerância = 0.028932%
++ ./bin/matMult ikj 1619 pm1
+Medições da iteração 0:
+
+Miss L1=265803718
+Load Instrucions=12728795879
+Store Instrucions=4243660017
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 1:
+
+Miss L1=265808597
+Load Instrucions=12728787945
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 2:
+
+Miss L1=265803206
+Load Instrucions=12728786655
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 3:
+
+Miss L1=265812603
+Load Instrucions=12728791200
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 4:
+
+Miss L1=265805914
+Load Instrucions=12728784321
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 5:
+
+Miss L1=265806736
+Load Instrucions=12728789177
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 6:
+
+Miss L1=265810687
+Load Instrucions=12728786971
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Medições da iteração 7:
+
+Miss L1=265806003
+Load Instrucions=12728787014
+Store Instrucions=4243659712
+Miss Rate L1 = 0.015661
+
+
+
+Validação correta
+T0 = 4171311
+T1 = 4184703
+T2 = 4167836
+T3 = 4169498
+T4 = 4161028
+T5 = 4179564
+T6 = 4161464
+T7 = 4161084
+Média dos 3 melhores tempos = 4161192
+Tolerância = 0.010478%
++ ./bin/matMult ikj 1619 pm23
+Medições da iteração 0:
+
+Miss L1=265809845
+Miss L2=6196344
+Miss L3=54034
+Miss Rate L2 = 0.023311
+Miss Rate L3 = 0.008720
+
+
+
+Medições da iteração 1:
+
+Miss L1=265816321
+Miss L2=6208788
+Miss L3=83571
+Miss Rate L2 = 0.023357
+Miss Rate L3 = 0.013460
+
+
+
+Medições da iteração 2:
+
+Miss L1=265820147
+Miss L2=6207669
+Miss L3=83266
+Miss Rate L2 = 0.023353
+Miss Rate L3 = 0.013413
+
+
+
+Medições da iteração 3:
+
+Miss L1=265817468
+Miss L2=6215159
+Miss L3=83796
+Miss Rate L2 = 0.023381
+Miss Rate L3 = 0.013483
+
+
+
+Medições da iteração 4:
+
+Miss L1=265821303
+Miss L2=6218922
+Miss L3=83433
+Miss Rate L2 = 0.023395
+Miss Rate L3 = 0.013416
+
+
+
+Medições da iteração 5:
+
+Miss L1=265818281
+Miss L2=6212635
+Miss L3=83147
+Miss Rate L2 = 0.023372
+Miss Rate L3 = 0.013384
+
+
+
+Medições da iteração 6:
+
+Miss L1=265817902
+Miss L2=6219772
+Miss L3=83393
+Miss Rate L2 = 0.023399
+Miss Rate L3 = 0.013408
+
+
+
+Medições da iteração 7:
+
+Miss L1=265811652
+Miss L2=6204122
+Miss L3=84340
+Miss Rate L2 = 0.023340
+Miss Rate L3 = 0.013594
+
+
+
+Validação correta
+T0 = 4170029
+T1 = 4163938
+T2 = 4162870
+T3 = 4168002
+T4 = 4161783
+T5 = 4164246
+T6 = 4164011
+T7 = 4166352
+Média dos 3 melhores tempos = 4162863
+Tolerância = 0.051785%
++ ./bin/matMult ikj 1619 pram
+Medições da iteração 0:
+
+Acessos à RAM=56287
+Total de instruções=29718740340
+Total de instruções FP=8535397628
+Acessos por instrução = 0.000002
+Acessos por instrução FP = 0.000007
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=83615
+Total de instruções=29718737645
+Total de instruções FP=8535489935
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=83872
+Total de instruções=29718737648
+Total de instruções FP=8535463641
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=83781
+Total de instruções=29718737658
+Total de instruções FP=8535475869
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=83413
+Total de instruções=29718737641
+Total de instruções FP=8535456436
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=84099
+Total de instruções=29718737649
+Total de instruções FP=8535453524
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=83936
+Total de instruções=29718737637
+Total de instruções FP=8535460387
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=84862
+Total de instruções=29718737642
+Total de instruções FP=8535440590
+Acessos por instrução = 0.000003
+Acessos por instrução FP = 0.000010
+
+
+
+Validação correta
+T0 = 4175843
+T1 = 4164488
+T2 = 4168296
+T3 = 4182508
+T4 = 4161852
+T5 = 4166140
+T6 = 4162786
+T7 = 4162117
+Média dos 3 melhores tempos = 4162251
+Tolerância = 0.022447%
++ ./bin/matMult ijk 1619
+Validação correta
+T0 = 6291867
+T1 = 6268515
+T2 = 6255060
+T3 = 6247949
+T4 = 6250469
+T5 = 6259025
+T6 = 6249271
+T7 = 6252766
+Média dos 3 melhores tempos = 6249229
+Tolerância = 0.040329%
++ ./bin/matMult ijk 1619
+Validação correta
+T0 = 6247161
+T1 = 6242200
+T2 = 6243514
+T3 = 6242067
+T4 = 6263709
+T5 = 6298726
+T6 = 6272993
+T7 = 6260870
+Média dos 3 melhores tempos = 6242593
+Tolerância = 0.023186%
++ ./bin/matMult ijk 1619 pm1
+Medições da iteração 0:
+
+Miss L1=4515942967
+Load Instrucions=8487958287
+Store Instrucions=4246281178
+Miss Rate L1 = 0.354630
+
+
+
+Medições da iteração 1:
+
+Miss L1=4515890169
+Load Instrucions=8487970280
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354625
+
+
+
+Medições da iteração 2:
+
+Miss L1=4515892356
+Load Instrucions=8487971158
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354626
+
+
+
+Medições da iteração 3:
+
+Miss L1=4515895863
+Load Instrucions=8487922631
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354627
+
+
+
+Medições da iteração 4:
+
+Miss L1=4515898353
+Load Instrucions=8487983678
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354626
+
+
+
+Medições da iteração 5:
+
+Miss L1=4515897307
+Load Instrucions=8487967115
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354626
+
+
+
+Medições da iteração 6:
+
+Miss L1=4515898381
+Load Instrucions=8487973340
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354626
+
+
+
+Medições da iteração 7:
+
+Miss L1=4515895232
+Load Instrucions=8487905371
+Store Instrucions=4246280873
+Miss Rate L1 = 0.354628
+
+
+
+Validação correta
+T0 = 6258408
+T1 = 6279560
+T2 = 6261165
+T3 = 6270344
+T4 = 6266955
+T5 = 6258092
+T6 = 6260043
+T7 = 6275104
+Média dos 3 melhores tempos = 6258847
+Tolerância = 0.031173%
++ ./bin/matMult ijk 1619 pm23
+Medições da iteração 0:
+
+Miss L1=4515947714
+Miss L2=268624502
+Miss L3=246736
+Miss Rate L2 = 0.059484
+Miss Rate L3 = 0.000919
+
+
+
+Medições da iteração 1:
+
+Miss L1=4515900643
+Miss L2=268597552
+Miss L3=393622
+Miss Rate L2 = 0.059478
+Miss Rate L3 = 0.001465
+
+
+
+Medições da iteração 2:
+
+Miss L1=4515907925
+Miss L2=268596056
+Miss L3=393501
+Miss Rate L2 = 0.059478
+Miss Rate L3 = 0.001465
+
+
+
+Medições da iteração 3:
+
+Miss L1=4515909703
+Miss L2=268599955
+Miss L3=393750
+Miss Rate L2 = 0.059479
+Miss Rate L3 = 0.001466
+
+
+
+Medições da iteração 4:
+
+Miss L1=4515899686
+Miss L2=268600984
+Miss L3=400916
+Miss Rate L2 = 0.059479
+Miss Rate L3 = 0.001493
+
+
+
+Medições da iteração 5:
+
+Miss L1=4515902268
+Miss L2=268596197
+Miss L3=393374
+Miss Rate L2 = 0.059478
+Miss Rate L3 = 0.001465
+
+
+
+Medições da iteração 6:
+
+Miss L1=4515901806
+Miss L2=268594228
+Miss L3=393596
+Miss Rate L2 = 0.059477
+Miss Rate L3 = 0.001465
+
+
+
+Medições da iteração 7:
+
+Miss L1=4515896866
+Miss L2=268601077
+Miss L3=393630
+Miss Rate L2 = 0.059479
+Miss Rate L3 = 0.001465
+
+
+
+Validação correta
+T0 = 6287914
+T1 = 6253243
+T2 = 6242615
+T3 = 6243481
+T4 = 6246832
+T5 = 6243283
+T6 = 6248833
+T7 = 6273291
+Média dos 3 melhores tempos = 6243126
+Tolerância = 0.013876%
++ ./bin/matMult ijk 1619 pmram
+Validação correta
+T0 = 6277410
+T1 = 6263608
+T2 = 6281363
+T3 = 6250555
+T4 = 6244070
+T5 = 6261945
+T6 = 6259919
+T7 = 6263523
+Média dos 3 melhores tempos = 6251514
+Tolerância = 0.253820%
++ ./bin/matMult jki 1619
+Validação correta
+T0 = 11090684
+T1 = 11091753
+T2 = 11057346
+T3 = 11067291
+T4 = 11083249
+T5 = 11123073
+T6 = 11085294
+T7 = 11071631
+Média dos 3 melhores tempos = 11065422
+Tolerância = 0.129187%
++ ./bin/matMult jki 1619
+Validação correta
+T0 = 11082938
+T1 = 11048614
+T2 = 11074338
+T3 = 11047917
+T4 = 11064053
+T5 = 11088244
+T6 = 11061562
+T7 = 11065135
+Média dos 3 melhores tempos = 11052697
+Tolerância = 0.123513%
++ ./bin/matMult jki 1619 pm1
+Medições da iteração 0:
+
+Miss L1=8488306789
+Load Instrucions=12729148923
+Store Instrucions=4243660019
+Miss Rate L1 = 0.500112
+
+
+
+Medições da iteração 1:
+
+Miss L1=8488298100
+Load Instrucions=12729118319
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500112
+
+
+
+Medições da iteração 2:
+
+Miss L1=8488313660
+Load Instrucions=12727834457
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500151
+
+
+
+Medições da iteração 3:
+
+Miss L1=8488304161
+Load Instrucions=12729174742
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500111
+
+
+
+Medições da iteração 4:
+
+Miss L1=8488301620
+Load Instrucions=12728916188
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500119
+
+
+
+Medições da iteração 5:
+
+Miss L1=8488293548
+Load Instrucions=12729277468
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500108
+
+
+
+Medições da iteração 6:
+
+Miss L1=8488305841
+Load Instrucions=12729309468
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500107
+
+
+
+Medições da iteração 7:
+
+Miss L1=8488327259
+Load Instrucions=12725231555
+Store Instrucions=4243659714
+Miss Rate L1 = 0.500229
+
+
+
+Validação correta
+T0 = 11094185
+T1 = 11094209
+T2 = 11090181
+T3 = 11101507
+T4 = 11062839
+T5 = 11051800
+T6 = 11050031
+T7 = 11069155
+Média dos 3 melhores tempos = 11054890
+Tolerância = 0.115907%
++ ./bin/matMult jki 1619 pm23
+Medições da iteração 0:
+
+Miss L1=8488386275
+Miss L2=593315032
+Miss L3=405538
+Miss Rate L2 = 0.069897
+Miss Rate L3 = 0.000684
+
+
+
+Medições da iteração 1:
+
+Miss L1=8488372830
+Miss L2=593142983
+Miss L3=494623
+Miss Rate L2 = 0.069877
+Miss Rate L3 = 0.000834
+
+
+
+Medições da iteração 2:
+
+Miss L1=8488412858
+Miss L2=593736928
+Miss L3=507942
+Miss Rate L2 = 0.069947
+Miss Rate L3 = 0.000856
+
+
+
+Medições da iteração 3:
+
+Miss L1=8488378272
+Miss L2=593231285
+Miss L3=494817
+Miss Rate L2 = 0.069887
+Miss Rate L3 = 0.000834
+
+
+
+Medições da iteração 4:
+
+Miss L1=8488391466
+Miss L2=593222786
+Miss L3=494954
+Miss Rate L2 = 0.069886
+Miss Rate L3 = 0.000834
+
+
+
+Medições da iteração 5:
+
+Miss L1=8488405458
+Miss L2=593349780
+Miss L3=501074
+Miss Rate L2 = 0.069901
+Miss Rate L3 = 0.000844
+
+
+
+Medições da iteração 6:
+
+Miss L1=8488372818
+Miss L2=593229055
+Miss L3=494949
+Miss Rate L2 = 0.069887
+Miss Rate L3 = 0.000834
+
+
+
+Medições da iteração 7:
+
+Miss L1=8488371796
+Miss L2=593331161
+Miss L3=495050
+Miss Rate L2 = 0.069899
+Miss Rate L3 = 0.000834
+
+
+
+Validação correta
+T0 = 11070419
+T1 = 11066420
+T2 = 11077289
+T3 = 11059509
+T4 = 11062196
+T5 = 11073547
+T6 = 11066646
+T7 = 11071138
+Média dos 3 melhores tempos = 11062708
+Tolerância = 0.062490%
++ ./bin/matMult jki 1619 pmram
+Validação correta
+T0 = 11040934
+T1 = 11046166
+T2 = 11090898
+T3 = 11045626
+T4 = 11049319
+T5 = 11048151
+T6 = 11053593
+T7 = 11057316
+Média dos 3 melhores tempos = 11044242
+Tolerância = 0.047386%
++ ./bin/matMult ijk_trans 1619
+Validação correta
+T0 = 4105057
+T1 = 4037442
+T2 = 4035439
+T3 = 4048125
+T4 = 4052221
+T5 = 4052468
+T6 = 4035733
+T7 = 4038385
+Média dos 3 melhores tempos = 4036204
+Tolerância = 0.049639%
++ ./bin/matMult ijk_trans 1619
+Validação correta
+T0 = 4037700
+T1 = 4036734
+T2 = 4037146
+T3 = 4035412
+T4 = 4035346
+T5 = 4036694
+T6 = 4046713
+T7 = 4035895
+Média dos 3 melhores tempos = 4035551
+Tolerância = 0.013602%
++ ./bin/matMult ijk_trans 1619 pm1
+Medições da iteração 0:
+
+Miss L1=268322942
+Load Instrucions=8492941512
+Store Instrucions=4251520273
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 1:
+
+Miss L1=268317473
+Load Instrucions=8492931872
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 2:
+
+Miss L1=268320041
+Load Instrucions=8492930175
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 3:
+
+Miss L1=268319596
+Load Instrucions=8492930182
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 4:
+
+Miss L1=268322436
+Load Instrucions=8492929746
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 5:
+
+Miss L1=268320384
+Load Instrucions=8492933303
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 6:
+
+Miss L1=268320779
+Load Instrucions=8492931392
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Medições da iteração 7:
+
+Miss L1=268323105
+Load Instrucions=8492932529
+Store Instrucions=4251519968
+Miss Rate L1 = 0.021054
+
+
+
+Validação correta
+T0 = 4048365
+T1 = 4038438
+T2 = 4037886
+T3 = 4037134
+T4 = 4036613
+T5 = 4038569
+T6 = 4036319
+T7 = 4038929
+Média dos 3 melhores tempos = 4036688
+Tolerância = 0.020194%
++ ./bin/matMult ijk_trans 1619 pm23
+Medições da iteração 0:
+
+Miss L1=268314855
+Miss L2=6337253
+Miss L3=135614
+Miss Rate L2 = 0.023619
+Miss Rate L3 = 0.021399
+
+
+
+Medições da iteração 1:
+
+Miss L1=268312940
+Miss L2=6275588
+Miss L3=189797
+Miss Rate L2 = 0.023389
+Miss Rate L3 = 0.030244
+
+
+
+Medições da iteração 2:
+
+Miss L1=268314786
+Miss L2=6277466
+Miss L3=189509
+Miss Rate L2 = 0.023396
+Miss Rate L3 = 0.030189
+
+
+
+Medições da iteração 3:
+
+Miss L1=268310590
+Miss L2=6276315
+Miss L3=189391
+Miss Rate L2 = 0.023392
+Miss Rate L3 = 0.030176
+
+
+
+Medições da iteração 4:
+
+Miss L1=268315950
+Miss L2=6282665
+Miss L3=189107
+Miss Rate L2 = 0.023415
+Miss Rate L3 = 0.030100
+
+
+
+Medições da iteração 5:
+
+Miss L1=268319919
+Miss L2=6355044
+Miss L3=189425
+Miss Rate L2 = 0.023685
+Miss Rate L3 = 0.029807
+
+
+
+Medições da iteração 6:
+
+Miss L1=268325610
+Miss L2=6362615
+Miss L3=188495
+Miss Rate L2 = 0.023712
+Miss Rate L3 = 0.029625
+
+
+
+Medições da iteração 7:
+
+Miss L1=268315212
+Miss L2=6350585
+Miss L3=189086
+Miss Rate L2 = 0.023668
+Miss Rate L3 = 0.029775
+
+
+
+Validação correta
+T0 = 4042705
+T1 = 4037400
+T2 = 4036976
+T3 = 4038319
+T4 = 4043573
+T5 = 4181607
+T6 = 4182891
+T7 = 4181804
+Média dos 3 melhores tempos = 4037565
+Tolerância = 0.033271%
++ ./bin/matMult ijk_trans 1619 pmram
+Validação correta
+T0 = 4193167
+T1 = 4180747
+T2 = 4179118
+T3 = 4181580
+T4 = 4182618
+T5 = 4182895
+T6 = 4179800
+T7 = 4180182
+Média dos 3 melhores tempos = 4179700
+Tolerância = 0.025463%
++ ./bin/matMult jki_trans 1619
+Validação correta
+T0 = 4176741
+T1 = 4176873
+T2 = 4175876
+T3 = 4550884
+T4 = 4727091
+T5 = 4660510
+T6 = 4325664
+T7 = 4031496
+Média dos 3 melhores tempos = 4128037
+Tolerância = 3.602755%
++ ./bin/matMult jki_trans 1619
+Validação correta
+T0 = 4033130
+T1 = 4032689
+T2 = 4035973
+T3 = 4034233
+T4 = 4031958
+T5 = 4034516
+T6 = 4041545
+T7 = 4033081
+Média dos 3 melhores tempos = 4032576
+Tolerância = 0.027847%
++ ./bin/matMult jki_trans 1619 pm1
+Medições da iteração 0:
+
+Miss L1=272155448
+Load Instrucions=12741852411
+Store Instrucions=4256757753
+Miss Rate L1 = 0.016010
+
+
+
+Medições da iteração 1:
+
+Miss L1=272170627
+Load Instrucions=12741839697
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016011
+
+
+
+Medições da iteração 2:
+
+Miss L1=272164748
+Load Instrucions=12741829242
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016011
+
+
+
+Medições da iteração 3:
+
+Miss L1=272163766
+Load Instrucions=12741834223
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016011
+
+
+
+Medições da iteração 4:
+
+Miss L1=272167600
+Load Instrucions=12741829128
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016011
+
+
+
+Medições da iteração 5:
+
+Miss L1=272165450
+Load Instrucions=12741834930
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016011
+
+
+
+Medições da iteração 6:
+
+Miss L1=272170090
+Load Instrucions=12741832914
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016011
+
+
+
+Medições da iteração 7:
+
+Miss L1=272179320
+Load Instrucions=12741831183
+Store Instrucions=4256757448
+Miss Rate L1 = 0.016012
+
+
+
+Validação correta
+T0 = 4042324
+T1 = 4044647
+T2 = 4034290
+T3 = 4035393
+T4 = 4033515
+T5 = 4033722
+T6 = 4038578
+T7 = 4035072
+Média dos 3 melhores tempos = 4033842
+Tolerância = 0.019217%
++ ./bin/matMult jki_trans 1619 pm23
+Medições da iteração 0:
+
+Miss L1=272164634
+Miss L2=6674213
+Miss L3=325696
+Miss Rate L2 = 0.024523
+Miss Rate L3 = 0.048799
+
+
+
+Medições da iteração 1:
+
+Miss L1=272167104
+Miss L2=6711640
+Miss L3=333660
+Miss Rate L2 = 0.024660
+Miss Rate L3 = 0.049714
+
+
+
+Medições da iteração 2:
+
+Miss L1=272175590
+Miss L2=6711203
+Miss L3=331232
+Miss Rate L2 = 0.024658
+Miss Rate L3 = 0.049355
+
+
+
+Medições da iteração 3:
+
+Miss L1=272164666
+Miss L2=6702466
+Miss L3=328365
+Miss Rate L2 = 0.024627
+Miss Rate L3 = 0.048992
+
+
+
+Medições da iteração 4:
+
+Miss L1=272169011
+Miss L2=6705707
+Miss L3=339815
+Miss Rate L2 = 0.024638
+Miss Rate L3 = 0.050675
+
+
+
+Medições da iteração 5:
+
+Miss L1=272169110
+Miss L2=6712505
+Miss L3=330608
+Miss Rate L2 = 0.024663
+Miss Rate L3 = 0.049253
+
+
+
+Medições da iteração 6:
+
+Miss L1=272173255
+Miss L2=6706627
+Miss L3=330363
+Miss Rate L2 = 0.024641
+Miss Rate L3 = 0.049259
+
+
+
+Medições da iteração 7:
+
+Miss L1=272174745
+Miss L2=6707292
+Miss L3=327653
+Miss Rate L2 = 0.024643
+Miss Rate L3 = 0.048850
+
+
+
+Validação correta
+T0 = 4044866
+T1 = 4037555
+T2 = 4034056
+T3 = 4034170
+T4 = 4034791
+T5 = 4033526
+T6 = 4034533
+T7 = 4031859
+Média dos 3 melhores tempos = 4033147
+Tolerância = 0.054491%
++ ./bin/matMult jki_trans 1619 pram
+Medições da iteração 0:
+
+Acessos à RAM=371723
+Total de instruções=29771244437
+Total de instruções FP=8598406804
+Acessos por instrução = 0.000012
+Acessos por instrução FP = 0.000043
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=351249
+Total de instruções=29771241749
+Total de instruções FP=8598592858
+Acessos por instrução = 0.000012
+Acessos por instrução FP = 0.000041
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=341734
+Total de instruções=29771241741
+Total de instruções FP=8598525039
+Acessos por instrução = 0.000011
+Acessos por instrução FP = 0.000040
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=337780
+Total de instruções=29771241743
+Total de instruções FP=8598525368
+Acessos por instrução = 0.000011
+Acessos por instrução FP = 0.000039
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=351976
+Total de instruções=29771241753
+Total de instruções FP=8598487221
+Acessos por instrução = 0.000012
+Acessos por instrução FP = 0.000041
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=331633
+Total de instruções=29771241737
+Total de instruções FP=8598629164
+Acessos por instrução = 0.000011
+Acessos por instrução FP = 0.000039
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=416647
+Total de instruções=29771241748
+Total de instruções FP=8598552760
+Acessos por instrução = 0.000014
+Acessos por instrução FP = 0.000048
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=336309
+Total de instruções=29771241740
+Total de instruções FP=8598536869
+Acessos por instrução = 0.000011
+Acessos por instrução FP = 0.000039
+
+
+
+Validação correta
+T0 = 4049255
+T1 = 4038536
+T2 = 4036266
+T3 = 4033569
+T4 = 4036919
+T5 = 4034576
+T6 = 4037977
+T7 = 4036296
+Média dos 3 melhores tempos = 4034803
+Tolerância = 0.066864%
++ ./bin/matMult ijk_block 1619
+Validação correta
+T0 = 1985240
+T1 = 2127338
+T2 = 2127523
+T3 = 2132717
+T4 = 2127994
+T5 = 2129498
+T6 = 2130987
+T7 = 2126960
+Média dos 3 melhores tempos = 2079846
+Tolerância = 7.157719%
++ ./bin/matMult ijk_block 1619
+Validação correta
+T0 = 2073560
+T1 = 2126591
+T2 = 2129049
+T3 = 2126993
+T4 = 2137724
+T5 = 2126841
+T6 = 2125942
+T7 = 2127770
+Média dos 3 melhores tempos = 2108697
+Tolerância = 2.557480%
++ ./bin/matMult ikj_block 1619
+Validação correta
+T0 = 4148953
+T1 = 4146506
+T2 = 4146296
+T3 = 4149535
+T4 = 4146128
+T5 = 4145818
+T6 = 4144927
+T7 = 4146062
+Média dos 3 melhores tempos = 4145602
+Tolerância = 0.027382%
++ ./bin/matMult ikj_block 1619
+Validação correta
+T0 = 4148784
+T1 = 4160236
+T2 = 4170004
+T3 = 4152430
+T4 = 4162849
+T5 = 4146130
+T6 = 4148419
+T7 = 4146753
+Média dos 3 melhores tempos = 4147100
+Tolerância = 0.055206%
++ ./bin/matMult jki_block 1619
+Validação correta
+T0 = 4165388
+T1 = 4165449
+T2 = 4162828
+T3 = 4164214
+T4 = 4165168
+T5 = 4164644
+T6 = 4192124
+T7 = 4164885
+Média dos 3 melhores tempos = 4163895
+Tolerância = 0.043619%
++ ./bin/matMult jki_block 1619
+Validação correta
+T0 = 4270364
+T1 = 4313190
+T2 = 4320284
+T3 = 4312073
+T4 = 4313234
+T5 = 4313020
+T6 = 4314213
+T7 = 4313773
+Média dos 3 melhores tempos = 4298485
+Tolerância = 0.998878%
++ ./bin/matMult ikj 3238
+Validação correta
+T0 = 33892538
+T1 = 33888822
+T2 = 33896853
+T3 = 33910820
+T4 = 33885213
+T5 = 33889922
+T6 = 33904858
+T7 = 33909913
+Média dos 3 melhores tempos = 33887985
+Tolerância = 0.013900%
++ ./bin/matMult ikj 3238
+Validação correta
+T0 = 33986562
+T1 = 33888351
+T2 = 33909699
+T3 = 33893672
+T4 = 33922727
+T5 = 33896070
+T6 = 33877512
+T7 = 33889285
+Média dos 3 melhores tempos = 33885049
+Tolerância = 0.034750%
++ ./bin/matMult ikj 3238 pm1
+Medições da iteração 0:
+
+Miss L1=2145499949
+Load Instrucions=101841088190
+Store Instrucions=33949277630
+Miss Rate L1 = 0.015800
+
+
+
+Medições da iteração 1:
+
+Miss L1=2145380200
+Load Instrucions=101841095433
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015799
+
+
+
+Medições da iteração 2:
+
+Miss L1=2158704449
+Load Instrucions=101840790001
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015897
+
+
+
+Medições da iteração 3:
+
+Miss L1=2146765005
+Load Instrucions=101841391994
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015809
+
+
+
+Medições da iteração 4:
+
+Miss L1=2145674408
+Load Instrucions=101841450976
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015801
+
+
+
+Medições da iteração 5:
+
+Miss L1=2145715838
+Load Instrucions=101841537032
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015802
+
+
+
+Medições da iteração 6:
+
+Miss L1=2146578633
+Load Instrucions=101841415642
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015808
+
+
+
+Medições da iteração 7:
+
+Miss L1=2146408638
+Load Instrucions=101841364769
+Store Instrucions=33949277325
+Miss Rate L1 = 0.015807
+
+
+
+Validação correta
+T0 = 33925640
+T1 = 33975883
+T2 = 34851788
+T3 = 34937088
+T4 = 34055308
+T5 = 34071123
+T6 = 34091813
+T7 = 34001507
+Média dos 3 melhores tempos = 33967676
+Tolerância = 0.223625%
++ ./bin/matMult ikj 3238 pm23
+Medições da iteração 0:
+
+Miss L1=2145678364
+Miss L2=77109992
+Miss L3=64018689
+Miss Rate L2 = 0.035937
+Miss Rate L3 = 0.830226
+
+
+
+Medições da iteração 1:
+
+Miss L1=2145941382
+Miss L2=78560859
+Miss L3=64863486
+Miss Rate L2 = 0.036609
+Miss Rate L3 = 0.825646
+
+
+
+Medições da iteração 2:
+
+Miss L1=2147092958
+Miss L2=85378832
+Miss L3=68975022
+Miss Rate L2 = 0.039765
+Miss Rate L3 = 0.807870
+
+
+
+Medições da iteração 3:
+
+Miss L1=2146666331
+Miss L2=85487427
+Miss L3=69056052
+Miss Rate L2 = 0.039823
+Miss Rate L3 = 0.807792
+
+
+
+Medições da iteração 4:
+
+Miss L1=2146884006
+Miss L2=85344408
+Miss L3=69010111
+Miss Rate L2 = 0.039753
+Miss Rate L3 = 0.808607
+
+
+
+Medições da iteração 5:
+
+Miss L1=2147173366
+Miss L2=85289953
+Miss L3=68970978
+Miss Rate L2 = 0.039722
+Miss Rate L3 = 0.808665
+
+
+
+Medições da iteração 6:
+
+Miss L1=2147128749
+Miss L2=85121342
+Miss L3=68869902
+Miss Rate L2 = 0.039644
+Miss Rate L3 = 0.809079
+
+
+
+Medições da iteração 7:
+
+Miss L1=2147277534
+Miss L2=85386345
+Miss L3=68964131
+Miss Rate L2 = 0.039765
+Miss Rate L3 = 0.807672
+
+
+
+Validação correta
+T0 = 33948707
+T1 = 35372701
+T2 = 43578120
+T3 = 43580409
+T4 = 43582855
+T5 = 43584537
+T6 = 43581840
+T7 = 43591306
+Média dos 3 melhores tempos = 37633176
+Tolerância = 28.364586%
++ ./bin/matMult ikj 3238 pram
+Medições da iteração 0:
+
+Acessos à RAM=69942965
+Total de instruções=237697430856
+Total de instruções FP=68406431303
+Acessos por instrução = 0.000294
+Acessos por instrução FP = 0.001022
+
+
+
+Medições da iteração 1:
+
+Acessos à RAM=70227674
+Total de instruções=237697427790
+Total de instruções FP=68406378893
+Acessos por instrução = 0.000295
+Acessos por instrução FP = 0.001027
+
+
+
+Medições da iteração 2:
+
+Acessos à RAM=70316355
+Total de instruções=237697427801
+Total de instruções FP=68406527960
+Acessos por instrução = 0.000296
+Acessos por instrução FP = 0.001028
+
+
+
+Medições da iteração 3:
+
+Acessos à RAM=70278666
+Total de instruções=237697427796
+Total de instruções FP=68406606954
+Acessos por instrução = 0.000296
+Acessos por instrução FP = 0.001027
+
+
+
+Medições da iteração 4:
+
+Acessos à RAM=70123117
+Total de instruções=237697427779
+Total de instruções FP=68405813188
+Acessos por instrução = 0.000295
+Acessos por instrução FP = 0.001025
+
+
+
+Medições da iteração 5:
+
+Acessos à RAM=70191251
+Total de instruções=237697427766
+Total de instruções FP=68406346066
+Acessos por instrução = 0.000295
+Acessos por instrução FP = 0.001026
+
+
+
+Medições da iteração 6:
+
+Acessos à RAM=70224379
+Total de instruções=237697427781
+Total de instruções FP=68406342762
+Acessos por instrução = 0.000295
+Acessos por instrução FP = 0.001027
+
+
+
+Medições da iteração 7:
+
+Acessos à RAM=70302830
+Total de instruções=237697427777
+Total de instruções FP=68406770458
+Acessos por instrução = 0.000296
+Acessos por instrução FP = 0.001028
+
+
+
+Validação correta
+T0 = 43625957
+T1 = 43602996
+T2 = 43603422
+T3 = 43595146
+T4 = 43581505
+T5 = 43583583
+T6 = 43587777
+T7 = 43584698
+Média dos 3 melhores tempos = 43583262
+Tolerância = 0.007319%
++ ./bin/matMult ijk 3238
+Validação correta
+T0 = 150861067
+T1 = 130568165
+T2 = 159314872
+T3 = 159359514
+T4 = 159203305
+T5 = 159195425
+T6 = 159248232
+T7 = 159274341
+Média dos 3 melhores tempos = 146874885
+Tolerância = 21.925140%
++ ./bin/matMult ijk 3238
+Validação correta
+T0 = 87547746
+T1 = 87245350
+T2 = 87572607
+T3 = 87527553
+T4 = 87525952
+T5 = 87535944
+T6 = 87562801
+T7 = 95447739
+Média dos 3 melhores tempos = 87432951
+Tolerância = 0.323451%
++ ./bin/matMult ijk 3238 pm1
+Medições da iteração 0:
+
+Miss L1=36122309750
+Load Instrucions=67913016479
+Store Instrucions=33959762274
+Miss Rate L1 = 0.354583
+
+
+
+Medições da iteração 1:
+
+Miss L1=36123818544
+Load Instrucions=67915631133
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354588
+
+
+
+Medições da iteração 2:
+
+Miss L1=36122542579
+Load Instrucions=67909086804
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354599
+
+
+
+Medições da iteração 3:
+
+Miss L1=36123818850
+Load Instrucions=67915041307
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354590
+
+
+
+Medições da iteração 4:
+
+Miss L1=36122410942
+Load Instrucions=67917192958
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354569
+
+
+
+Medições da iteração 5:
+
+Miss L1=36123873090
+Load Instrucions=67911431452
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354603
+
+
+
+Medições da iteração 6:
+
+Miss L1=36122530782
+Load Instrucions=67914439501
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354580
+
+
+
+Medições da iteração 7:
+
+Miss L1=36122762339
+Load Instrucions=67915018187
+Store Instrucions=33959761969
+Miss Rate L1 = 0.354580
+
+
+
+Validação correta
+T0 = 150154290
+T1 = 161951425
+T2 = 130525740
+T3 = 161712905
+T4 = 167294600
+T5 = 164232398
+T6 = 165778844
+T7 = 165308503
+Média dos 3 melhores tempos = 147464311
+Tolerância = 23.893499%
++ ./bin/matMult ijk 3238 pm23
+=>> PBS: job killed: walltime 7238 exceeded limit 7200
